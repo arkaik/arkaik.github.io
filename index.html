@@ -1,1 +1,23 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Board Wars</title> 
+    <script type="text/javascript" src="cocos2d-js-v3.8.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="util.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="hwair.js" charset="UTF-8"></script>
+</head>
+<body>   
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+    <script type="text/javascript">
+          window.onload = function(){
+              cc.game.onStart = function(){
+                  //load resources
+                  cc.LoaderScene.preload(["HelloWorld.png"], function () {
+                      cc.director.runScene(new playScene());
+                  }, this);
+              };
+              cc.game.run("gameCanvas");
+          };
+    </script>
+</body>
+</html>
