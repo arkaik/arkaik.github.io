@@ -5,7 +5,7 @@ var cPlayers = nPlayers; // Contador de jugadores restantes
 var turn = 0;
 var health4all = 5;
 
-var texture = cc.textureCache.addImage("image.png");
+var texture = cc.textureCache.addImage(res.image_png);
 
 //Herencia estilo Old JS
 function Plus (string)
@@ -51,7 +51,7 @@ var backLayer = cc.Layer.extend(
     this._super();
     
     var size = cc.director.getWinSize();
-    var sprite = cc.Sprite.create("HelloWorld.png");
+    var sprite = cc.Sprite.create(res.helloBG_png);
     sprite.setPosition(size.width / 2, size.height / 2);
     sprite.setScale(0.8);
     this.addChild(sprite);    
