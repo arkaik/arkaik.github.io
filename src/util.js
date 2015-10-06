@@ -267,7 +267,7 @@ var menuLayer = cc.Layer.extend({
   },
   init: function()
   {
-    
+    this._super();
   }
 });
 
