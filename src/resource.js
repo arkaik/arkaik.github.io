@@ -1,5 +1,5 @@
 var res = {
-	image_png: "res/image.png",
+	image_png : "res/image.png",
 	helloBG_png: "res/helloBG.png"
 };
 

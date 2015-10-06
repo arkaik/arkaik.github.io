@@ -259,22 +259,6 @@ var animLayer = cc.Layer.extend({
   }
 });
 
-var menuLayer = cc.Layer.extend({
-  ctor: function()
-  {
-    this._super();
-    this.init();
-  },
-  init: function()
-  {
-    this._super();
-  },
-  onPlay: function()
-  {
-    cc.log("==onplay clicked");
-  }
-});
-
 var playScene = cc.Scene.extend(
 {
   onEnter:function ()
@@ -289,6 +273,22 @@ var playScene = cc.Scene.extend(
     this.addChild(gui);
     
     anim.gui_layer = gui;
+  }
+});
+
+var menuLayer = cc.Layer.extend({
+  ctor: function()
+  {
+    this._super();
+    this.init();
+  },
+  init: function()
+  {
+    this._super();
+  },
+  onPlay: function()
+  {
+    cc.log("==onplay clicked");
   }
 });
 
