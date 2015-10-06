@@ -53,7 +53,7 @@ hw.obj_contact = function (m)
         m[nx][ny].setTextureRect(hw.red);
     }
   }
-}
+};
 
 hw.cmp_contact = function (m, px, py)
 {
@@ -201,5 +201,5 @@ hw.obj_junction = function (m)
 
 hw.cmp_junction = function(m, px, py)
 {
-  
+  return false;
 }
