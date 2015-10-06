@@ -4,6 +4,6 @@ var res = {
 };
 
 var g_resources = [
-	image_png,
-	helloBG_png
+	res.image_png,
+	res.helloBG_png
 ];
