@@ -4,8 +4,9 @@
     "id"            : "gameCanvas",
     "renderMode"    : 1,
     "jsList"        : [
+    	"src/resource.js",
     	"src/hwair.js",
     	"src/util.js",
-	"src/resource.js"
+
     ]
 }

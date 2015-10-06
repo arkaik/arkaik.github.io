@@ -268,6 +268,10 @@ var menuLayer = cc.Layer.extend({
   init: function()
   {
     this._super();
+  },
+  onPlay: function()
+  {
+    cc.log("==onplay clicked");
   }
 });
 
@@ -292,6 +296,7 @@ var menuScene = cc.Scene.extend({
   onEnter: function()
   {
     this._super();
-    this.addChild(new menuLayer());
+    var layer = new menuLayer;
+    this.addChild(layer);
   }
 });
