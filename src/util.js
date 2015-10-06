@@ -293,7 +293,7 @@ var menuLayer = cc.Layer.extend({
     spritebg.setPosition(centerpos);
     this.addChild(spritebg);
     
-    np = new cc.EditBox(cc.size(5,10), cc.Scale9Sprite.create(res.greenbox_png));
+    np = new cc.EditBox(cc.size(130,40), cc.Scale9Sprite.create(res.greenbox_png));
     np.setText("EditBox Sample");
     np.setPosition(centerpos);
     np.setFontColor(cc.color(255, 250, 0));
