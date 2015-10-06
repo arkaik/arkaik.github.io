@@ -5,7 +5,7 @@ var cPlayers = nPlayers; // Contador de jugadores restantes
 var turn = 0;
 var health4all = 5;
 
-var texture = cc.textureCache.addImage("res/image.png");
+var texture = cc.textureCache.addImage(res.image_png);
 
 //Herencia estilo Old JS
 function Plus (string)
@@ -75,7 +75,7 @@ var guiLayer = cc.Layer.extend(
     var size = cc.director.getWinSize();
     
     this.labelTurn = new cc.LabelTTF("Team: 0", "Helvetica", 20);
-    this.labelTurn.setColor(cc.color(1,0,0));
+    this.labelTurn.setColor(cc.color(1,1,1));
     this.labelTurn.setPosition(size.width * 0.75, size.height * 0.75);
     this.addChild(this.labelTurn);
     
@@ -83,7 +83,7 @@ var guiLayer = cc.Layer.extend(
     for (z = 0; z < nPlayers; z++)
     {
       this.labelHealth[z] = new cc.LabelTTF("¦"+z+"¦ HP: "+health4all, "Helvetica", 20);
-      this.labelHealth[z].setColor(cc.color(1,0,0));
+      this.labelHealth[z].setColor(cc.color(1,1,1));
       this.labelHealth[z].setPosition(size.width * 0.75, size.height*(0.70 - z*0.05));
       this.addChild(this.labelHealth[z]);
     }
