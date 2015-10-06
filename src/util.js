@@ -285,6 +285,17 @@ var menuLayer = cc.Layer.extend({
   init: function()
   {
     this._super();
+
+    var winsize = cc.director.getWinSize();
+    var centerpos = cc.p(winsize.width / 2, winsize.height / 2);
+    
+    var spritebg = new cc.Sprite(res.helloBG_png);
+    spritebg.setPosition(centerpos);
+    this.addChild(spritebg);
+    
+    np = new cc.EditBox();
+    np.setPosition(centerpos);
+    this.addChild(np);
   },
   onPlay: function()
   {
