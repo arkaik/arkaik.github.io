@@ -307,7 +307,7 @@ var menuScene = cc.Scene.extend({
   onEnter: function()
   {
     this._super();
-    var layer = new menuLayer;
+    var layer = new menuLayer();
     this.addChild(layer);
   }
 });
