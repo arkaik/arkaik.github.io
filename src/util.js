@@ -296,7 +296,7 @@ var menuLayer = cc.Layer.extend({
     np = new cc.EditBox(cc.size(5,10), cc.Scale9Sprite.create(res.greenbox_png));
     np.setText("EditBox Sample");
     np.setPosition(centerpos);
-    np.setFontColor(cc.c3b(255, 250, 0));
+    np.setFontColor(cc.color(255, 250, 0));
     np.setDelegate(this);
     this.addChild(np);
   },
