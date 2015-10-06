@@ -293,7 +293,7 @@ var menuLayer = cc.Layer.extend({
     spritebg.setPosition(centerpos);
     this.addChild(spritebg);
     
-    np = new cc.EditBox();
+    np = new cc.EditBox(cc.size(5,10));
     np.setPosition(centerpos);
     this.addChild(np);
   },
