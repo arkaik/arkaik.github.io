@@ -5,7 +5,7 @@ var cPlayers = nPlayers; // Contador de jugadores restantes
 var turn = 0;
 var health4all = 5;
 
-var texture = cc.textureCache.addImage(res.image_png);
+var texture = cc.textureCache.addImage("res/image.png");
 
 //Herencia estilo Old JS
 function Plus (string)
