@@ -303,7 +303,7 @@ var menuLayer = cc.Layer.extend({
     this.addChild(this.opt);
     
     cc.MenuItemFont.setFontSize(60);
-    var button = new cc.MenuButtonItem (new cc.Sprite(res.greenbox_png), this.onPlay, this);
+    var button = new cc.MenuItemSprite(new cc.Sprite(res.greenbox_png), this.onPlay, this);
     var menu = new cc.Menu(button);
     menu.setPosition(cc.p(winsize.width/2, winsize.height*0.25));
     this.addChild(menu);
