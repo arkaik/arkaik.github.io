@@ -403,7 +403,7 @@ var animLayer = cc.Layer.extend({
             var event = cc.EventCustom("action");
             event.setUserData(
               {
-                location: cpos;
+                location: cpos
               }
             );
             cc.eventManager.dispatchEvent(event);
