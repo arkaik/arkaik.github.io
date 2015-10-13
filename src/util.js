@@ -427,10 +427,11 @@ var playScene = cc.Scene.extend(
   {
     this._super();
     
+    var back = new cc.LayerColor(cc.color(255,255,0,255));
     var anim = new animLayer();
     var gui = new guiLayer();
     
-    this.addChild(new backLayer());
+    this.addChild(back);
     this.addChild(anim);
     this.addChild(gui);
     
