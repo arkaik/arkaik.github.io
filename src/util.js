@@ -427,7 +427,7 @@ var playScene = cc.Scene.extend(
   {
     this._super();
     
-    var back = new cc.LayerColor(cc.color(255,255,0,255));
+    var back = new cc.LayerColor(cc.color(64,64,64,255));
     var anim = new animLayer();
     var gui = new guiLayer();
     
