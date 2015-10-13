@@ -414,7 +414,11 @@ var animLayer = cc.Layer.extend({
     )
     
     cc.eventManager.addListener(list_key, this.cursor);
-    for (em = 0; em < this.player.length; em++) cc.eventManager.addListener(list_plus.clone(), this.player[em]);
+    for (em = 0; em < this.player.length; em++)
+    {
+      cc.eventManager.addListener(list_plus.clone(), this.player[em]);
+      cc.eventManager.addListener(list_act.clone(), this.player[em]);
+    }
   }
 });
 
