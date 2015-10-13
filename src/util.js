@@ -128,7 +128,7 @@ var animLayer = cc.Layer.extend({
       {
         this.matrix[i][j] = new Cell(texture, i, j);
         this.matrix[i][j].setTextureRect(hw.black);
-        this.matrix[i][j].setPosition(32*i+16, 32*j+16);
+        this.matrix[i][j].setPosition(32*i, 32*j);
         this.addChild(this.matrix[i][j]);
       }
       
