@@ -58,8 +58,7 @@ var backLayer = cc.Layer.extend(
   }
 });
 
-var guiLayer = cc.Layer.extend(
-{
+var guiLayer = cc.Layer.extend({
   labelTurn: null,
   labelHealth: null,
   ctor: function()
@@ -421,13 +420,12 @@ var animLayer = cc.Layer.extend({
   }
 });
 
-var playScene = cc.Scene.extend(
-{
+var playScene = cc.Scene.extend({
   onEnter:function ()
   {
     this._super();
     
-    var back = new cc.LayerColor(cc.color(64,64,64,255));
+    var back = new cc.LayerColor(cc.color(192,192,192,255));
     var anim = new animLayer();
     var gui = new guiLayer();
     
@@ -473,7 +471,7 @@ var menuLayer = cc.Layer.extend({
   },
   onPlay: function()
   {
-    //cc.log("==onplay clicked");
+    cc.log(this.opt.getString());
     cc.director.runScene(new playScene());
   }
 });
