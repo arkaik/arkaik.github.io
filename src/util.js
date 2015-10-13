@@ -75,7 +75,7 @@ var guiLayer = cc.Layer.extend(
     var size = cc.director.getWinSize();
     
     this.labelTurn = new cc.LabelTTF("Team: 0", "Helvetica", 20);
-    this.labelTurn.setColor(cc.color(1,1,1));
+    this.labelTurn.setColor(cc.color(01,1,1));
     this.labelTurn.setPosition(size.width * 0.75, size.height * 0.75);
     this.addChild(this.labelTurn);
     
@@ -83,7 +83,7 @@ var guiLayer = cc.Layer.extend(
     for (z = 0; z < nPlayers; z++)
     {
       this.labelHealth[z] = new cc.LabelTTF("¦"+z+"¦ HP: "+health4all, "Helvetica", 20);
-      this.labelHealth[z].setColor(cc.color(0,0,0));
+      this.labelHealth[z].setColor(cc.color(1,1,1));
       this.labelHealth[z].setPosition(size.width * 0.75, size.height*(0.70 - z*0.05));
       this.addChild(this.labelHealth[z]);
     }
@@ -373,25 +373,25 @@ var animLayer = cc.Layer.extend({
           var parent = cursor.getParent();
           var cpos = cursor.getPosition();
           //cc.log(keyCode);
-          if (keyCode == 37)
+          if (keyCode == 37) //Izquierda
           {
             var newpos = cc.p(cpos.x-32,cpos.y);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x-32, cpos.y);
           }
-          if (keyCode == 38)
+          if (keyCode == 38) //Arriba
           {
             var newpos = cc.p(cpos.x,cpos.y+32);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x, cpos.y+32);
           }
-          if (keyCode == 39)
+          if (keyCode == 39) //Derecha
           {
             var newpos = cc.p(cpos.x+32,cpos.y);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x+32, cpos.y);
           }
-          if (keyCode == 40) 
+          if (keyCode == 40) //Abajo
           {
             var newpos = cc.p(cpos.x,cpos.y-32);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
@@ -399,7 +399,6 @@ var animLayer = cc.Layer.extend({
           }
           if (keyCode == 32) //Espacio
           {
-            cc.log("_click_");
             var event = new cc.EventCustom("action");
             event.setUserData(
               {
@@ -431,7 +430,7 @@ var playScene = cc.Scene.extend(
     var anim = new animLayer();
     var gui = new guiLayer();
     
-    //this.addChild(new backLayer());
+    this.addChild(new backLayer());
     this.addChild(anim);
     this.addChild(gui);
     
