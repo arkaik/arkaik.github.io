@@ -128,7 +128,7 @@ var animLayer = cc.Layer.extend({
       {
         this.matrix[i][j] = new Cell(texture, i, j);
         this.matrix[i][j].setTextureRect(hw.black);
-        this.matrix[i][j].setPosition(32*i, 32*j);
+        this.matrix[i][j].setPosition(32*i+16, 32*j+16);
         this.addChild(this.matrix[i][j]);
       }
       
@@ -138,9 +138,9 @@ var animLayer = cc.Layer.extend({
     for (p = 0; p < this.player.length; p++)
     {
       this.player[p] = new Plus(texture);
-      this.player[p].setPosition(32*p,32*p); //TO DO Random
+      this.player[p].setPosition(32*p+16,32*p+16); //TO DO Random
       this.player[p].setTextureRect(hw.symbol[p]);
-      this.player[p].getChildByName("mask").setPosition(0,0);
+      this.player[p].getChildByName("mask").setPosition(16,16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
 
@@ -149,7 +149,7 @@ var animLayer = cc.Layer.extend({
     
     this.cursor = new cc.Sprite(texture);
     this.cursor.setTextureRect(hw.dotted);
-    this.setPosition(0,0);
+    this.setPosition(16,16);
     this.addChild(this.cursor);
     
     var i1x = Math.floor(this.player[0].getPosition().x/32);
@@ -192,8 +192,8 @@ var animLayer = cc.Layer.extend({
           if (target.compr(parent.matrix, px, py))
           {
             target.state = "alone";
-            var cx = px * 32;
-            var cy = py * 32;
+            var cx = px * 32+16;
+            var cy = py * 32+16;
             //cc.log((ox+1)+", "+(oy+1));
             
             //Devolver a su estado original las celdas rojas
