@@ -29,7 +29,7 @@ Plus.prototype.constructor = Plus;
 
 function Cell (string, px, py)
 {
-  cc.Sprite.call(this, string, false);
+  cc.Sprite.call(this, string);
   this.inside = [];
   this.x = px;
   this.y = py;
@@ -268,7 +268,8 @@ var animLayer = cc.Layer.extend({
         {},
         onKeyReleased: function (keyCode, event)
         {
-          var m = event.getCurrentTarget();
+          var cursor = event.getCurrentTarget();
+          
         }
       }
     )
