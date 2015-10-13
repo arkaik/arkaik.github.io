@@ -319,7 +319,7 @@ var playScene = cc.Scene.extend(
     var anim = new animLayer();
     var gui = new guiLayer();
     
-    this.addChild(new backLayer());
+    //this.addChild(new backLayer());
     this.addChild(anim);
     this.addChild(gui);
     
