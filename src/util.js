@@ -192,8 +192,8 @@ var animLayer = cc.Layer.extend({
           if (target.compr(parent.matrix, px, py))
           {
             target.state = "alone";
-            var cx = px * 32 + 16;
-            var cy = py * 32 + 16;
+            var cx = px * 32;
+            var cy = py * 32;
             //cc.log((ox+1)+", "+(oy+1));
             
             //Devolver a su estado original las celdas rojas
@@ -328,7 +328,7 @@ var menuLayer = cc.Layer.extend({
   },
   onPlay: function()
   {
-    cc.log("==onplay clicked");
+    //cc.log("==onplay clicked");
     cc.director.runScene(new playScene());
   }
 });
