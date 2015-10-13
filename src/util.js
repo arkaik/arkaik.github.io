@@ -128,7 +128,7 @@ var animLayer = cc.Layer.extend({
       {
         this.matrix[i][j] = new Cell(texture, i, j);
         this.matrix[i][j].setTextureRect(hw.black);
-        this.matrix[i][j].setPosition(32*i, 32*j);
+        this.matrix[i][j].setPosition(32*i+16, 32*j+16;
         this.addChild(this.matrix[i][j]);
       }
       
@@ -149,7 +149,7 @@ var animLayer = cc.Layer.extend({
     
     this.cursor = new cc.Sprite(texture);
     this.cursor.setTextureRect(hw.dotted);
-    this.setPosition(16,16);
+    this.cursor.setPosition(16,16);
     this.addChild(this.cursor);
     
     var i1x = Math.floor(this.player[0].getPosition().x/32);
