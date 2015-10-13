@@ -400,7 +400,7 @@ var animLayer = cc.Layer.extend({
           if (keyCode == 32) //Espacio
           {
             cc.log("_click_");
-            var event = cc.EventCustom("action");
+            var event = new cc.EventCustom("action");
             event.setUserData(
               {
                 location: cpos
