@@ -108,6 +108,7 @@ var animLayer = cc.Layer.extend({
   gui_layer: null,
   matrix: null, // Matriz de celdas
   player: null, // Vector de jugadores
+  cursor: null,
   ctor: function()
   {
     this._super();
@@ -145,6 +146,11 @@ var animLayer = cc.Layer.extend({
 
       this.matrix[p][p].inside[p] = this.player[p];
     }
+    
+    this.cursor = new cc.Sprite(texture);
+    this.cursor.setTextureRect(hw.dotted);
+    this.setPosition(16,16);
+    this.addChild(this.cursor);
     
     var i1x = Math.floor(this.player[0].getPosition().x/32);
     var i1y = Math.floor(this.player[0].getPosition().y/32);
@@ -255,6 +261,18 @@ var animLayer = cc.Layer.extend({
       }
     });
   
+    var list_key = cc.EventListener.create(
+      {
+        event: cc.EventListener.KEYBOARD,
+        onKeyPressed: function (keyCode, event)
+        {},
+        onKeyReleased: function (keyCode, event)
+        {
+          var m = event.getCurrentTarget();
+        }
+      }
+    )
+    
     for (em = 0; em < this.player.length; em++) cc.eventManager.addListener(list_plus.clone(), this.player[em]);
   }
 });
