@@ -269,6 +269,7 @@ var animLayer = cc.Layer.extend({
         onKeyReleased: function (keyCode, event)
         {
           var cursor = event.getCurrentTarget();
+          cc.log(keyCode);
           
         }
       }
