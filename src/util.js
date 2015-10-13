@@ -83,7 +83,7 @@ var guiLayer = cc.Layer.extend(
     for (z = 0; z < nPlayers; z++)
     {
       this.labelHealth[z] = new cc.LabelTTF("¦"+z+"¦ HP: "+health4all, "Helvetica", 20);
-      this.labelHealth[z].setColor(cc.color(1,1,1));
+      this.labelHealth[z].setColor(cc.color(0,0,0));
       this.labelHealth[z].setPosition(size.width * 0.75, size.height*(0.70 - z*0.05));
       this.addChild(this.labelHealth[z]);
     }
