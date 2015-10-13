@@ -269,30 +269,31 @@ var animLayer = cc.Layer.extend({
         onKeyReleased: function (keyCode, event)
         {
           var cursor = event.getCurrentTarget();
+          var parent = cursor.getParent();
           var cpos = cursor.getPosition();
           cc.log(keyCode);
           if (keyCode == 37)
           {
             var newpos = cc.p(cpos.x-32,cpos.y);
-            if(cc.rectContainsPoint(target.getBoundingBoxToWorld(), newpos))
+            if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x-32, cpos.y);
           }
           if (keyCode == 38)
           {
             var newpos = cc.p(cpos.x,cpos.y+32);
-            if(cc.rectContainsPoint(target.getBoundingBoxToWorld(), newpos))
+            if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x, cpos.y+32);
           }
           if (keyCode == 39)
           {
             var newpos = cc.p(cpos.x+32,cpos.y);
-            if(cc.rectContainsPoint(target.getBoundingBoxToWorld(), newpos))
+            if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x+32, cpos.y);
           }
           if (keyCode == 40) 
           {
             var newpos = cc.p(cpos.x,cpos.y-32);
-            if(cc.rectContainsPoint(target.getBoundingBoxToWorld(), newpos))
+            if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
               cursor.setPosition(cpos.x, cpos.y-32);
           }
           if (keyCode == 32) //Espacio
