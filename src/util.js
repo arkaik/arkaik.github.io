@@ -456,7 +456,6 @@ var menuLayer = cc.Layer.extend({
     this.addChild(spritebg);
     
     this.opt = new cc.EditBox(cc.size(130,40), cc.Scale9Sprite.create(res.greenbox_png));
-    this.opt.setText("EditBox Sample");
     this.opt.setString("EditBox Sample");
     this.opt.setPosition(centerpos);
     this.opt.setFontColor(cc.color(255, 250, 0));

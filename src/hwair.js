@@ -31,6 +31,8 @@ hw.hourglass = cc.rect(128,96,32,32);
 // Especiales 
 hw.gold = cc.rect(160,64,32,32);
 hw.silver = cc.rect(160,96,32,32);
+hw.gbullet = cc.rect(352,0,32,32);
+hw.sbullet = cc.rect(352,32,32,32);
 
 hw.colour = [hw.red, hw.green, hw.blue, hw.yellow, hw.magenta, hw.cyan];
 hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.glider, hw.maccom, hw.leafcross, hw.hourglass];
