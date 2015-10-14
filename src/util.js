@@ -322,7 +322,7 @@ var animLayer = cc.Layer.extend({
     });
     
     cc.eventManager.addListener(list_key, this.cursor);
-    cc.eventManager.addListener(list_plus);
+    cc.eventManager.addListener(list_plus, this);
     for (em = 0; em < this.player.length; em++)
     {
       
