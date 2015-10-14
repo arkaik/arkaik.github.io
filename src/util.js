@@ -264,107 +264,18 @@ var animLayer = cc.Layer.extend({
       swallowTouches: false,
       onMouseUp: function(event)
       {
-        
-        // Objetivo actual
-        var target = event.getCurrentTarget();
-        var parent = target.getParent();
-        var nteam = turn;
-
-        //Posición de origen
-        var orig = target.getPosition();
-        var ox = Math.floor(orig.x/32);
-        var oy = Math.floor(orig.y/32);
-
-        //Posición destino
-        var pt = event.getLocation();
-        var px = Math.floor(pt.x/32);
-        var py = Math.floor(pt.y/32);
-
-        var ok = cc.rectContainsPoint(target.getBoundingBoxToWorld(), pt);
-        var plz = nteam == target.team;
-		// var alive = target.health > 0;
-        
-        if (ok && plz && target.state == "alone")
-        {
-          target.state = "selected";
-          target.objective(parent.matrix);
-        }
-        else if (target.state == "selected")
-        { 
-          if (target.compr(parent.matrix, px, py))
+        var event = new cc.EventCustom("action");
+        event.setUserData(
           {
-            target.state = "alone";
-            var cx = px * 32+16;
-            var cy = py * 32+16;
-            //cc.log((ox+1)+", "+(oy+1));
-            
-            //Devolver a su estado original las celdas rojas
-            target.deselect(parent.matrix);
-
-            parent.matrix[ox][oy].inside[target.team] = undefined;
-
-            target.setPosition(cx, cy);
-
-            var affected = null;
-            for (i = 0; i < parent.matrix[px][py].inside.length; i++)
-            {
-              affected = parent.matrix[px][py].inside[i];
-              
-              if (affected != undefined)
-              {
-                affected.health -= 1;
-                parent.gui_layer.updateLH(affected.team, affected.health);
-                if (affected.health <= 0)
-                {
-                  parent.matrix[px][py].inside[i] = undefined;
-                  parent.removeChild(parent.player[i]);
-                  --cPlayers;
-                  if (cPlayers == 1)
-                  {
-                   	cc.log("You win, gg ez");
-                   	parent.gui_layer.labelHealth[turn].setString("You win, gg ez");
-                  }
-                  /*if (nPlayers == 1)
-                  {
-                    var lwin = new cc.LabelTTF("You win!", "Helvetica", 20);
-                    lwin.setColor(cc.color(1,1,1));
-                    lwin.setPosition(size.width * 0.75, size.height*(0.70 - z*0.05));
-                    parent.addChild(lwin);
-                  }
-                  */
-                }
-              }
-            }
-
-            parent.matrix[px][py].inside[target.team] = target;
-            
-            parent.gui_layer.updateTurn();
-            nteam = (nteam+1)%nPlayers;
-            //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-            // Indicar siguiente jugador si vivo
-            
-            while (parent.player[nteam].health <= 0 && nPlayers > 1)
-            {
-            	parent.gui_layer.updateTurn();
-            	nteam = (nteam+1)%nPlayers;
-            	//cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-           	}
-           	
-           	
-           	var ix = Math.floor(parent.player[nteam].getPosition().x/32);
-           	var iy = Math.floor(parent.player[nteam].getPosition().y/32);
-            parent.matrix[ix][iy].setTextureRect(hw.blue);
+            location: event.getLocation()
           }
-         
-         event.stopPropagation(); 
-        }
-        //cc.log(target.state);
-        
+        );
+        cc.eventManager.dispatchEvent(event);
       }
     });
   
     var list_key = cc.EventListener.create(
-      {
+    {
         event: cc.EventListener.KEYBOARD,
         onKeyReleased: function (keyCode, event)
         {
@@ -408,13 +319,13 @@ var animLayer = cc.Layer.extend({
           }
           
         }
-      }
-    )
+    });
     
     cc.eventManager.addListener(list_key, this.cursor);
+    cc.eventManager.addListener(list_plus);
     for (em = 0; em < this.player.length; em++)
     {
-      cc.eventManager.addListener(list_plus.clone(), this.player[em]);
+      
       cc.eventManager.addListener(list_act.clone(), this.player[em]);
     }
   }
