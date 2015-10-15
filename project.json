@@ -6,6 +6,6 @@
     "jsList"        : [
     	"src/resource.js",
     	"src/util.js?v=0",
-    	"src/hwair.js"
+    	"src/hwair.js?v=0"
     ]
 }
