@@ -255,14 +255,14 @@ var animLayer = cc.Layer.extend({
       swallowTouches: false,
       onMouseUp: function(event)
       {
-        var event = new cc.EventCustom("action");
+        var ev = new cc.EventCustom("action");
         var loc = event.getLocation();
-        event.setUserData(
+        ev.setUserData(
           {
             location: loc
           }
         );
-        cc.eventManager.dispatchEvent(event);
+        cc.eventManager.dispatchEvent(ev);
       }
     });
   
