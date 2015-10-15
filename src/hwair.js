@@ -89,7 +89,7 @@ hw.des_contact = function (m)
   }
 }
 
-hw.cns_contact = function(px, py)
+hw.cns_contact = function(m, px, py)
 {
   var cx = px * 32+16;
   var cy = py * 32+16;
