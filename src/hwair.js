@@ -98,11 +98,11 @@ hw.cns_contact = function()
   bullet.setTextureRect(hw.sbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var mov = cc.action.MoveTo(1, cc.p(cx, cy));
+  var mov = cc.moveBy(5, cc.p(64, 64));
   bullet.runAction(mov);
   
   this.setPosition(cx, cy);
-  this.removeChild("bullet");
+  //
 }
  
 hw.obj_distance = function (m)
