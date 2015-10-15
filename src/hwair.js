@@ -89,7 +89,7 @@ hw.des_contact = function (m)
   }
 }
 
-hw.cns_contact = function()
+hw.cns_contact = function(px, py)
 {
   var cx = px * 32+16;
   var cy = py * 32+16;
@@ -98,11 +98,11 @@ hw.cns_contact = function()
   bullet.setTextureRect(hw.sbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var mov = cc.moveBy(5, cc.p(64, 64));
+  var mov = cc.moveTo(5, cc.p(cx+32, cx+32));
   bullet.runAction(mov);
   
   this.setPosition(cx, cy);
-  //
+  //this.removeChild("bullet");
 }
  
 hw.obj_distance = function (m)
