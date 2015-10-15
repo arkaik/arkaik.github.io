@@ -88,6 +88,22 @@ hw.des_contact = function (m)
     }
   }
 }
+
+hw.cns_contact = function()
+{
+  var cx = px * 32+16;
+  var cy = py * 32+16;
+  //cc.log((ox+1)+", "+(oy+1));
+  var bullet = new cc.Sprite(texture);
+  bullet.setTextureRect(hw.sbullet);
+  bullet.setName("bullet");
+  this.addChild(bullet);
+  var mov = cc.action.MoveTo(1, cc.p(cx, cy));
+  bullet.runAction(mov);
+  
+  this.setPosition(cx, cy);
+  this.removeChild("bullet");
+}
  
 hw.obj_distance = function (m)
 {

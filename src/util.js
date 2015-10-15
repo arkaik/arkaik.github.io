@@ -19,6 +19,7 @@ function Plus (string)
   this.objective = hw.obj_contact;
   this.compr = hw.cmp_contact;
   this.deselect = hw.des_contact;
+  this.consequence = hw.cns_contact;
   
   var spr_defense = new cc.Sprite(texture);
   spr_defense.setTextureRect(hw.silver);
@@ -156,7 +157,7 @@ var animLayer = cc.Layer.extend({
     this.matrix[i1x][i1y].setTextureRect(hw.blue);
   
     var list_act = cc.EventListener.create(
-      {
+    {
         event: cc.EventListener.CUSTOM,
         eventName: "action",
         callback: function(event)
@@ -190,16 +191,14 @@ var animLayer = cc.Layer.extend({
             if (target.compr(parent.matrix, px, py))
             {
               target.state = "alone";
-              var cx = px * 32+16;
-              var cy = py * 32+16;
-              //cc.log((ox+1)+", "+(oy+1));
               
               //Devolver a su estado original las celdas rojas
               target.deselect(parent.matrix);
 
               parent.matrix[ox][oy].inside[target.team] = undefined;
-
-              target.setPosition(cx, cy);
+              
+              //Toda acción tiene su consecuencia... (hue hue)
+              target.consequence(parent.matrix, px, py);
 
               var affected = null;
               for (i = 0; i < parent.matrix[px][py].inside.length; i++)
@@ -220,14 +219,6 @@ var animLayer = cc.Layer.extend({
                       cc.log("You win, gg ez");
                       parent.gui_layer.labelHealth[turn].setString("You win, gg ez");
                     }
-                    /*if (nPlayers == 1)
-                    {
-                      var lwin = new cc.LabelTTF("You win!", "Helvetica", 20);
-                      lwin.setColor(cc.color(1,1,1));
-                      lwin.setPosition(size.width * 0.75, size.height*(0.70 - z*0.05));
-                      parent.addChild(lwin);
-                    }
-                    */
                   }
                 }
               }
