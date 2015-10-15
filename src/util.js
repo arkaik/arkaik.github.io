@@ -256,9 +256,10 @@ var animLayer = cc.Layer.extend({
       onMouseUp: function(event)
       {
         var event = new cc.EventCustom("action");
+        var loc = event.getLocation();
         event.setUserData(
           {
-            location: event.getLocation()
+            location: loc
           }
         );
         cc.eventManager.dispatchEvent(event);
