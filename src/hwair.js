@@ -95,10 +95,10 @@ hw.cns_contact = function(m, px, py)
   var cy = py * 32+16;
   //cc.log((ox+1)+", "+(oy+1));
   var bullet = new cc.Sprite(texture);
-  bullet.setTextureRect(hw.sbullet);
+  bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var mov = cc.moveTo(5, cc.p(cx+32, cx+32));
+  var mov = cc.moveTo(2, cc.p(cx, cy));
   bullet.runAction(mov);
   
   this.setPosition(cx, cy);
