@@ -5,7 +5,7 @@
     "renderMode"    : 1,
     "jsList"        : [
     	"src/resource.js",
-    	"src/util.js?v=1",
-    	"src/hwair.js?v=1"
+    	"src/util.js",
+    	"src/hwair.js"
     ]
 }

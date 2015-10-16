@@ -93,12 +93,14 @@ hw.cns_contact = function(m, px, py)
 {
   var cx = px * 32+16;
   var cy = py * 32+16;
-  //cc.log((ox+1)+", "+(oy+1));
+  var ox = Math.floor(this.getPosition().x/32);
+  var oy = Math.floor(this.getPosition().y/32);
+  
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var mov = cc.moveTo(2, cc.p(cx, cy));
+  var mov = cc.moveBy(1, cc.p((cx-ox)*32, (cy-oy)*32);
   bullet.runAction(mov);
   
   this.setPosition(cx, cy);
