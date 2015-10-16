@@ -100,7 +100,7 @@ hw.cns_contact = function(m, px, py)
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var mov = cc.moveBy(1, cc.p((cx-ox)*32, (cy-oy)*32);
+  var mov = cc.moveBy(1, cc.p((cx-ox)*32, (cy-oy)*32));
   bullet.runAction(mov);
   
   this.setPosition(cx, cy);
