@@ -100,11 +100,11 @@ hw.cns_contact = function(m, px, py)
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var mov = cc.moveBy(1, cc.p((cx-ox)*32, (cy-oy)*32));
-  bullet.runAction(mov);
+  var mov = cc.moveBy(2, cc.p((cx-ox)*32, (cy-oy)*32));
+  var seq = cc.sequence(mov, cc.removeSelf);
+  bullet.runAction(seq);
   
   this.setPosition(cx, cy);
-  //this.removeChild("bullet");
 }
  
 hw.obj_distance = function (m)
