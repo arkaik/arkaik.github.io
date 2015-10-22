@@ -96,14 +96,6 @@ hw.cns_contact = function(m, px, py)
   var ox = Math.floor(this.getPosition().x/32);
   var oy = Math.floor(this.getPosition().y/32);
   
-  var bullet = new cc.Sprite(texture);
-  bullet.setTextureRect(hw.gbullet);
-  bullet.setName("bullet");
-  this.addChild(bullet);
-  var mov = cc.moveBy(5, cc.p(10,10));
-  var seq = cc.sequence(mov, cc.removeSelf);
-  bullet.runAction(seq);
-  
   this.setPosition(cx, cy);
 }
  
@@ -196,6 +188,17 @@ hw.des_distance = function (m)
   }
   
   m[ox][oy].setTextureRect(hw.black);
+}
+
+hw.cns_distance = function ()
+{
+  var bullet = new cc.Sprite(texture);
+  bullet.setTextureRect(hw.gbullet);
+  bullet.setName("bullet");
+  this.addChild(bullet);
+  var mov = cc.moveBy(5, 10, 10);
+  var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
+  bullet.runAction(seq);
 }
 
 hw.obj_junction = function (m)
