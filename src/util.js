@@ -369,7 +369,7 @@ var menuLayer = cc.Layer.extend({
     this.addChild(this.opt);
     
     var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
-    b1.setTextureRect(hw.buttons[1]);
+    b1.getNormalImage().setTextureRect(hw.buttons[1]);
     var menu_b = new cc.Menu(b1);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
