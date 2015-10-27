@@ -137,7 +137,7 @@ var animLayer = cc.Layer.extend({
     this.player = new Array(nPlayers);
     for (p = 0; p < this.player.length; p++)
     {
-      var rp = Math.floor(Math.random()*15);
+      var rp = Math.floor(Math.random()*mat_size);
       this.player[p] = new Plus(texture);
       this.player[p].setPosition(32*rp+16,32*rp+16); //TO DO Random
       this.player[p].setTextureRect(hw.symbol[p]);
