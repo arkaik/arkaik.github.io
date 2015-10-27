@@ -40,6 +40,8 @@ hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.g
 //Botones
 hw.buttons = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32)];
 
+hw.data = {};
+
 hw.obj_contact = function (m)
 {
   var nx, ny;
