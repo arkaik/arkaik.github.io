@@ -137,14 +137,15 @@ var animLayer = cc.Layer.extend({
     this.player = new Array(nPlayers);
     for (p = 0; p < this.player.length; p++)
     {
+      var rp = Math.floor(Math.random()*15);
       this.player[p] = new Plus(texture);
-      this.player[p].setPosition(32*p+16,32*p+16); //TO DO Random
+      this.player[p].setPosition(32*rp+16,32*rp+16); //TO DO Random
       this.player[p].setTextureRect(hw.symbol[p]);
       this.player[p].getChildByName("mask").setPosition(16,16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
 
-      this.matrix[p][p].inside[p] = this.player[p];
+      this.matrix[rp][rp].inside[p] = this.player[p];
     }
     
     this.cursor = new cc.Sprite(texture);
