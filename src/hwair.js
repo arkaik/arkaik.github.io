@@ -37,6 +37,9 @@ hw.sbullet = cc.rect(352,32,32,32);
 hw.colour = [hw.red, hw.green, hw.blue, hw.yellow, hw.magenta, hw.cyan];
 hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.glider, hw.maccom, hw.leafcross, hw.hourglass];
 
+//Botones
+hw.button = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32)];
+
 hw.obj_contact = function (m)
 {
   var nx, ny;

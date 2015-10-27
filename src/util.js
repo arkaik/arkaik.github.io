@@ -6,6 +6,7 @@ var turn = 0;
 var health4all = 5;
 
 var texture = cc.textureCache.addImage(res.image_png);
+var buttons = cc.textureCache.addImage(res.button_png);
 
 //Herencia estilo Old JS
 function Plus (string)
@@ -343,6 +344,7 @@ var playScene = cc.Scene.extend({
 
 var menuLayer = cc.Layer.extend({
   opt: null,
+  
   ctor: function()
   {
     this._super();
@@ -365,6 +367,12 @@ var menuLayer = cc.Layer.extend({
     this.opt.setFontColor(cc.color(255, 250, 0));
     this.opt.setDelegate(this);
     this.addChild(this.opt);
+    
+    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+    b1.setTextureRect(hw.buttons[1]);
+    var menu_b = new cc.Menu(b1);
+    menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
+    this.addChild(menu_b);
     
     cc.MenuItemFont.setFontSize(60);
     var button = new cc.MenuItemSprite(new cc.Sprite(res.greenbox_png),new cc.Sprite(res.greenbox_png), this.onPlay, this);
