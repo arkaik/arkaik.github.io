@@ -277,6 +277,7 @@ var animLayer = cc.Layer.extend({
       },
       onTouchEnded: function(touch, event)
       {
+        cc.log("Touching end");
         var ev = new cc.EventCustom("action");
         var loc = event.getLocation();
         ev.setUserData(
