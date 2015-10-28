@@ -1,5 +1,5 @@
 // Opciones y configuración
-var mat_size = 15; // Matriz n * n, n = mat_size
+var mat_size = 10; // Matriz n * n, n = mat_size
 var nPlayers = 4; // Número de jugadores
 var cPlayers = nPlayers; // Contador de jugadores restantes
 var turn = 0;
