@@ -267,6 +267,23 @@ var animLayer = cc.Layer.extend({
         cc.eventManager.dispatchEvent(ev);
       }
     });
+    
+    var list_touch = cc.EventListener.create(
+    {
+      event: cc.EventListener.TOUCH_ONE_BY_ONE,
+      swallowTouches: true,
+      onTouchEnded: function(touch, event)
+      {
+        var ev = new cc.EventCustom("action");
+        var loc = event.getLocation();
+        ev.setUserData(
+          {
+            location: loc
+          }
+        );
+        cc.eventManager.dispatchEvent(ev);
+      }
+    });
   
     var list_key = cc.EventListener.create(
     {
@@ -317,9 +334,9 @@ var animLayer = cc.Layer.extend({
     
     cc.eventManager.addListener(list_key, this.cursor);
     cc.eventManager.addListener(list_plus, this);
+    cc.eventManager.addListener(list_touch, this);
     for (em = 0; em < this.player.length; em++)
     {
-      
       cc.eventManager.addListener(list_act.clone(), this.player[em]);
     }
   }
