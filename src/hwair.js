@@ -266,7 +266,12 @@ hw.des_junction = function(m)
 
 hw.cns_junction = function()
 {
-  
+  var bullet = new cc.Sprite(texture);
+  bullet.setTextureRect(hw.gbullet);
+  bullet.setName("bullet");
+  this.addChild(bullet);
+  var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
+  bullet.runAction(seq);
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction];
