@@ -138,15 +138,16 @@ var animLayer = cc.Layer.extend({
     this.player = new Array(nPlayers);
     for (p = 0; p < this.player.length; p++)
     {
-      var rp = Math.floor(Math.random()*mat_size);
+      var rpx = Math.floor(Math.random()*mat_size);
+      var rpy = Math.floor(Math.random()*mat_size);
       this.player[p] = new Plus(texture);
-      this.player[p].setPosition(32*rp+16,32*rp+16); //TO DO Random
+      this.player[p].setPosition(32*rpx+16,32*rpy+16); //TO DO Random
       this.player[p].setTextureRect(hw.symbol[p]);
       this.player[p].getChildByName("mask").setPosition(16,16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
 
-      this.matrix[rp][rp].inside[p] = this.player[p];
+      this.matrix[rpx][rpy].inside[p] = this.player[p];
     }
     
     this.cursor = new cc.Sprite(texture);
@@ -274,6 +275,7 @@ var animLayer = cc.Layer.extend({
       swallowTouches: true,
       onTouchBegan: function(touch, event){
         cc.log("Touched");
+        return true;
       },
       onTouchEnded: function(touch, event)
       {
@@ -286,6 +288,7 @@ var animLayer = cc.Layer.extend({
           }
         );
         cc.eventManager.dispatchEvent(ev);
+        return true;
       }
     });
   
