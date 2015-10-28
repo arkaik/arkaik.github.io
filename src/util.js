@@ -272,6 +272,7 @@ var animLayer = cc.Layer.extend({
     {
       event: cc.EventListener.TOUCH_ONE_BY_ONE,
       swallowTouches: true,
+      onTouchBegan: function(touch, event){},
       onTouchEnded: function(touch, event)
       {
         var ev = new cc.EventCustom("action");
