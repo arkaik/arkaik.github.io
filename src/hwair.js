@@ -269,7 +269,7 @@ hw.cns_junction = function()
   
 }
 
-hw.obj = [obj_contact, obj_junction];
-hw.cmp = [cmp_contact, cmp_junction];
-hw.des = [des_contact, des_junction];
-hw.cns = [cns_contact, cns_junction];
+hw.obj = [hw.obj_contact, hw.obj_junction];
+hw.cmp = [hw.cmp_contact, hw.cmp_junction];
+hw.des = [hw.des_contact, hw.des_junction];
+hw.cns = [hw.cns_contact, hw.cns_junction];
