@@ -264,13 +264,19 @@ hw.des_junction = function(m)
   }
 }
 
-hw.cns_junction = function()
+hw.cns_junction = function(m, px, py)
 {
+  //Posició a l'espai del món
+  var cx = px * 32+16;
+  var cy = py * 32+16;
+  var ox = Math.floor(this.getPosition().x/32);
+  var oy = Math.floor(this.getPosition().y/32);
+  
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(3, 32, 32), cc.delayTime(2), cc.removeSelf());
+  var seq = cc.sequence(cc.moveTo(2, cx, cy), cc.delayTime(2), cc.removeSelf());
   bullet.runAction(seq);
 }
 
