@@ -17,10 +17,10 @@ function Plus (string)
   this.health = health4all;
   this.defense = 2;
   this.team = 0;
-  this.objective = hw.obj_contact;
-  this.compr = hw.cmp_contact;
-  this.deselect = hw.des_contact;
-  this.consequence = hw.cns_contact;
+  this.objective = hw.obj[hw.data];
+  this.compr = hw.cmp[hw.data];
+  this.deselect = hw.des[hw.data];
+  this.consequence = hw.cns[hw.data];
   
   var spr_defense = new cc.Sprite(texture);
   spr_defense.setTextureRect(hw.silver);
@@ -252,23 +252,6 @@ var animLayer = cc.Layer.extend({
       }
     );
     
-    /*var list_plus = cc.EventListener.create(
-    {
-      event: cc.EventListener.MOUSE,
-      swallowTouches: false,
-      onMouseUp: function(event)
-      {
-        var ev = new cc.EventCustom("action");
-        var loc = event.getLocation();
-        ev.setUserData(
-          {
-            location: loc
-          }
-        );
-        cc.eventManager.dispatchEvent(ev);
-      }
-    });*/
-    
     var list_touch = cc.EventListener.create(
     {
       event: cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -338,9 +321,8 @@ var animLayer = cc.Layer.extend({
           
         }
     });
-    
+   
     cc.eventManager.addListener(list_key, this.cursor);
-    //cc.eventManager.addListener(list_plus, this);
     cc.eventManager.addListener(list_touch, this);
     for (em = 0; em < this.player.length; em++)
     {
@@ -392,10 +374,10 @@ var menuLayer = cc.Layer.extend({
     this.opt.setDelegate(this);
     this.addChild(this.opt);
     
-    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){hw.data = 0;}, this);
     b1.getNormalImage().setTextureRect(hw.buttons[1]);
     b1.getSelectedImage().setTextureRect(hw.buttons[1]);
-    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){hw.data = 1;}, this);
     b2.getNormalImage().setTextureRect(hw.buttons[2]);
     b2.getSelectedImage().setTextureRect(hw.buttons[2]);
     b2.setPosition(32,0);

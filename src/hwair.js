@@ -1,8 +1,8 @@
-//
+////
 // hwair.js
-//
+////
 // Utilidades para Board Wars
-//
+////
 var hw = {};
 //Colores de celda predefinidos
 hw.black = cc.rect(0,0,32,32);
@@ -40,8 +40,9 @@ hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.g
 //Botones
 hw.buttons = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32), cc.rect(96,0,32,32)];
 
-hw.data = {};
+hw.data = undefined;
 
+//Tipos de habilidades
 hw.obj_contact = function (m)
 {
   var nx, ny;
@@ -229,5 +230,46 @@ hw.obj_junction = function (m)
 
 hw.cmp_junction = function(m, px, py)
 {
-  return false;
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var jx = ox == px
+  var jy = oy == py;
+  
+  var xx = Math.abs(ox - px) == 2;
+  var yy = Math.abs(oy - py) == 2;
+  
+  return (jx || jy) && (xx || yy);
 }
+
+hw.des_junction = function(m)
+{
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var nx, ny;
+  
+  for (k = -2; k <= 2; k++)
+  {
+    
+    ny = oy + k;
+    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
+      m[ox][ny].setTextureRect(hw.black);
+    
+    nx = ox + k;  
+    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
+      m[nx][oy].setTextureRect(hw.black);
+  }
+}
+
+hw.cns_junction = function()
+{
+  
+}
+
+hw.obj = [obj_contact, obj_junction];
+hw.cmp = [cmp_contact, cmp_junction];
+hw.des = [des_contact, des_junction];
+hw.cns = [cns_contact, cns_junction];
