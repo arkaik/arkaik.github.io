@@ -1,5 +1,5 @@
 // Opciones y configuración
-var mat_size = 10; // Matriz n * n, n = mat_size
+var mat_size = 12; // Matriz n * n, n = mat_size
 var nPlayers = 4; // Número de jugadores
 var cPlayers = nPlayers; // Contador de jugadores restantes
 var turn = 0;
@@ -252,7 +252,7 @@ var animLayer = cc.Layer.extend({
       }
     );
     
-    var list_plus = cc.EventListener.create(
+    /*var list_plus = cc.EventListener.create(
     {
       event: cc.EventListener.MOUSE,
       swallowTouches: false,
@@ -267,7 +267,7 @@ var animLayer = cc.Layer.extend({
         );
         cc.eventManager.dispatchEvent(ev);
       }
-    });
+    });*/
     
     var list_touch = cc.EventListener.create(
     {
