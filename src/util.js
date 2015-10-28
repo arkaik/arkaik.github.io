@@ -274,12 +274,12 @@ var animLayer = cc.Layer.extend({
       event: cc.EventListener.TOUCH_ONE_BY_ONE,
       swallowTouches: true,
       onTouchBegan: function(touch, event){
-        cc.log("Touched");
+        //cc.log("Touched");
         return true;
       },
       onTouchEnded: function(touch, event)
       {
-        cc.log("Touching end");
+        //cc.log("Touching end");
         var ev = new cc.EventCustom("action");
         var loc = touch.getLocation();
         ev.setUserData(
