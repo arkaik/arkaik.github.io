@@ -270,7 +270,7 @@ hw.cns_junction = function()
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
+  var seq = cc.sequence(cc.moveBy(5, 32, 132), cc.delayTime(2), cc.removeSelf());
   bullet.runAction(seq);
 }
 
