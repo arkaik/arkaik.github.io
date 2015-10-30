@@ -237,8 +237,8 @@ hw.cmp_junction = function(m, px, py)
   var jx = ox == px
   var jy = oy == py;
   
-  var xx = Math.abs(ox - px) == 2;
-  var yy = Math.abs(oy - py) == 2;
+  var xx = Math.abs(ox - px) <= 2;
+  var yy = Math.abs(oy - py) <= 2;
   
   return (jx || jy) && (xx || yy);
 }
@@ -269,12 +269,14 @@ hw.cns_junction = function(m, px, py)
   //Posició a l'espai del món
   var cx = px * 32+16;
   var cy = py * 32+16;
-  var ox = Math.floor(this.getPosition().x/32);
-  var oy = Math.floor(this.getPosition().y/32);
+  
+  var ox = this.getPosition().x;
+  var oy = this.getPosition().y;
   
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
+  bullet.setPosition(16,16);
   this.addChild(bullet);
   var seq = cc.sequence(cc.moveTo(2, cx-ox, cy-oy), cc.delayTime(2), cc.removeSelf());
   bullet.runAction(seq);
