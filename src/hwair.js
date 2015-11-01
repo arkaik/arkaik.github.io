@@ -270,9 +270,10 @@ hw.cns_junction = function(m, px, py)
   var cx = px * 32+16;
   var cy = py * 32+16;
   
-  var ox = this.getPosition().x;
-  var oy = this.getPosition().y;
+  var ox = Math.floor(this.getPosition().x/32)+16;
+  var oy = Math.floor(this.getPosition().y/32)+16;
   
+  cc.log((cx-ox)+", "+(cy-oy));
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
