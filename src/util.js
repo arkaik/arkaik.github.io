@@ -231,10 +231,11 @@ var animLayer = cc.Layer.extend({
           {
             if (target.compr(parent.matrix, px, py))
             {
-              cc.log(px+", "+py);
+              var cx = px*32+16;
+              var cy = py*32+16;
               //Devolver a su estado original las celdas rojas
               target.deselect(parent.matrix);
-              target.setPosition(px, py);
+              target.setPosition(cx, cy);
               parent.matrix[px][py].inside[target.team] = target;
               
               parent.gui_layer.updateTurn();
