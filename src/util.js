@@ -228,28 +228,31 @@ var animLayer = cc.Layer.extend({
           }
           else if (target.state == "moving")
           {
-            //Devolver a su estado original las celdas rojas
-            target.deselect(parent.matrix);
-            target.setPosition(px, py);
-            parent.matrix[px][py].inside[target.team] = target;
-            
-            parent.gui_layer.updateTurn();
-            nteam = (nteam+1)%nPlayers;
-            //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-            // Indicar siguiente jugador si vivo
-              
-            while (parent.player[nteam].health <= 0 && nPlayers > 1)
+            if (target.compr(parent.matrix, px, py))
             {
+              //Devolver a su estado original las celdas rojas
+              target.deselect(parent.matrix);
+              target.setPosition(px, py);
+              parent.matrix[px][py].inside[target.team] = target;
+              
               parent.gui_layer.updateTurn();
               nteam = (nteam+1)%nPlayers;
               //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-            }  
+              // Indicar siguiente jugador si vivo
+                
+              while (parent.player[nteam].health <= 0 && nPlayers > 1)
+              {
+                parent.gui_layer.updateTurn();
+                nteam = (nteam+1)%nPlayers;
+                //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
+              }  
+                
+              var ix = Math.floor(parent.player[nteam].getPosition().x/32);
+              var iy = Math.floor(parent.player[nteam].getPosition().y/32);
+              parent.matrix[ix][iy].setTextureRect(hw.blue);
               
-            var ix = Math.floor(parent.player[nteam].getPosition().x/32);
-            var iy = Math.floor(parent.player[nteam].getPosition().y/32);
-            parent.matrix[ix][iy].setTextureRect(hw.blue);
-            
-            target.state = "alone";
+              target.state = "alone";
+            }
           }
           
         }
