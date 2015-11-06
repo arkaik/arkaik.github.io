@@ -229,12 +229,12 @@ var animLayer = cc.Layer.extend({
           }
           else if (target.state == "moving")
           {
-            cc.log(px+", "+py);
             if (target.compr(parent.matrix, px, py))
             {
+              cc.log(px+", "+py);
               //Devolver a su estado original las celdas rojas
               target.deselect(parent.matrix);
-              target.setPosition(px+16, py+16);
+              target.setPosition(px, py);
               parent.matrix[px][py].inside[target.team] = target;
               
               parent.gui_layer.updateTurn();
