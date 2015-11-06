@@ -107,7 +107,7 @@ hw.cns_contact = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(16,16);
   this.addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(2), cc.removeSelf());
+  var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(1), cc.removeSelf());
   bullet.runAction(seq);
   
 }
