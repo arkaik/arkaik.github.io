@@ -193,11 +193,6 @@ var animLayer = cc.Layer.extend({
           { 
             if (target.compr(parent.matrix, px, py))
             {
-              target.state = "alone";
-              
-              //Devolver a su estado original las celdas rojas
-              target.deselect(parent.matrix);
-
               parent.matrix[ox][oy].inside[target.team] = undefined;
               
               //Toda acción tiene su consecuencia... (hue hue)
@@ -208,7 +203,7 @@ var animLayer = cc.Layer.extend({
               {
                 affected = parent.matrix[px][py].inside[i];
                 
-                if (affected != undefined)
+                if (affected != undefined && affected.team != target.team)
                 {
                   affected.health -= 1;
                   parent.gui_layer.updateLH(affected.team, affected.health);
@@ -226,28 +221,37 @@ var animLayer = cc.Layer.extend({
                 }
               }
 
-              parent.matrix[px][py].inside[target.team] = target;
+            }
+            
+            target.state = "moving";
+            event.stopPropagation();
+          }
+          else if (target.state == "moving")
+          {
+            //Devolver a su estado original las celdas rojas
+            target.deselect(parent.matrix);
+            target.setPosition(px, py);
+            parent.matrix[px][py].inside[target.team] = target;
+            
+            parent.gui_layer.updateTurn();
+            nteam = (nteam+1)%nPlayers;
+            //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
+            // Indicar siguiente jugador si vivo
               
+            while (parent.player[nteam].health <= 0 && nPlayers > 1)
+            {
               parent.gui_layer.updateTurn();
               nteam = (nteam+1)%nPlayers;
               //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-              // Indicar siguiente jugador si vivo
+            }  
               
-              while (parent.player[nteam].health <= 0 && nPlayers > 1)
-              {
-                parent.gui_layer.updateTurn();
-                nteam = (nteam+1)%nPlayers;
-                //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-              }
-              
-              
-              var ix = Math.floor(parent.player[nteam].getPosition().x/32);
-              var iy = Math.floor(parent.player[nteam].getPosition().y/32);
-              parent.matrix[ix][iy].setTextureRect(hw.blue);
-            }
-          
-            event.stopPropagation();
+            var ix = Math.floor(parent.player[nteam].getPosition().x/32);
+            var iy = Math.floor(parent.player[nteam].getPosition().y/32);
+            parent.matrix[ix][iy].setTextureRect(hw.blue);
+            
+            target.state = "alone";
           }
+          
         }
       }
     );

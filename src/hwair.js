@@ -1,6 +1,6 @@
-////
+//////
 // hwair.js
-////
+//////
 // Utilidades para Board Wars
 ////
 var hw = {};
@@ -99,10 +99,17 @@ hw.cns_contact = function(m, px, py)
 {
   var cx = px * 32+16;
   var cy = py * 32+16;
-  var ox = Math.floor(this.getPosition().x/32);
-  var oy = Math.floor(this.getPosition().y/32);
+  var ox = Math.floor(this.getPosition().x/32)*32+16;
+  var oy = Math.floor(this.getPosition().y/32)*32+16;
   
-  this.setPosition(cx, cy);
+  var bullet = new cc.Sprite(texture);
+  bullet.setTextureRect(hw.sbullet);
+  bullet.setName("bullet");
+  bullet.setPosition(16,16);
+  this.addChild(bullet);
+  var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(2), cc.removeSelf());
+  bullet.runAction(seq);
+  
 }
  
 hw.obj_distance = function (m)
@@ -273,14 +280,15 @@ hw.cns_junction = function(m, px, py)
   var ox = Math.floor(this.getPosition().x/32)*32+16;
   var oy = Math.floor(this.getPosition().y/32)*32+16;
   
-  cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
+  //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   bullet.setPosition(16,16);
   this.addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(2, cx-ox, cy-oy), cc.delayTime(2), cc.removeSelf());
+  var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(2), cc.removeSelf());
   bullet.runAction(seq);
+  
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction];
