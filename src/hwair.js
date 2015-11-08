@@ -284,9 +284,9 @@ hw.cns_junction = function(m, px, py)
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
-  bullet.setPosition(16,16);
-  this.addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(1), cc.removeSelf());
+  bullet.setPosition(ox,oy);
+  m.getParent().addChild(bullet);
+  var seq = cc.sequence(cc.moveTo(1, cx, cy), cc.delayTime(1), cc.removeSelf());
   bullet.runAction(seq);
   
 }
