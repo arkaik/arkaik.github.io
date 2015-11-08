@@ -105,13 +105,169 @@ hw.cns_contact = function(m, px, py)
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.sbullet);
   bullet.setName("bullet");
-  bullet.setPosition(16,16);
-  this.addChild(bullet);
+  bullet.setPosition(ox,oy);
+  this.getParent().addChild(bullet);
   var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(1), cc.removeSelf());
   bullet.runAction(seq);
   
 }
  
+
+
+hw.obj_junction = function (m)
+{  
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var nx, ny;
+  
+  for (k = -2; k <= 2; k++)
+  {
+    
+    ny = oy + k;
+    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
+      m[ox][ny].setTextureRect(hw.green);
+    
+    nx = ox + k;  
+    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
+      m[nx][oy].setTextureRect(hw.green);
+  }
+}
+
+hw.cmp_junction = function(m, px, py)
+{
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var jx = ox == px
+  var jy = oy == py;
+  
+  var xx = Math.abs(ox - px) <= 2;
+  var yy = Math.abs(oy - py) <= 2;
+  
+  return (jx || jy) && (xx || yy);
+}
+
+hw.des_junction = function(m)
+{
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var nx, ny;
+  
+  for (k = -2; k <= 2; k++)
+  {
+    
+    ny = oy + k;
+    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
+      m[ox][ny].setTextureRect(hw.black);
+    
+    nx = ox + k;  
+    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
+      m[nx][oy].setTextureRect(hw.black);
+  }
+}
+
+hw.cns_junction = function(m, px, py)
+{
+  //Posició a l'espai del món
+  var cx = px * 32+16;
+  var cy = py * 32+16;
+  
+  var ox = Math.floor(this.getPosition().x/32)*32+16;
+  var oy = Math.floor(this.getPosition().y/32)*32+16;
+  
+  //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
+  var bullet = new cc.Sprite(texture);
+  bullet.setTextureRect(hw.gbullet);
+  bullet.setName("bullet");
+  bullet.setPosition(ox,oy);
+  this.getParent().addChild(bullet);
+  var seq = cc.sequence(cc.moveTo(1, cx, cy), cc.delayTime(1), cc.removeSelf());
+  bullet.runAction(seq);
+  
+}
+
+hw.obj_diagonal = function (m)
+{  
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var nx, ny;
+  
+  for (k = -2; k <= 2; k++)
+  {
+    
+    ny = oy + k;
+    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
+      m[ox][ny].setTextureRect(hw.blue);
+    
+    nx = ox + k;  
+    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
+      m[nx][oy].setTextureRect(hw.blue);
+  }
+}
+
+hw.cmp_diagonal = function(m, px, py)
+{
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var jx = ox == px
+  var jy = oy == py;
+  
+  var xx = Math.abs(ox - px) <= 2;
+  var yy = Math.abs(oy - py) <= 2;
+  
+  return (jx || jy) && (xx || yy);
+}
+
+hw.des_diagonal = function(m)
+{
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+  
+  var nx, ny;
+  
+  for (k = -2; k <= 2; k++)
+  {
+    
+    ny = oy + k;
+    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
+      m[ox][ny].setTextureRect(hw.black);
+    
+    nx = ox + k;  
+    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
+      m[nx][oy].setTextureRect(hw.black);
+  }
+}
+
+hw.cns_diagonal = function(m, px, py)
+{
+  //Posició a l'espai del món
+  var cx = px * 32+16;
+  var cy = py * 32+16;
+  
+  var ox = Math.floor(this.getPosition().x/32)*32+16;
+  var oy = Math.floor(this.getPosition().y/32)*32+16;
+  
+  //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
+  var bullet = new cc.Sprite(texture);
+  bullet.setTextureRect(hw.gbullet);
+  bullet.setName("bullet");
+  bullet.setPosition(ox,oy);
+  this.getParent().addChild(bullet);
+  var seq = cc.sequence(cc.moveTo(1, cx, cy), cc.delayTime(1), cc.removeSelf());
+  bullet.runAction(seq);
+  
+}
+
 hw.obj_distance = function (m)
 {
   i = Math.abs(i);
@@ -212,83 +368,6 @@ hw.cns_distance = function ()
   var mov = cc.moveBy(5, 10, 10);
   var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
   bullet.runAction(seq);
-}
-
-hw.obj_junction = function (m)
-{  
-  var orig = this.getPosition();
-  var ox = Math.floor(orig.x/32);
-  var oy = Math.floor(orig.y/32);
-  
-  var nx, ny;
-  
-  for (k = -2; k <= 2; k++)
-  {
-    
-    ny = oy + k;
-    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
-      m[ox][ny].setTextureRect(hw.green);
-    
-    nx = ox + k;  
-    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
-      m[nx][oy].setTextureRect(hw.green);
-  }
-}
-
-hw.cmp_junction = function(m, px, py)
-{
-  var orig = this.getPosition();
-  var ox = Math.floor(orig.x/32);
-  var oy = Math.floor(orig.y/32);
-  
-  var jx = ox == px
-  var jy = oy == py;
-  
-  var xx = Math.abs(ox - px) <= 2;
-  var yy = Math.abs(oy - py) <= 2;
-  
-  return (jx || jy) && (xx || yy);
-}
-
-hw.des_junction = function(m)
-{
-  var orig = this.getPosition();
-  var ox = Math.floor(orig.x/32);
-  var oy = Math.floor(orig.y/32);
-  
-  var nx, ny;
-  
-  for (k = -2; k <= 2; k++)
-  {
-    
-    ny = oy + k;
-    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
-      m[ox][ny].setTextureRect(hw.black);
-    
-    nx = ox + k;  
-    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
-      m[nx][oy].setTextureRect(hw.black);
-  }
-}
-
-hw.cns_junction = function(m, px, py)
-{
-  //Posició a l'espai del món
-  var cx = px * 32+16;
-  var cy = py * 32+16;
-  
-  var ox = Math.floor(this.getPosition().x/32)*32+16;
-  var oy = Math.floor(this.getPosition().y/32)*32+16;
-  
-  //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
-  var bullet = new cc.Sprite(texture);
-  bullet.setTextureRect(hw.gbullet);
-  bullet.setName("bullet");
-  bullet.setPosition(ox,oy);
-  this.getParent().addChild(bullet);
-  var seq = cc.sequence(cc.moveTo(1, cx, cy), cc.delayTime(1), cc.removeSelf());
-  bullet.runAction(seq);
-  
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction];

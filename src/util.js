@@ -391,6 +391,10 @@ var menuLayer = cc.Layer.extend({
     b2.getNormalImage().setTextureRect(hw.buttons[2]);
     b2.getSelectedImage().setTextureRect(hw.buttons[2]);
     b2.setPosition(32,0);
+    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){hw.data = 2;}, this);
+    b3.getNormalImage().setTextureRect(hw.buttons[3]);
+    b3.getSelectedImage().setTextureRect(hw.buttons[3]);
+    b3.setPosition(64,0);
     var menu_b = new cc.Menu(b1,b2);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
