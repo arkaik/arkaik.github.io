@@ -191,7 +191,7 @@ var animLayer = cc.Layer.extend({
             var amb1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png), new cc.Sprite(res.button_png),function(){},this);
             amb1.getNormalImage().setTextureRect(hw.buttons[0]);
             amb1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            amb1.setPosition(0,32);
+            amb1.setPosition(0,16);
             var action_menu = new cc.Menu(amb1);
             action_menu.setTag("menu");
             action_menu.setPosition(0,0);
