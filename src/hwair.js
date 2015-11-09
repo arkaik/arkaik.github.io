@@ -202,13 +202,15 @@ hw.obj_diagonal = function (m)
   for (k = -2; k <= 2; k++)
   {
     
+    nx1 = ox - k;
+    nx2 = ox + k;
     ny = oy + k;
-    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
-      m[ny][ny].setTextureRect(hw.blue);
     
-    nx = ox - k;  
-    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
-      m[nx][ny].setTextureRect(hw.blue);
+    if (0 <= nx1 && nx1 < mat_size && 0 <= ny && ny < mat_size)
+      m[nx1][ny].setTextureRect(hw.blue);
+    
+    if (0 <= nx2 && nx2 < mat_size && 0 <= ny && ny < mat_size)
+      m[nx2][ny].setTextureRect(hw.blue);
   }
 }
 
@@ -237,14 +239,15 @@ hw.des_diagonal = function(m)
   
   for (k = -2; k <= 2; k++)
   {
-    
+    nx1 = ox - k;
+    nx2 = ox + k;
     ny = oy + k;
-    if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
-      m[ny][ny].setTextureRect(hw.black);
     
-    nx = ox - k;  
-    if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
-      m[nx][ny].setTextureRect(hw.black);
+    if (0 <= nx1 && nx1 < mat_size && 0 <= ny && ny < mat_size)
+      m[nx1][ny].setTextureRect(hw.blue);
+    
+    if (0 <= nx2 && nx2 < mat_size && 0 <= ny && ny < mat_size)
+      m[nx2][ny].setTextureRect(hw.blue);
   }
 }
 

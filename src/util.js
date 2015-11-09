@@ -187,6 +187,13 @@ var animLayer = cc.Layer.extend({
           if (ok && plz && target.state == "alone")
           {
             target.state = "selected";
+            //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
+            var i1 = cc.drawNode();
+            i1.drawCircle(cc.p(0,0), 8, Math.Pi, 32, false, 0, cc.color(255,255,0,255));
+            var amb1 = cc.menuItem(function(){},i1);
+            amb1.setPosition(0,32);
+            var action_menu = cc.Menu(amb1);
+            target.addChild(action_menu,1,"menu");
             target.objective(parent.matrix);
           }
           else if (target.state == "selected")
@@ -235,7 +242,7 @@ var animLayer = cc.Layer.extend({
               var cy = py*32+16;
               //Devolver a su estado original las celdas rojas
               target.deselect(parent.matrix);
-              target.setPosition(cx, cy);
+              target.runAction(cc.moveTo(1,cx, cy));
               parent.matrix[px][py].inside[target.team] = target;
               
               parent.gui_layer.updateTurn();
@@ -253,7 +260,7 @@ var animLayer = cc.Layer.extend({
               var ix = Math.floor(parent.player[nteam].getPosition().x/32);
               var iy = Math.floor(parent.player[nteam].getPosition().y/32);
               parent.matrix[ix][iy].setTextureRect(hw.blue);
-              
+              target.removeChildByTag("menu");
               target.state = "alone";
             }
           }
