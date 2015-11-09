@@ -220,13 +220,12 @@ hw.cmp_diagonal = function(m, px, py)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
-  var jx = ox == px
-  var jy = oy == py;
+  var jj = ox-px == oy-py;
   
   var xx = Math.abs(ox - px) <= 2;
   var yy = Math.abs(oy - py) <= 2;
   
-  return (jx || jy) && (xx || yy);
+  return jj && (xx || yy);
 }
 
 hw.des_diagonal = function(m)
@@ -244,10 +243,10 @@ hw.des_diagonal = function(m)
     ny = oy + k;
     
     if (0 <= nx1 && nx1 < mat_size && 0 <= ny && ny < mat_size)
-      m[nx1][ny].setTextureRect(hw.blue);
+      m[nx1][ny].setTextureRect(hw.black);
     
     if (0 <= nx2 && nx2 < mat_size && 0 <= ny && ny < mat_size)
-      m[nx2][ny].setTextureRect(hw.blue);
+      m[nx2][ny].setTextureRect(hw.black);
   }
 }
 
