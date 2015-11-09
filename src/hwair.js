@@ -370,7 +370,7 @@ hw.cns_distance = function ()
   bullet.runAction(seq);
 }
 
-hw.obj = [hw.obj_contact, hw.obj_junction];
-hw.cmp = [hw.cmp_contact, hw.cmp_junction];
-hw.des = [hw.des_contact, hw.des_junction];
-hw.cns = [hw.cns_contact, hw.cns_junction];
+hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal];
+hw.cmp = [hw.cmp_contact, hw.cmp_junction, hw.cmp_diagonal];
+hw.des = [hw.des_contact, hw.des_junction, hw.des_diagonal];
+hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal];
