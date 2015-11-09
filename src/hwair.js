@@ -219,7 +219,7 @@ hw.cmp_diagonal = function(m, px, py)
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
- cc.log("|"+ox+"-"+px+"|="+Math.abs(ox-px)+", |"+oy+"-"+py+"|="+Math.abs(oy-py)); 
+ 
   var jj = Math.abs(ox-px) == Math.abs(oy-py);
   
   var xx = Math.abs(ox - px) <= 2;

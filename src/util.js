@@ -180,6 +180,7 @@ var animLayer = cc.Layer.extend({
           var px = Math.floor(pt.x/32);
           var py = Math.floor(pt.y/32);
 
+          cc.log("|"+ox+"-"+px+"|="+Math.abs(ox-px)+", |"+oy+"-"+py+"|="+Math.abs(oy-py)); 
           var ok = cc.rectContainsPoint(target.getBoundingBoxToWorld(), pt);
           var plz = nteam == target.team;
       // var alive = target.health > 0;
