@@ -188,7 +188,7 @@ var animLayer = cc.Layer.extend({
           {
             target.state = "selected";
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var i1 = cc.drawNode();
+            var i1 = cc.DrawNode();
             i1.drawCircle(cc.p(0,0), 8, Math.Pi, 32, false, 0, cc.color(255,255,0,255));
             var amb1 = cc.menuItem(function(){},i1);
             amb1.setPosition(0,32);
