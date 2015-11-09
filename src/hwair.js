@@ -220,7 +220,7 @@ hw.cmp_diagonal = function(m, px, py)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
-  var jj = ox-px == oy-py;
+  var jj = Math.abs(ox-px) == Math.abs(oy-py);
   
   var xx = Math.abs(ox - px) <= 2;
   var yy = Math.abs(oy - py) <= 2;
