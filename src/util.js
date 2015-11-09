@@ -190,7 +190,7 @@ var animLayer = cc.Layer.extend({
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var i1 = new cc.DrawNode();
             i1.drawCircle(cc.p(0,0), 8, Math.Pi, 32, false, 0, cc.color(255,255,0,255));
-            var amb1 = cc.menuItem(function(){},i1);
+            var amb1 = new cc.MenuItem(function(){},i1);
             amb1.setPosition(0,32);
             var action_menu = cc.Menu(amb1);
             target.addChild(action_menu,1,"menu");
