@@ -194,7 +194,7 @@ var animLayer = cc.Layer.extend({
             amb1.setPosition(0,32);
             var action_menu = new cc.Menu(amb1);
             action_menu.setTag("menu");
-            action_menu.setPosition(16,16);
+            action_menu.setPosition(0,0);
             target.addChild(action_menu);
             target.objective(parent.matrix);
           }
