@@ -395,7 +395,7 @@ var menuLayer = cc.Layer.extend({
     b3.getNormalImage().setTextureRect(hw.buttons[3]);
     b3.getSelectedImage().setTextureRect(hw.buttons[3]);
     b3.setPosition(64,0);
-    var menu_b = new cc.Menu(b1,b2);
+    var menu_b = new cc.Menu(b1,b2,b3);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
     
