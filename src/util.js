@@ -180,7 +180,6 @@ var animLayer = cc.Layer.extend({
           var px = Math.floor(pt.x/32);
           var py = Math.floor(pt.y/32);
 
-          cc.log("|"+ox+"-"+px+"|="+Math.abs(ox-px)+", |"+oy+"-"+py+"|="+Math.abs(oy-py)); 
           var ok = cc.rectContainsPoint(target.getBoundingBoxToWorld(), pt);
           var plz = nteam == target.team;
       // var alive = target.health > 0;
@@ -189,14 +188,7 @@ var animLayer = cc.Layer.extend({
           {
             target.state = "selected";
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var amb1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png), new cc.Sprite(res.button_png),function(){},this);
-            amb1.getNormalImage().setTextureRect(hw.buttons[0]);
-            amb1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            amb1.setPosition(0,0);
-            var action_menu = new cc.Menu(amb1);
-            action_menu.setTag("menu");
-            action_menu.setPosition(0,0);
-            target.addChild(action_menu);
+            
             target.objective(parent.matrix);
           }
           else if (target.state == "selected")
