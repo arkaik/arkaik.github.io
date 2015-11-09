@@ -107,7 +107,7 @@ hw.cns_contact = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
   this.getParent().addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(1, cx-ox, cy-oy), cc.delayTime(1), cc.removeSelf());
+  var seq = cc.sequence(cc.moveBy(0.5, cx-ox, cy-oy), cc.delayTime(0.5), cc.removeSelf());
   bullet.runAction(seq);
   
 }
@@ -186,7 +186,7 @@ hw.cns_junction = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
   this.getParent().addChild(bullet);
-  var seq = cc.sequence(cc.moveTo(1, cx, cy), cc.delayTime(1), cc.removeSelf());
+  var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
   bullet.runAction(seq);
   
 }
@@ -265,7 +265,7 @@ hw.cns_diagonal = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
   this.getParent().addChild(bullet);
-  var seq = cc.sequence(cc.moveTo(1, cx, cy), cc.delayTime(1), cc.removeSelf());
+  var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
   bullet.runAction(seq);
   
 }
