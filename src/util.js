@@ -193,7 +193,8 @@ var animLayer = cc.Layer.extend({
             var amb1 = new cc.MenuItem(function(){},i1);
             amb1.setPosition(0,32);
             var action_menu = new cc.Menu(amb1);
-            target.addChild(action_menu,1,"menu");
+            action_menu.setTag("menu");
+            target.addChild(action_menu);
             target.objective(parent.matrix);
           }
           else if (target.state == "selected")
