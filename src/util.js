@@ -237,7 +237,7 @@ var animLayer = cc.Layer.extend({
             parent.menu.addItem(ab2);
             parent.menu.addItem(ab3);
             parent.menu.addItem(ab4);
-            var mcoord = menu.getPosition();
+            var mcoord = parent.menu.getPosition();
             parent.menu.setPosition(ox-mcoord.x,oy-mcoord.y);
             parent.addChild(parent.menu);
             target.objective(parent.matrix);
