@@ -229,9 +229,14 @@ var animLayer = cc.Layer.extend({
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
             ab3.getNormalImage().setTextureRect(hw.buttons[0]);
             ab3.getSelectedImage().setTextureRect(hw.buttons[0]);
+            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            ab4.getNormalImage().setTextureRect(hw.buttons[0]);
+            ab4.getSelectedImage().setTextureRect(hw.buttons[0]);
             parent.menu = new CircularMenu(4,32);
             parent.menu.addItem(ab1);
             parent.menu.addItem(ab2);
+            parent.menu.addItem(ab3);
+            parent.menu.addItem(ab4);
             parent.addChild(parent.menu);
             target.objective(parent.matrix);
             target.state = "selected";
