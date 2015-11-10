@@ -62,7 +62,7 @@ function CircularMenu (n,r)
     var y = Math.sin(this.angle[this.nobj])*this.radius;
     child.setPosition(x,y);
     this.nobj++;
-    this.addChild(this,child,zOrder,tag);
+    cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   }
 }
 CircularMenu.prototype = Object.create(cc.Menu.prototype);
