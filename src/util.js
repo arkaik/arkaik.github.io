@@ -55,7 +55,7 @@ function CircularMenu (n,r)
   
   this.addItem = function(child, zOrder, tag)
   {
-    if (!(child instanceof cc.MenuItem) || this.nobj == angle.length)
+    if (!(child instanceof cc.MenuItem) || this.nobj == this.angle.length)
       throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
     
     var x = Math.cos(this.angle[this.nobj])*this.radius;
