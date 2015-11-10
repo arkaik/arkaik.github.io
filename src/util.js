@@ -51,6 +51,7 @@ function CircularMenu (n,r)
   for (i = 0; i < n; i++)
   {
     this.angle.push(alpha*i);
+    cc.log(angle[i]);
   }
   
   this.addItem = function(child, zOrder, tag)
