@@ -226,6 +226,9 @@ var animLayer = cc.Layer.extend({
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
             ab2.getNormalImage().setTextureRect(hw.buttons[0]);
             ab2.getSelectedImage().setTextureRect(hw.buttons[0]);
+            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            ab3.getNormalImage().setTextureRect(hw.buttons[0]);
+            ab3.getSelectedImage().setTextureRect(hw.buttons[0]);
             parent.menu = new CircularMenu(4,32);
             parent.menu.addItem(ab1);
             parent.menu.addItem(ab2);
