@@ -223,6 +223,7 @@ var animLayer = cc.Layer.extend({
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
+            ab1.setAnchorPoint(0,0);
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
             ab2.getNormalImage().setTextureRect(hw.buttons[0]);
             ab2.getSelectedImage().setTextureRect(hw.buttons[0]);
