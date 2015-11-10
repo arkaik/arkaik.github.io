@@ -237,7 +237,7 @@ var animLayer = cc.Layer.extend({
             parent.menu.addItem(ab2);
             parent.menu.addItem(ab3);
             parent.menu.addItem(ab4);
-            parent.menu.setPosition(200,150);
+            parent.menu.setPosition(ox*32+16,oy*32+16);
             var mcoord = parent.menu.getPosition();
             cc.log("menu: "+mcoord.x+", "+mcoord.y);
             //parent.menu.setPosition(ox-mcoord.x,oy-mcoord.y);
