@@ -237,7 +237,7 @@ var animLayer = cc.Layer.extend({
             parent.menu.addItem(ab2);
             parent.menu.addItem(ab3);
             parent.menu.addItem(ab4);
-            parent.menu.setPosition(0,0);
+            parent.menu.setPosition(200,150);
             var mcoord = parent.menu.getPosition();
             cc.log("menu: "+mcoord.x+", "+mcoord.y);
             //parent.menu.setPosition(ox-mcoord.x,oy-mcoord.y);
@@ -309,7 +309,7 @@ var animLayer = cc.Layer.extend({
               var ix = Math.floor(parent.player[nteam].getPosition().x/32);
               var iy = Math.floor(parent.player[nteam].getPosition().y/32);
               parent.matrix[ix][iy].setTextureRect(hw.blue);
-              parent.removeChildbyTag(100);
+              //parent.removeChildbyTag(100);
               target.state = "alone";
             }
           }
