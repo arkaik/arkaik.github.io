@@ -237,6 +237,7 @@ var animLayer = cc.Layer.extend({
             parent.menu.addItem(ab2);
             parent.menu.addItem(ab3);
             parent.menu.addItem(ab4);
+            parent.menu.setPosition(ox,oy);
             parent.addChild(parent.menu);
             target.objective(parent.matrix);
             target.state = "selected";
