@@ -65,11 +65,20 @@ function CircularMenu (n,r)
     
     var x = Math.cos(this.angle[this.nobj])*this.radius;
     var y = Math.sin(this.angle[this.nobj])*this.radius;
-    cc.log("pos: "+child.getAnchorPoint().x+", "+child.getAnchorPoint().y);
     child.setPosition(x,y);
     child.setAnchorPoint(0,0);
     this.nobj++;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
+  }
+  
+  this.addItems = function()
+  {
+    for(i = 0; i < this.nobj; i++)
+    {
+      this.addItem(arguments[i]);
+    }
+    
+    if (i == nobj) cc.log("Maximum number of items reached");
   }
 }
 CircularMenu.prototype = Object.create(cc.Menu.prototype);
