@@ -222,8 +222,8 @@ var animLayer = cc.Layer.extend({
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state="lol";}, this);
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            this.menu = new CircularMenu(4,32);
-            this.menu.addItem(ab1);
+            parent.menu = new CircularMenu(4,32);
+            parent.menu.addItem(ab1);
             target.objective(parent.matrix);
             target.state = "selected";
           }
@@ -291,7 +291,7 @@ var animLayer = cc.Layer.extend({
               var ix = Math.floor(parent.player[nteam].getPosition().x/32);
               var iy = Math.floor(parent.player[nteam].getPosition().y/32);
               parent.matrix[ix][iy].setTextureRect(hw.blue);
-              target.removeChildByTag("menu");
+              parent.menu = null;
               target.state = "alone";
             }
           }
