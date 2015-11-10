@@ -240,7 +240,7 @@ var animLayer = cc.Layer.extend({
             var mcoord = parent.menu.getPosition();
             cc.log("menu: "+mcoord.x+", "+mcoord.y);
             //parent.menu.setPosition(ox-mcoord.x,oy-mcoord.y);
-            parent.addChild(parent.menu);
+            parent.addChild(parent.menu,10,100);
             target.objective(parent.matrix);
             target.state = "selected";
           }
@@ -308,7 +308,7 @@ var animLayer = cc.Layer.extend({
               var ix = Math.floor(parent.player[nteam].getPosition().x/32);
               var iy = Math.floor(parent.player[nteam].getPosition().y/32);
               parent.matrix[ix][iy].setTextureRect(hw.blue);
-              parent.menu = null;
+              parent.removeChildbyTag(100);
               target.state = "alone";
             }
           }
