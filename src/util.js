@@ -39,6 +39,35 @@ function Cell (string, px, py)
 Cell.prototype = Object.create(cc.Sprite.prototype);
 Cell.prototype.constructor = Cell;
 
+function CircularMenu (n,r)
+{
+  if (n <= 0) throw new Error("CircularMenu._ctor(n) : argument must be more or equal than 1.");
+  cc.Menu.call(this, []);
+  this.nobj = 0;
+  this.radius = r;
+  this.angle = [];
+  //Ángulo entre cada objeto
+  var alpha = 2*(Math.PI)/n;
+  for (i = 0; i < n; i++)
+  {
+    this.angle.push(alpha*i);
+  }
+  
+  this.addItem = function(child, zOrder, tag)
+  {
+    if (!(child instanceof cc.MenuItem) || nobj == angle.length)
+      throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
+    
+    var x = Math.cos(this.angle[this.nobj])*this.radius;
+    var y = Math.sin(this.angle[this.nobj])*this.radius;
+    child.setPosition(x,y);
+    nobj++;
+    cc.Menu.addChild.call(this,child,zOrder,tag);
+  }
+}
+CircularMenu.prototype = Object.create(cc.Menu.prototype);
+CircularMenu.constructor = CircularMenu;
+
 var backLayer = cc.Layer.extend(
 {
   
@@ -63,6 +92,7 @@ var backLayer = cc.Layer.extend(
 var guiLayer = cc.Layer.extend({
   labelTurn: null,
   labelHealth: null,
+  menu: null,
   ctor: function()
   {
     this._super();
@@ -127,6 +157,7 @@ var animLayer = cc.Layer.extend({
       this.matrix[i] = new Array(mat_size);
       for (j = 0; j < mat_size; j++)
       {
+        
         this.matrix[i][j] = new Cell(texture, i, j);
         this.matrix[i][j].setTextureRect(hw.black);
         this.matrix[i][j].setPosition(32*i+16, 32*j+16);
@@ -186,10 +217,15 @@ var animLayer = cc.Layer.extend({
           
           if (ok && plz && target.state == "alone")
           {
-            target.state = "selected";
-            //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             
+            //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state="lol";}, this);
+            ab1.getNormalImage().setTextureRect(hw.buttons[0]);
+            ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
+            this.menu = new CircularMenu(4,32);
+            this.menu.addItem(ab1);
             target.objective(parent.matrix);
+            target.state = "selected";
           }
           else if (target.state == "selected")
           { 
@@ -374,6 +410,9 @@ var menuLayer = cc.Layer.extend({
 
     var winsize = cc.director.getWinSize();
     var centerpos = cc.p(winsize.width / 2, winsize.height / 2);
+    
+    var colorLayer = new cc.LayerColor(cc.color(255,255,255,255));
+    this.addChild(colorLayer);
     
     var spritebg = new cc.Sprite(res.helloBG_png);
     spritebg.setPosition(centerpos);
