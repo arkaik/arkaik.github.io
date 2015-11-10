@@ -224,6 +224,7 @@ var animLayer = cc.Layer.extend({
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
             parent.menu = new CircularMenu(4,32);
             parent.menu.addItem(ab1);
+            parent.addChild(menu);
             target.objective(parent.matrix);
             target.state = "selected";
           }
