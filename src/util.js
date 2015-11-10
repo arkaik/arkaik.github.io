@@ -51,7 +51,6 @@ function CircularMenu (n,r)
   for (i = 0; i < n; i++)
   {
     this.angle.push(alpha*i);
-    cc.log(this.angle[i]);
   }
   
   this.addItem = function(child, zOrder, tag)
@@ -61,6 +60,7 @@ function CircularMenu (n,r)
     
     var x = Math.cos(this.angle[this.nobj])*this.radius;
     var y = Math.sin(this.angle[this.nobj])*this.radius;
+    cc.log("pos: "+x+", "+y);
     child.setPosition(x,y);
     this.nobj++;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
