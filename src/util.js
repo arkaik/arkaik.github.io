@@ -8,6 +8,11 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
+function f1 (target)
+{
+  cc.log("Where I am?"+this);
+}
+
 //Herencia estilo Old JS
 function Plus (string)
 {
@@ -221,7 +226,7 @@ var animLayer = cc.Layer.extend({
           {
             
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function f1(){ cc.log("Where I am?"+this);}, this);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), f1(target), this);
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state = "selected"; parent.menu=null;}, this);
