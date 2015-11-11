@@ -224,10 +224,10 @@ var animLayer = cc.Layer.extend({
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){ target.state = "moving"; parent.menu=null;}, this);
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state = "selected"; parent.menu=null;}, this);
             ab2.getNormalImage().setTextureRect(hw.buttons[0]);
             ab2.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state = "alone"; parent.menu=null;}, this);
             ab3.getNormalImage().setTextureRect(hw.buttons[0]);
             ab3.getSelectedImage().setTextureRect(hw.buttons[0]);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
