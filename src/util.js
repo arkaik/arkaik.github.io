@@ -233,7 +233,7 @@ var animLayer = cc.Layer.extend({
           
           if (ok && plz && target.state == "alone")
           {
-            
+            event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), f1(target), this);
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
@@ -293,7 +293,7 @@ var animLayer = cc.Layer.extend({
             }
             
             
-            event.stopPropagation();
+            
           }
           else if (target.state == "moving")
           {
