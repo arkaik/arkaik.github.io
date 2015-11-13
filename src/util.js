@@ -235,23 +235,31 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), f1(target), this);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            cc.log(ab1.getBoundingBoxToWorld());
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(target){target.state = "selected"; target.getParent()=null;}, this);
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            cc.log(ab2.getBoundingBoxToWorld());
             ab2.getNormalImage().setTextureRect(hw.buttons[0]);
             ab2.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state = "alone"; parent.menu=null;}, this);
+            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            cc.log(ab3.getBoundingBoxToWorld());
             ab3.getNormalImage().setTextureRect(hw.buttons[0]);
             ab3.getSelectedImage().setTextureRect(hw.buttons[0]);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){}, this);
+            cc.log(ab4.getBoundingBoxToWorld());
             ab4.getNormalImage().setTextureRect(hw.buttons[0]);
             ab4.getSelectedImage().setTextureRect(hw.buttons[0]);
             parent.menu = new CircularMenu(4,32);
             parent.menu.addItem(ab1);
+            cc.log("d1:"+ab1.getBoundingBoxToWorld());
             parent.menu.addItem(ab2);
+            cc.log("d2:"+ab2.getBoundingBoxToWorld());
             parent.menu.addItem(ab3);
+            cc.log("d3:"+ab3.getBoundingBoxToWorld());
             parent.menu.addItem(ab4);
+            cc.log("d4:"+ab4.getBoundingBoxToWorld());
             parent.menu.setPosition(ox*32,oy*32);
             parent.addChild(parent.menu,10,100);
             target.objective(parent.matrix);
