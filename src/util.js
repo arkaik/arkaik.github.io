@@ -10,7 +10,7 @@ var buttons = cc.textureCache.addImage(res.button_png);
 
 function f1 (target)
 {
-  cc.log("Where I am?"+this);
+  cc.log("Where I am?"+target);
 }
 
 //Herencia estilo Old JS
@@ -238,7 +238,7 @@ var animLayer = cc.Layer.extend({
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), f1(target), this);
             ab1.getNormalImage().setTextureRect(hw.buttons[0]);
             ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state = "selected"; parent.menu=null;}, this);
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(target){target.state = "selected"; target.getParent()=null;}, this);
             ab2.getNormalImage().setTextureRect(hw.buttons[0]);
             ab2.getSelectedImage().setTextureRect(hw.buttons[0]);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){target.state = "alone"; parent.menu=null;}, this);
