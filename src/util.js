@@ -237,20 +237,12 @@ var animLayer = cc.Layer.extend({
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab1");}, this);
             cc.log(ab1.getBoundingBoxToWorld());
-            //ab1.getNormalImage().setTextureRect(hw.buttons[0]);
-            //ab1.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab2 = new cc.MenuItemSprite(cc.Sprite.create(res.button_png, hw.buttons[0]), cc.Sprite.create(res.button_png,hw.buttons[0]), function(){cc.log("ab2");}, this);
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png,hw.buttons[0]), function(){cc.log("ab2");}, this);
             cc.log(ab2.getBoundingBoxToWorld());
-            ab2.getNormalImage().setTextureRect(hw.buttons[0]);
-            ab2.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){cc.log("ab3");}, this);
+            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3");}, this);
             cc.log(ab3.getBoundingBoxToWorld());
-            ab3.getNormalImage().setTextureRect(hw.buttons[0]);
-            ab3.getSelectedImage().setTextureRect(hw.buttons[0]);
-            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){cc.log("ab4");}, this);
+            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4");}, this);
             cc.log(ab4.getBoundingBoxToWorld());
-            ab4.getNormalImage().setTextureRect(hw.buttons[0]);
-            ab4.getSelectedImage().setTextureRect(hw.buttons[0]);
             parent.menu = new CircularMenu(4,32);
             parent.menu.addItem(ab1);
             cc.log(ab1.getBoundingBoxToWorld());
