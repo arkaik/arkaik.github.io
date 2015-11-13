@@ -253,13 +253,13 @@ var animLayer = cc.Layer.extend({
             ab4.getSelectedImage().setTextureRect(hw.buttons[0]);
             parent.menu = new CircularMenu(4,32);
             parent.menu.addItem(ab1);
-            cc.log("d1:"+ab1.getBoundingBoxToWorld());
+            cc.log(ab1.getBoundingBoxToWorld());
             parent.menu.addItem(ab2);
-            cc.log("d2:"+ab2.getBoundingBoxToWorld());
+            cc.log(ab2.getBoundingBoxToWorld());
             parent.menu.addItem(ab3);
-            cc.log("d3:"+ab3.getBoundingBoxToWorld());
+            cc.log(ab3.getBoundingBoxToWorld());
             parent.menu.addItem(ab4);
-            cc.log("d4:"+ab4.getBoundingBoxToWorld());
+            cc.log(ab4.getBoundingBoxToWorld());
             parent.menu.setPosition(ox*32,oy*32);
             parent.addChild(parent.menu,10,100);
             target.objective(parent.matrix);
