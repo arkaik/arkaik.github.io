@@ -10,10 +10,7 @@ var buttons = cc.textureCache.addImage(res.button_png);
 
 function f1 (event)
 {
-  var target = event.getCurrentTarget();
-  var parent = target.getParent();
-  target.objective(parent.matrix);
-  target.state = "selected";
+  cc.log(event);
   cc.log("ab1");
 }
 
