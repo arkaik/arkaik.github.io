@@ -8,8 +8,9 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
-function f1 (target)
+function f1 (event)
 {
+  var target = event.getCurrentTarget();
   var parent = target.getParent();
   target.objective(parent.matrix);
   target.state = "selected";
@@ -238,7 +239,7 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1(target), this);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1, this);
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png,hw.buttons[0]), function(target){cc.log("ab2");}, this);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab3");}, this);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab4");}, this);
