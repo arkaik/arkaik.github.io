@@ -11,6 +11,7 @@ var buttons = cc.textureCache.addImage(res.button_png);
 function f1 (event)
 {
   cc.log(event);
+  cc.log(this);
   cc.log("ab1");
 }
 
