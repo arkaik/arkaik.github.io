@@ -103,7 +103,6 @@ var backLayer = cc.Layer.extend(
 var guiLayer = cc.Layer.extend({
   labelTurn: null,
   labelHealth: null,
-  menu: null,
   ctor: function()
   {
     this._super();
@@ -151,6 +150,7 @@ var animLayer = cc.Layer.extend({
   matrix: null, // Matriz de celdas
   player: null, // Vector de jugadores
   cursor: null,
+  menu: null,
   ctor: function()
   {
     this._super();
@@ -230,7 +230,7 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){animLayer.menu=null;cc.log("ab1");}, this);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){animLayer.removeChild(10);cc.log("ab1");}, this);
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png,hw.buttons[0]), function(target){cc.log("ab2");}, this);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab3");}, this);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab4");}, this);
