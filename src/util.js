@@ -230,7 +230,7 @@ var animLayer = cc.Layer.extend({
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var cmenu = new CircularMenu(4,32);
-            
+            cc.log("I'm creating the menu");
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab1");}, parent); //this.removeChildbyTag(100);
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2");}, parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3");}, parent);
