@@ -55,7 +55,7 @@ function CircularMenu (n,r)
   
   this.addItem = function(child, zOrder, tag)
   {
-    if (!(child instanceof cc.MenuItem))
+    if (!(child instanceof cc.MenuItemSprite))
       throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
     else if (this.nobj > this.angle.length)
       throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
