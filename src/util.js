@@ -15,8 +15,8 @@ function get_type(thing){
 
 function f1 (event)
 {
-  cc.log(get_type(event));
-  get_type(this);
+  cc.log(event.constructor.name);
+  cc.log(this.constructor.name);
   cc.log("ab1");
 }
 
