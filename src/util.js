@@ -15,8 +15,9 @@ function get_type(thing){
 
 function f1 (event)
 {
-  get_type(event);
+  cc.log(get_type(event));
   get_type(this);
+  cc.log("ab1");
 }
 
 //Herencia estilo Old JS
