@@ -17,7 +17,6 @@ function f1 (event)
 {
   get_type(event);
   get_type(this);
-  
 }
 
 //Herencia estilo Old JS
