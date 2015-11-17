@@ -8,11 +8,16 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
+function get_type(thing){
+    if(thing===null)return "[object Null]"; // special case
+    return Object.prototype.toString.call(thing);
+}
+
 function f1 (event)
 {
-  cc.log(event);
-  cc.log(this);
-  cc.log("ab1");
+  get_type(event);
+  get_type(this);
+  
 }
 
 //Herencia estilo Old JS
