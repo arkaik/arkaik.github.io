@@ -55,9 +55,11 @@ function CircularMenu (n,r)
   
   this.addItem = function(child, zOrder, tag)
   {
-    if (!(child instanceof cc.MenuItem) || this.nobj == this.angle.length)
+    if (!(child instanceof cc.MenuItem))
       throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
-    
+    else if (this.nobj > this.angle.length)
+      throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
+
     var x = Math.cos(this.angle[this.nobj])*this.radius;
     var y = Math.sin(this.angle[this.nobj])*this.radius;
     child.setPosition(x,y);
@@ -72,8 +74,6 @@ function CircularMenu (n,r)
     {
       this.addItem(arguments[i]);
     }
-    
-    if (i == this.angle.length) cc.log("Maximum number of items reached");
   }
 }
 CircularMenu.prototype = Object.create(cc.Menu.prototype);
