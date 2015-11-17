@@ -15,8 +15,10 @@ function get_type(thing){
 
 function f1 (event)
 {
-  cc.log(event.constructor.name);
-  cc.log(this.constructor.name);
+  if (event instanceof cc.Node) cc.log("event -> Node");
+  if (event instanceof cc.Event) cc.log("event -> Event");
+  if (this instanceof cc.Node) cc.log("this -> Node");
+  if (this instanceof Plus) cc.log("this -> Plus");
   cc.log("ab1");
 }
 
