@@ -8,22 +8,6 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
-function get_type(thing){
-    if(thing===null)return "[object Null]"; // special case
-    return Object.prototype.toString.call(thing);
-}
-
-function f1 (event)
-{
-  cc.log(event);
-  cc.log(this);
-  if (event instanceof cc.Node) cc.log("event -> Node");
-  if (event instanceof cc.MenuItem) cc.log("event -> MenuItem");
-  if (this instanceof cc.MenuItem) cc.log("this -> MenuItem");
-  if (this instanceof CircularMenu) cc.log("this -> Menu");
-  cc.log("ab1");
-}
-
 //Herencia estilo Old JS
 function Plus (string)
 {
@@ -246,7 +230,7 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1, this);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){if(target instanceof Plus)cc.log("Plus1");cc.log("ab1");}, this);
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png,hw.buttons[0]), function(target){cc.log("ab2");}, this);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab3");}, this);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab4");}, this);
