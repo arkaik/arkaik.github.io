@@ -15,10 +15,12 @@ function get_type(thing){
 
 function f1 (event)
 {
+  cc.log(event);
+  cc.log(this);
   if (event instanceof cc.Node) cc.log("event -> Node");
-  if (event instanceof cc.Event) cc.log("event -> Event");
-  if (this instanceof cc.Node) cc.log("this -> Node");
-  if (this instanceof Plus) cc.log("this -> Plus");
+  if (event instanceof cc.MenuItem) cc.log("event -> MenuItem");
+  if (this instanceof cc.MenuItem) cc.log("this -> MenuItem");
+  if (this instanceof CircularMenu) cc.log("this -> Menu");
   cc.log("ab1");
 }
 
