@@ -73,7 +73,7 @@ function CircularMenu (n,r)
       this.addItem(arguments[i]);
     }
     
-    if (i == nobj) cc.log("Maximum number of items reached");
+    if (i == this.nobj) cc.log("Maximum number of items reached");
   }
 }
 CircularMenu.prototype = Object.create(cc.Menu.prototype);
