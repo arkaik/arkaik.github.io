@@ -55,10 +55,8 @@ function CircularMenu (n,r)
   
   this.addItem = function(child, zOrder, tag)
   {
-    if (!(child instanceof cc.MenuItemSprite))
-      throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
-    else if (this.nobj > this.angle.length)
-      throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
+    if (this.nobj > this.angle.length)
+      throw new Error("CircularMenu.addItem() : More than selected number of objects");
 
     var x = Math.cos(this.angle[this.nobj])*this.radius;
     var y = Math.sin(this.angle[this.nobj])*this.radius;
