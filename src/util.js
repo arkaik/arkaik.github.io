@@ -8,12 +8,6 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
-function f1 (event)
-{
-  cc.log(event);
-  cc.log("ab1");
-}
-
 //Herencia estilo Old JS
 function Plus (string)
 {
@@ -61,16 +55,18 @@ function CircularMenu (n,r)
   
   this.addItem = function(child, zOrder, tag)
   {
-    if (!(child instanceof cc.MenuItem) || this.nobj == this.angle.length)
-      throw new Error("CircularMenu.addItem() : CircularMenu only supports MenuItem objects as children");
-    
+    if (this.nobj > this.angle.length)
+      throw new Error("CircularMenu.addItem() : More than selected number of objects");
+    else if (!(child instanceof cc.MenuItemSprite)
+      throw new Error("CircularMenu.addItem() : Not a cc.MenuItemSprite");
+
     var x = Math.cos(this.angle[this.nobj])*this.radius;
     var y = Math.sin(this.angle[this.nobj])*this.radius;
     child.setPosition(x,y);
     child.setAnchorPoint(0,0);
     this.nobj++;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
-  }
+  };
   
   this.addItems = function()
   {
@@ -78,9 +74,7 @@ function CircularMenu (n,r)
     {
       this.addItem(arguments[i]);
     }
-    
-    if (i == nobj) cc.log("Maximum number of items reached");
-  }
+  };
 }
 CircularMenu.prototype = Object.create(cc.Menu.prototype);
 CircularMenu.constructor = CircularMenu;
@@ -235,18 +229,17 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1, this);
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png,hw.buttons[0]), function(target){cc.log("ab2");}, this);
-            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab3");}, this);
-            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(target){cc.log("ab4");}, this);
-
-            parent.menu = new CircularMenu(4,32);
-            parent.menu.addItem(ab1);
-            parent.menu.addItem(ab2);
-            parent.menu.addItem(ab3);
-            parent.menu.addItem(ab4);
-            parent.menu.setPosition(ox*32,oy*32);
-            parent.addChild(parent.menu,10,100);
+            var cmenu = new CircularMenu(4,32);
+            parent.addChild(cmenu,10,100);
+            cc.log("I'm creating the menu");
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab1");}, parent); //this.removeChildbyTag(100);
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2");}, parent);
+            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3");}, parent);
+            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4");}, parent);
+            cmenu.addItem(ab1);
+            cmenu.addItem(ab2);
+            cmenu.addItems(ab3,ab4);
+            cmenu.setPosition(ox*32,oy*32);
               
           }
           else if (target.state == "selected")
