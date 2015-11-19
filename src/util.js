@@ -109,7 +109,6 @@ var backLayer = cc.Layer.extend(
 var guiLayer = cc.Layer.extend({
   labelTurn: null,
   labelHealth: null,
-  menu: null,
   ctor: function()
   {
     this._super();
