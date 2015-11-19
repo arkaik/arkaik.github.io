@@ -64,7 +64,7 @@ function CircularMenu (n,r)
     child.setAnchorPoint(0,0);
     this.nobj++;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
-  }
+  };
   
   this.addItems = function()
   {
@@ -72,7 +72,7 @@ function CircularMenu (n,r)
     {
       this.addItem(arguments[i]);
     }
-  }
+  };
 }
 CircularMenu.prototype = Object.create(cc.Menu.prototype);
 CircularMenu.constructor = CircularMenu;
