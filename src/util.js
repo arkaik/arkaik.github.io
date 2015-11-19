@@ -237,10 +237,10 @@ var animLayer = cc.Layer.extend({
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3");}, parent);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4");}, parent);
             cmenu.addItem(ab1);
+
             cmenu.addItem(ab2);
             cmenu.addItems(ab3,ab4);
             cmenu.setPosition(ox*32,oy*32);
-              
           }
           else if (target.state == "selected")
           { 
