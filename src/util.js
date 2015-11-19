@@ -9,10 +9,10 @@ var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
 //Herencia estilo Old JS
-function Plus (string)
+function Plus (string, rect)
 {
   // [JAVA] this.super(...)
-  cc.Sprite.call(this, string);
+  cc.Sprite.call(this, string, rect);
   this.state = "alone";
   this.health = health4all;
   this.defense = 2;
@@ -181,9 +181,9 @@ var animLayer = cc.Layer.extend({
     {
       var rpx = Math.floor(Math.random()*mat_size);
       var rpy = Math.floor(Math.random()*mat_size);
-      this.player[p] = new Plus(texture);
+      this.player[p] = new Plus(texture, hw.symbol[p]);
       this.player[p].setPosition(32*rpx+16,32*rpy+16); //TO DO Random
-      this.player[p].setTextureRect(hw.symbol[p]);
+      //this.player[p].setTextureRect(hw.symbol[p]);
       this.player[p].getChildByName("mask").setPosition(16,16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
