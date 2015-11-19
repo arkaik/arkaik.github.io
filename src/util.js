@@ -57,7 +57,7 @@ function CircularMenu (n,r)
   {
     if (this.nobj > this.angle.length)
       throw new Error("CircularMenu.addItem() : More than selected number of objects");
-    else if (!(child instanceof cc.MenuItemSprite)
+    else if (!(child instanceof cc.MenuItemSprite))
       throw new Error("CircularMenu.addItem() : Not a cc.MenuItemSprite");
 
     var x = Math.cos(this.angle[this.nobj])*this.radius;
