@@ -228,6 +228,7 @@ var animLayer = cc.Layer.extend({
           
           if (ok && plz && target.state == "alone")
           {
+            cc.log(parent.getName());
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var cmenu = new CircularMenu(4,32);
