@@ -22,9 +22,9 @@ function Plus (string, rect)
   this.deselect = hw.des[hw.data];
   this.consequence = hw.cns[hw.data];
   
-  var spr_defense = new cc.Sprite(texture);
-  spr_defense.setTextureRect(hw.silver);
-  this.addChild(spr_defense, 1, "mask"); 
+  //var spr_defense = new cc.Sprite(texture);
+  //sr_defense.setTextureRect(hw.silver);
+  //this.addChild(spr_defense, 1, "mask"); 
 }
 Plus.prototype = Object.create(cc.Sprite.prototype);
 Plus.prototype.constructor = Plus;
@@ -184,7 +184,7 @@ var animLayer = cc.Layer.extend({
       this.player[p] = new Plus(texture, hw.symbol[p]);
       this.player[p].setPosition(32*rpx+16,32*rpy+16); //TO DO Random
       //this.player[p].setTextureRect(hw.symbol[p]);
-      this.player[p].getChildByName("mask").setPosition(16,16);
+      //this.player[p].getChildByName("mask").setPosition(16,16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
 
