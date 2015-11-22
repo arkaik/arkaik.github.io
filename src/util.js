@@ -8,6 +8,12 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
+function f1()
+{
+  cc.log(this);
+  var c = this.getChildByName("CName");
+}
+
 //Herencia estilo Old JS
 function Plus (string, rect)
 {
@@ -233,7 +239,7 @@ var animLayer = cc.Layer.extend({
             var cmenu = new CircularMenu(4,32);
             cmenu.setName("CName");
             cc.log("I'm creating the menu");
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab1 function"); cc.log(this.getName()); cc.log(this.getChildbyTag(100).getName());}, parent); //this.removeChildbyTag(100);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1, parent); 
             ab1.setName("ab1");
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); cc.log(this.getName());}, parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); this.removeChildbyTag(100);}, parent);
