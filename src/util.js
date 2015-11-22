@@ -11,7 +11,7 @@ var buttons = cc.textureCache.addImage(res.button_png);
 function f1()
 {
   cc.log(this);
-  var c = this.getChildByName("CName");
+  this.removeChildByName("CName");
 }
 
 //Herencia estilo Old JS
@@ -45,45 +45,57 @@ function Cell (string, px, py)
 Cell.prototype = Object.create(cc.Sprite.prototype);
 Cell.prototype.constructor = Cell;
 
-function CircularMenu (n,r)
-{
-  if (n <= 0) throw new Error("CircularMenu._ctor(n) : argument must be more or equal than 1.");
-  cc.Menu.call(this, []);
-  this.nobj = 0;
-  this.radius = r;
-  this.angle = [];
-  //Ángulo entre cada objeto
-  var alpha = 2*(Math.PI)/n;
-  for (i = 0; i < n; i++)
-  {
-    this.angle.push(alpha*i);
-  }
+var CircularMenu = cc.Menu.extend({
+  _nobj: 0,
+  _radius: null,
+  _angle: null,
+
+  ctor: function( n, r){
+    if (n <= 0) throw new Error("CircularMenu._ctor(n) : argument must be more or equal than 1.");
   
-  this.addItem = function(child, zOrder, tag)
+    cc.Menu.call(this, []);
+    this._radius = r;
+    this._angle = [];
+    
+    //Ángulo entre cada objeto
+    var alpha = 2*(Math.PI)/n;
+    for (i = 0; i < n; i++)
+    {
+      this.angle.push(alpha*i);
+    }
+
+    this._super();
+
+  },
+
+  addItem: function(child, zOrder, tag)
   {
-    if (this.nobj > this.angle.length)
+    if (this._nobj > this._angle.length)
       throw new Error("CircularMenu.addItem() : More than selected number of objects");
-    else if (!(child instanceof cc.MenuItemSprite))
+    else if (!(child instanceof cc.MenuItem))
       throw new Error("CircularMenu.addItem() : Not a cc.MenuItemSprite");
 
-    var x = Math.cos(this.angle[this.nobj])*this.radius;
-    var y = Math.sin(this.angle[this.nobj])*this.radius;
+    var x = Math.cos(this.angle[this.nobj])*this._radius;
+    var y = Math.sin(this.angle[this.nobj])*this._radius;
     child.setPosition(x,y);
     child.setAnchorPoint(0,0);
-    this.nobj++;
+    this._nobj++;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
-  };
-  
-  this.addItems = function()
+  },
+
+  addItems: function()
   {
-    for(i = 0; i < this.nobj; i++)
+    for(i = 0; i < arguments.length; i++)
     {
       this.addItem(arguments[i]);
     }
-  };
-}
-CircularMenu.prototype = Object.create(cc.Menu.prototype);
-CircularMenu.constructor = CircularMenu;
+  },
+
+  removeChildByTag: function(tag, cleanup)
+  {
+    cc.Node.prototype.removeChildByTag.call(this, child, cleanup);
+  }
+})
 
 var backLayer = cc.Layer.extend(
 {
