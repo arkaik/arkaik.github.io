@@ -53,7 +53,6 @@ var CircularMenu = cc.Menu.extend({
   ctor: function( n, r){
     if (n <= 0) throw new Error("CircularMenu._ctor(n) : argument must be more or equal than 1.");
   
-    cc.Menu.call(this, []);
     this._radius = r;
     this._angle = [];
     
