@@ -74,8 +74,8 @@ var CircularMenu = cc.Menu.extend({
     else if (!(child instanceof cc.MenuItem))
       throw new Error("CircularMenu.addItem() : Not a cc.MenuItemSprite");
 
-    var x = Math.cos(this.angle[this.nobj])*this._radius;
-    var y = Math.sin(this.angle[this.nobj])*this._radius;
+    var x = Math.cos(this._angle[this._nobj])*this._radius;
+    var y = Math.sin(this._angle[this._nobj])*this._radius;
     child.setPosition(x,y);
     child.setAnchorPoint(0,0);
     this._nobj++;
