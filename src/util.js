@@ -8,9 +8,11 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
-function f1()
-{
-  this.removeChildByTag(100);
+function f1(menu,target) {
+  return function() {
+    this.removeChild(menu);
+    target.objective(this.matrix);
+  }
 }
 
 //Herencia estilo Old JS
@@ -89,10 +91,6 @@ var CircularMenu = cc.Menu.extend({
     }
   },
 
-  /*removeChildByTag: function(tag, cleanup)
-  {
-    cc.Node.prototype.removeChildByTag.call(this, child, cleanup);
-  }*/
 })
 
 var backLayer = cc.Layer.extend(
@@ -199,9 +197,7 @@ var animLayer = cc.Layer.extend({
       var rpx = Math.floor(Math.random()*mat_size);
       var rpy = Math.floor(Math.random()*mat_size);
       this.player[p] = new Plus(texture, hw.symbol[p]);
-      this.player[p].setPosition(32*rpx+16,32*rpy+16); //TO DO Random
-      //this.player[p].setTextureRect(hw.symbol[p]);
-      //this.player[p].getChildByName("mask").setPosition(16,16);
+      this.player[p].setPosition(32*rpx+16,32*rpy+16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
 
@@ -248,17 +244,13 @@ var animLayer = cc.Layer.extend({
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var cmenu = new CircularMenu(4,32);
             cmenu.setName("CName");
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1
-
-              , parent); 
-            ab1.setName("ab1");
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); cc.log(this.getName());}, parent);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1(cmenu, target), parent); 
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); }, parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); this.removeChildbyTag(100);}, parent);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); this.removeChildbyTag(100);}, parent);
             cmenu.addItem(ab1);
             cmenu.addItem(ab2);
-            cmenu.addItem(ab3);
-            cmenu.addItem(ab4);
+            cmenu.addItems(ab3, ab4);
             cmenu.setPosition(ox*32,oy*32);
             parent.addChild(cmenu,10,100);
           }
