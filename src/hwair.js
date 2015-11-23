@@ -384,10 +384,10 @@ hw.create_menu = function(target)
 
   var cmenu = new CircularMenu(4, 48);
   
-  var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); }, parent); 
-  var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.buttons[1]), function(){cc.log("ab2"); }, parent);
-  var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.buttons[2]), function(){cc.log("ab3"); }, parent);
-  var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.buttons[3]), function(){cc.log("ab4"); }, parent);
+  var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), function(){cc.log("ab4"); }, parent); 
+  var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), function(){cc.log("ab2"); }, parent);
+  var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.actions[2]), function(){cc.log("ab3"); }, parent);
+  var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.actions[3]), function(){cc.log("ab4"); }, parent);
   
   cmenu.addItems(ab1, ab2, ab3, ab4);
   cmenu.setPosition(ox*32,oy*32);

@@ -244,10 +244,10 @@ var animLayer = cc.Layer.extend({
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var cmenu = new CircularMenu(4,48);
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1(cmenu, target), parent); 
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); }, parent);
-            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); }, parent);
-            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); }, parent);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), f1(cmenu, target), parent); 
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), function(){cc.log("ab2"); }, parent);
+            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.actions[2]), function(){cc.log("ab3"); }, parent);
+            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.actions[3]), function(){cc.log("ab4"); }, parent);
             cmenu.addItems(ab1, ab2, ab3, ab4);
             cmenu.setPosition(ox*32,oy*32);
             parent.addChild(cmenu,10,100);
@@ -448,16 +448,10 @@ var menuLayer = cc.Layer.extend({
     this.opt.setDelegate(this);
     this.addChild(this.opt);
     
-    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){hw.data = 0;}, this);
-    b1.getNormalImage().setTextureRect(hw.buttons[1]);
-    b1.getSelectedImage().setTextureRect(hw.buttons[1]);
-    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){hw.data = 1;}, this);
-    b2.getNormalImage().setTextureRect(hw.buttons[2]);
-    b2.getSelectedImage().setTextureRect(hw.buttons[2]);
+    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){hw.data = 0;}, this);
+    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]),new cc.Sprite(res.button_png, hw.buttons[1]), function(){hw.data = 1;}, this);
     b2.setPosition(32,0);
-    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png),new cc.Sprite(res.button_png), function(){hw.data = 2;}, this);
-    b3.getNormalImage().setTextureRect(hw.buttons[3]);
-    b3.getSelectedImage().setTextureRect(hw.buttons[3]);
+    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[2]),new cc.Sprite(res.button_png, hw.buttons[2]), function(){hw.data = 2;}, this);
     b3.setPosition(64,0);
     var menu_b = new cc.Menu(b1,b2,b3);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
