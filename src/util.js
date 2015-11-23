@@ -57,7 +57,7 @@ var CircularMenu = cc.Menu.extend({
     
     //Ángulo entre cada objeto
     var alpha = 2*(Math.PI)/n;
-    for (i = 0; i < this._angle.length; i++)
+    for (i = 0; i < n; i++)
     {
       this._angle.push(alpha*i);
     }
@@ -89,10 +89,10 @@ var CircularMenu = cc.Menu.extend({
     }
   },
 
-  removeChildByTag: function(tag, cleanup)
+  /*removeChildByTag: function(tag, cleanup)
   {
     cc.Node.prototype.removeChildByTag.call(this, child, cleanup);
-  }
+  }*/
 })
 
 var backLayer = cc.Layer.extend(
