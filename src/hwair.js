@@ -39,6 +39,7 @@ hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.g
 
 //Botones
 hw.buttons = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32), cc.rect(96,0,32,32)];
+hw.actions = [cc.rect(0,64,32,32), cc.rect(32,64,32,32), cc.rect(64,64,32,32), cc.rect(96,64,32,32)];
 
 hw.data = 0;
 
@@ -376,7 +377,6 @@ hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal];
 
 hw.create_menu = function(target)
 {
-
   var parent = target.getParent();
   var orig = target.getPosition();
   var ox = Math.floor(orig.x/32);
@@ -384,10 +384,10 @@ hw.create_menu = function(target)
 
   var cmenu = new CircularMenu(4, 48);
   
-  var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1(cmenu, target), parent); 
-  var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); }, parent);
-  var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); this.removeChildbyTag(100);}, parent);
-  var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); this.removeChildbyTag(100);}, parent);
+  var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); }, parent); 
+  var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.buttons[1]), function(){cc.log("ab2"); }, parent);
+  var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.buttons[2]), function(){cc.log("ab3"); }, parent);
+  var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.buttons[3]), function(){cc.log("ab4"); }, parent);
   
   cmenu.addItems(ab1, ab2, ab3, ab4);
   cmenu.setPosition(ox*32,oy*32);
