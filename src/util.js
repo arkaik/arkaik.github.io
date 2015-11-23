@@ -54,13 +54,13 @@ var CircularMenu = cc.Menu.extend({
     if (n <= 0) throw new Error("CircularMenu._ctor(n) : argument must be more or equal than 1.");
   
     this._radius = r;
-    this._angle = [];
+    this._angle = new Array(n);
     
     //Ángulo entre cada objeto
     var alpha = 2*(Math.PI)/n;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < this._angle.length; i++)
     {
-      this.angle.push(alpha*i);
+      this._angle[i] = alpha*i;
     }
 
     this._super();
