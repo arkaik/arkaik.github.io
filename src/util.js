@@ -11,7 +11,7 @@ var buttons = cc.textureCache.addImage(res.button_png);
 function f1()
 {
   cc.log(this);
-  this.removeChildByName("CName");
+  this.removeChildByTag(100);
 }
 
 //Herencia estilo Old JS
