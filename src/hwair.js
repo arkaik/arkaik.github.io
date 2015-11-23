@@ -108,11 +108,8 @@ hw.cns_contact = function(m, px, py)
   bullet.setPosition(ox,oy);
   this.getParent().addChild(bullet);
   var seq = cc.sequence(cc.moveBy(0.5, cx-ox, cy-oy), cc.delayTime(0.5), cc.removeSelf());
-  bullet.runAction(seq);
-  
+  bullet.runAction(seq); 
 }
- 
-
 
 hw.obj_junction = function (m)
 {  
@@ -363,8 +360,8 @@ hw.des_distance = function (m)
 
 hw.cns_distance = function ()
 {
-  var bullet = new cc.Sprite(texture);
-  bullet.setTextureRect(hw.gbullet);
+  var bullet = new cc.Sprite(texture, hw.gbullet);
+  //bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   this.addChild(bullet);
   var mov = cc.moveBy(5, 10, 10);
@@ -376,3 +373,34 @@ hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal];
 hw.cmp = [hw.cmp_contact, hw.cmp_junction, hw.cmp_diagonal];
 hw.des = [hw.des_contact, hw.des_junction, hw.des_diagonal];
 hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal];
+
+hw.create_menu = function(target)
+{
+
+  function f1(menu,target)
+  {
+    return function()
+    {
+      cc.log("ab1");
+      this.removeChild(menu);
+      target.state = "moving";
+    }
+  }
+
+
+  var parent = target.getParent();
+  var orig = target.getPosition();
+  var ox = Math.floor(orig.x/32);
+  var oy = Math.floor(orig.y/32);
+
+  var cmenu = new CircularMenu(4, 48);
+  
+  var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1(cmenu, target), parent); 
+  var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); }, parent);
+  var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); this.removeChildbyTag(100);}, parent);
+  var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); this.removeChildbyTag(100);}, parent);
+  
+  cmenu.addItems(ab1, ab2, ab3, ab4);
+  cmenu.setPosition(ox*32,oy*32);
+  this.addChild(cmenu,10,100);
+}

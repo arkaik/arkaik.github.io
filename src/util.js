@@ -242,15 +242,12 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var cmenu = new CircularMenu(4,32);
-            cmenu.setName("CName");
+            var cmenu = new CircularMenu(4,48);
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1(cmenu, target), parent); 
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); }, parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); this.removeChildbyTag(100);}, parent);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab4"); this.removeChildbyTag(100);}, parent);
-            cmenu.addItem(ab1);
-            cmenu.addItem(ab2);
-            cmenu.addItems(ab3, ab4);
+            cmenu.addItems(ab1, ab2, ab3, ab4);
             cmenu.setPosition(ox*32,oy*32);
             parent.addChild(cmenu,10,100);
           }
@@ -289,8 +286,6 @@ var animLayer = cc.Layer.extend({
               target.state = "moving";
             }
             
-            
-            
           }
           else if (target.state == "moving")
           {
@@ -318,7 +313,7 @@ var animLayer = cc.Layer.extend({
               var ix = Math.floor(parent.player[nteam].getPosition().x/32);
               var iy = Math.floor(parent.player[nteam].getPosition().y/32);
               parent.matrix[ix][iy].setTextureRect(hw.blue);
-              //parent.removeChildbyTag(100);
+
               target.state = "alone";
             }
           }
