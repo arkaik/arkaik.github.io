@@ -10,7 +10,6 @@ var buttons = cc.textureCache.addImage(res.button_png);
 
 function f1()
 {
-  cc.log(this);
   this.removeChildByTag(100);
 }
 
@@ -54,13 +53,13 @@ var CircularMenu = cc.Menu.extend({
     if (n <= 0) throw new Error("CircularMenu._ctor(n) : argument must be more or equal than 1.");
   
     this._radius = r;
-    this._angle = new Array(n);
+    this._angle = [];
     
     //Ángulo entre cada objeto
     var alpha = 2*(Math.PI)/n;
     for (i = 0; i < this._angle.length; i++)
     {
-      this._angle[i] = alpha*i;
+      this._angle.push(alpha*i);
     }
 
     this._super();
@@ -249,8 +248,9 @@ var animLayer = cc.Layer.extend({
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var cmenu = new CircularMenu(4,32);
             cmenu.setName("CName");
-            cc.log("I'm creating the menu");
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1, parent); 
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), f1
+
+              , parent); 
             ab1.setName("ab1");
             var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab2"); cc.log(this.getName());}, parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){cc.log("ab3"); this.removeChildbyTag(100);}, parent);
