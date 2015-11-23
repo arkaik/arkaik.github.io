@@ -377,17 +377,6 @@ hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal];
 hw.create_menu = function(target)
 {
 
-  function f1(menu,target)
-  {
-    return function()
-    {
-      cc.log("ab1");
-      this.removeChild(menu);
-      target.state = "moving";
-    }
-  }
-
-
   var parent = target.getParent();
   var orig = target.getPosition();
   var ox = Math.floor(orig.x/32);

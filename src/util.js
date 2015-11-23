@@ -12,6 +12,7 @@ function f1(menu,target) {
   return function() {
     this.removeChild(menu);
     target.objective(this.matrix);
+    target.state = "moving";
   }
 }
 
