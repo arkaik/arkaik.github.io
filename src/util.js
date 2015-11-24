@@ -23,6 +23,7 @@ function f4(menu, target)
   return function()
   {
     this.removeChild(menu);
+    this.state = "alone";
   }
 }
 
