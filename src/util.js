@@ -8,11 +8,21 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
-function f1(menu,target) {
-  return function() {
+function f1(menu,target)
+{
+  return function()
+  {
     this.removeChild(menu);
     target.objective(this.matrix);
     target.state = "moving";
+  }
+}
+
+function f4(menu, target)
+{
+  return function()
+  {
+    this.removeChild(menu);
   }
 }
 
@@ -298,25 +308,29 @@ var animLayer = cc.Layer.extend({
               target.deselect(parent.matrix);
               target.runAction(cc.moveTo(1,cx, cy));
               parent.matrix[px][py].inside[target.team] = target;
-              
+
+              target.state = "next";
+            }
+          }
+          else if (target.state == "next")
+          {
+            parent.gui_layer.updateTurn();
+            nteam = (nteam+1)%nPlayers;
+            //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
+            // Indicar siguiente jugador si vivo
+                
+            while (parent.player[nteam].health <= 0 && nPlayers > 1)
+            {
               parent.gui_layer.updateTurn();
               nteam = (nteam+1)%nPlayers;
               //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-              // Indicar siguiente jugador si vivo
+            }  
                 
-              while (parent.player[nteam].health <= 0 && nPlayers > 1)
-              {
-                parent.gui_layer.updateTurn();
-                nteam = (nteam+1)%nPlayers;
-                //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-              }  
-                
-              var ix = Math.floor(parent.player[nteam].getPosition().x/32);
-              var iy = Math.floor(parent.player[nteam].getPosition().y/32);
-              parent.matrix[ix][iy].setTextureRect(hw.blue);
+            var ix = Math.floor(parent.player[nteam].getPosition().x/32);
+            var iy = Math.floor(parent.player[nteam].getPosition().y/32);
+            parent.matrix[ix][iy].setTextureRect(hw.blue);
 
-              target.state = "alone";
-            }
+            target.state = "alone";
           }
           
         }
