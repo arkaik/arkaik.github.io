@@ -33,7 +33,7 @@ function f3(menu, target)
   return function()
   {
     this.removeChild(menu);
-    this state = "alone";
+    this.state = "alone";
   }
 }
 
