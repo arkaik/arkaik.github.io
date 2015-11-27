@@ -28,12 +28,21 @@ function f2(menu, target)
   }
 }
 
+function f3(menu, target)
+{
+  return function()
+  {
+    this.removeChild(menu);
+    this state = "alone";
+  }
+}
+
 function f4(menu, target)
 {
   return function()
   {
     this.removeChild(menu);
-    this.state = "alone";
+    this.state = "next";
   }
 }
 
@@ -266,11 +275,12 @@ var animLayer = cc.Layer.extend({
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
             var cmenu = new CircularMenu(4,48);
             var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), f1(cmenu, target), parent); 
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), function(){cc.log("ab2"); }, parent);
+            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), f2(cmenu, target), parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.actions[2]), function(){cc.log("ab3"); }, parent);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.actions[3]), f4(cmenu, target), parent);
             cmenu.addItems(ab1, ab2, ab3, ab4);
             cmenu.setPosition(ox*32,oy*32);
+            cmenu.setColor(cc.color(126,126,126));
             parent.addChild(cmenu,10,100);
           }
           else if (target.state == "selected")
