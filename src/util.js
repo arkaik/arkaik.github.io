@@ -49,16 +49,7 @@ function f4(menu, target)
     this.state = "next";
   }
 }
-if i == j then return 0
-  if memo_t[i][j] != -1 then return memo_t[i][j]
-  min = infinity
-  for k in i..j-1 do
-    x = t (i, k) + t (k+1 (mod n+1), j) 
-      + cost (<v[i-1 (mod n+1)], v[k], v[j]>)
-    if x < min then min = x
-  end for
-  memo_t[i][j] = min
-  return min
+
 //Herencia estilo Old JS
 function Plus (string, rect)
 {
