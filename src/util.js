@@ -339,7 +339,7 @@ var animLayer = cc.Layer.extend({
           }
           else if (target.state == "next")
           {
-            //parent.matrix[ox][oy].setTextureRect(hw.black);
+            parent.matrix[ox][oy].setTextureRect(hw.black);
             parent.gui_layer.updateTurn();
             nteam = (nteam+1)%nPlayers;
             //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
