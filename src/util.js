@@ -33,7 +33,7 @@ function f3(menu, target)
   return function()
   {
     this.removeChild(menu);
-    this.state = "alone";
+    target.state = "alone";
   }
 }
 
@@ -42,11 +42,11 @@ function f4(menu, target)
   return function()
   {
     this.removeChild(menu);
-    //var orig = target.getPosition();
-    //var ix = Math.floor(orig.x/32);
-    //var iy = Math.floor(orig.y/32);
-    //this.matrix[ix][iy].setTextureRect(hw.blue);
-    this.state = "next";
+    var orig = target.getPosition();
+    var ix = Math.floor(orig.x/32);
+    var iy = Math.floor(orig.y/32);
+    this.matrix[ix][iy].setTextureRect(hw.blue);
+    target.state = "next";
   }
 }
 
