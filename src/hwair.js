@@ -423,7 +423,7 @@ hw.f4 = function(menu, target)
   }
 }
 
-hw.menu_functions = [f1, f2, f3, f4];
+hw.menu_functions = [hw.f1, hw.f2, hw.f3, hw.f4];
 
 hw.create_menu = function(target)
 {
@@ -447,4 +447,4 @@ hw.create_menu = function(target)
   parent.addChild(cmenu,10,100);
 }
 
-hw.hello = function() {cc.log("hello");}
+function hw.hello() {cc.log("hello");}
