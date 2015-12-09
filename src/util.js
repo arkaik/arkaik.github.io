@@ -170,6 +170,8 @@ var animLayer = cc.Layer.extend({
   {
     this._super();
     
+    var centerPoint = cc.p(winsize.width / 2, winsize.height / 2);
+    var start = cc.p(centerPoint.x-(12/2*32), centerPoint.y-(12/2*32));
     // Tablero
     this.matrix = new Array(mat_size);
     for (i = 0; i < mat_size; i++)
