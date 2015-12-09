@@ -195,7 +195,7 @@ var animLayer = cc.Layer.extend({
       var rpx = Math.floor(Math.random()*mat_size);
       var rpy = Math.floor(Math.random()*mat_size);
       this.player[p] = new Plus(texture, hw.symbol[p]);
-      this.player[p].setPosition(32*rpx+16,32*rpy+16);
+      this.player[p].setPosition(start.x+32*rpx+16,start.y+32*rpy+16);
       this.addChild(this.player[p]);
       this.player[p].team = p;
 
@@ -204,7 +204,7 @@ var animLayer = cc.Layer.extend({
     
     this.cursor = new cc.Sprite(texture);
     this.cursor.setTextureRect(hw.dotted);
-    this.cursor.setPosition(16,16);
+    this.cursor.setPosition(start.x+16,start.y+16);
     this.addChild(this.cursor);
     
     var i1x = Math.floor(this.player[0].getPosition().x/32);
@@ -293,7 +293,7 @@ var animLayer = cc.Layer.extend({
               target.runAction(cc.moveTo(1,cx, cy));
               parent.matrix[px][py].inside[target.team] = target;
 
-              target.state = "next";
+              hw.create_menu(target);
             }
           }
           else if (target.state == "next")
