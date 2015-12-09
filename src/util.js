@@ -8,48 +8,6 @@ var health4all = 5;
 var texture = cc.textureCache.addImage(res.image_png);
 var buttons = cc.textureCache.addImage(res.button_png);
 
-function f1(menu,target)
-{
-  return function()
-  {
-    this.removeChild(menu);
-    target.objective(this.matrix);
-    target.state = "moving";
-  }
-}
-
-function f2(menu, target)
-{
-  return function()
-  {
-    this.removeChild(menu);
-    target.objective(this.matrix);
-    target.state = "selected";
-  }
-}
-
-function f3(menu, target)
-{
-  return function()
-  {
-    this.removeChild(menu);
-    target.state = "alone";
-  }
-}
-
-function f4(menu, target)
-{
-  return function()
-  {
-    this.removeChild(menu);
-    var orig = target.getPosition();
-    var ix = Math.floor(orig.x/32);
-    var iy = Math.floor(orig.y/32);
-    this.matrix[ix][iy].setTextureRect(hw.blue);
-    target.state = "next";
-  }
-}
-
 //Herencia estilo Old JS
 function Plus (string, rect)
 {
@@ -63,6 +21,8 @@ function Plus (string, rect)
   this.compr = hw.cmp[hw.data];
   this.deselect = hw.des[hw.data];
   this.consequence = hw.cns[hw.data];
+  this.pos_act = [true,true,true,true];
+  this.num_pos_act = 4;
   
   //var spr_defense = new cc.Sprite(texture);
   //sr_defense.setTextureRect(hw.silver);
@@ -277,15 +237,7 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            var cmenu = new CircularMenu(4,48);
-            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), f1(cmenu, target), parent); 
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), f2(cmenu, target), parent);
-            var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.actions[2]), function(){cc.log("ab3"); }, parent);
-            var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.actions[3]), f4(cmenu, target), parent);
-            cmenu.addItems(ab1, ab2, ab3, ab4);
-            cmenu.setPosition(ox*32,oy*32);
-            //cmenu.setColor(cc.color(126,126,126));
-            parent.addChild(cmenu,10,100);
+            hw.create_menu(target);
           }
           else if (target.state == "selected")
           { 
@@ -319,15 +271,17 @@ var animLayer = cc.Layer.extend({
                 }
               }
 
-              target.state = "moving";
+              //target.state = "moving";
             }
 
+            target.deselect(parent.matrix);
+
             var cmenu = new CircularMenu(3,48);
-            //var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), f1(cmenu, target), parent); 
-            var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), f2(cmenu, target), parent);
+            var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), f1(cmenu, target), parent); 
+            //var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), f2(cmenu, target), parent);
             var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.actions[2]), function(){cc.log("ab3"); }, parent);
             var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.actions[3]), f4(cmenu, target), parent);
-            cmenu.addItems( ab2, ab3, ab4);
+            cmenu.addItems( ab1, ab3, ab4);
             cmenu.setPosition(ox*32,oy*32);
             parent.addChild(cmenu,10,100);
             

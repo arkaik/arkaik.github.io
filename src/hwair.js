@@ -375,6 +375,56 @@ hw.cmp = [hw.cmp_contact, hw.cmp_junction, hw.cmp_diagonal];
 hw.des = [hw.des_contact, hw.des_junction, hw.des_diagonal];
 hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal];
 
+hw.f1 = function(menu,target)
+{
+  return function()
+  {
+    this.removeChild(menu);
+    target.objective(this.matrix);
+    target.state = "moving";
+    target.pos_act[0] = false;
+    target.num_pos_act -= 1;
+  }
+}
+
+hw.f2 = function(menu, target)
+{
+  return function()
+  {
+    this.removeChild(menu);
+    target.objective(this.matrix);
+    target.state = "selected";
+    target.pos_act[1] = false;
+    target.num_pos_act -= 1;
+  }
+}
+
+hw.f3 = function(menu, target)
+{
+  return function()
+  {
+    this.removeChild(menu);
+    target.state = "alone";
+    target.pos_act[2] = false;
+    target.num_pos_act -= 1;
+  }
+}
+
+hw.f4 = function(menu, target)
+{
+  return function()
+  {
+    this.removeChild(menu);
+    var orig = target.getPosition();
+    var ix = Math.floor(orig.x/32);
+    var iy = Math.floor(orig.y/32);
+    this.matrix[ix][iy].setTextureRect(hw.blue);
+    target.state = "next";
+  }
+}
+
+hw.menu_functions = [f1, f2, f3, f4];
+
 hw.create_menu = function(target)
 {
   var parent = target.getParent();
@@ -384,12 +434,15 @@ hw.create_menu = function(target)
 
   var cmenu = new CircularMenu(4, 48);
   
-  var ab1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[0]),new cc.Sprite(res.button_png, hw.actions[0]), function(){cc.log("ab4"); }, parent); 
-  var ab2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[1]),new cc.Sprite(res.button_png, hw.actions[1]), function(){cc.log("ab2"); }, parent);
-  var ab3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[2]),new cc.Sprite(res.button_png, hw.actions[2]), function(){cc.log("ab3"); }, parent);
-  var ab4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[3]),new cc.Sprite(res.button_png, hw.actions[3]), function(){cc.log("ab4"); }, parent);
-  
-  cmenu.addItems(ab1, ab2, ab3, ab4);
+  for (i = 0; i < menu_functions.length-1; ++i)
+  {
+    if (target.pos_act[i])
+    {
+      var ab = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[i]),new cc.Sprite(res.button_png, hw.actions[i]), hw.menu_functions[i](cmenu,target), parent); 
+      cmenu.addItem(ab);
+    }
+  }
+
   cmenu.setPosition(ox*32,oy*32);
-  this.addChild(cmenu,10,100);
+  parent.addChild(cmenu,10,100);
 }
