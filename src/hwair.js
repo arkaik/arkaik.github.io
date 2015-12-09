@@ -385,7 +385,7 @@ hw.f1 = function(menu,target)
     target.pos_act[0] = false;
     target.num_pos_act -= 1;
   }
-}
+};
 
 hw.f2 = function(menu, target)
 {
@@ -397,7 +397,7 @@ hw.f2 = function(menu, target)
     target.pos_act[1] = false;
     target.num_pos_act -= 1;
   }
-}
+};
 
 hw.f3 = function(menu, target)
 {
@@ -408,7 +408,7 @@ hw.f3 = function(menu, target)
     target.pos_act[2] = false;
     target.num_pos_act -= 1;
   }
-}
+};
 
 hw.f4 = function(menu, target)
 {
@@ -421,7 +421,7 @@ hw.f4 = function(menu, target)
     this.matrix[ix][iy].setTextureRect(hw.blue);
     target.state = "next";
   }
-}
+};
 
 hw.menu_functions = [hw.f1, hw.f2, hw.f3, hw.f4];
 
@@ -445,6 +445,4 @@ hw.create_menu = function(target)
 
   cmenu.setPosition(ox*32,oy*32);
   parent.addChild(cmenu,10,100);
-}
-
-function hw.hello() {cc.log("hello");}
+};
