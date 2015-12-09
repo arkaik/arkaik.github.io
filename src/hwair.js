@@ -446,3 +446,5 @@ hw.create_menu = function(target)
   cmenu.setPosition(ox*32,oy*32);
   parent.addChild(cmenu,10,100);
 }
+
+hw.hello = function() {cc.log("hello");}

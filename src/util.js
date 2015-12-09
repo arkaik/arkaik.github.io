@@ -237,7 +237,7 @@ var animLayer = cc.Layer.extend({
           {
             event.stopPropagation();
             //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            hw.create_menu(target);
+            hw.hello();
           }
           else if (target.state == "selected")
           { 
