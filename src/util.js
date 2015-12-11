@@ -357,8 +357,12 @@ var animLayer = cc.Layer.extend({
           if (keyCode == 37) //Izquierda
           {
             var newpos = cc.p(cpos.x-32,cpos.y);
+            cc.log("newpos (←): "+newpos.x+","+newpos.y);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
+            {
+              cc.log("move ←");
               cursor.setPosition(cpos.x-32, cpos.y);
+            }
           }
           if (keyCode == 38) //Arriba
           {
