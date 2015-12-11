@@ -360,7 +360,7 @@ var animLayer = cc.Layer.extend({
             cc.log("newpos (←): "+newpos.x+","+newpos.y);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
             {
-              cc.log("move ←");
+              cc.log("move ←" + parent.getBoundingBoxToWorld());
               cursor.setPosition(cpos.x-32, cpos.y);
             }
           }
