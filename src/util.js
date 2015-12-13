@@ -305,6 +305,7 @@ var animLayer = cc.Layer.extend({
           }
           else if (target.state == "next")
           {
+            cc.log(parent);
             parent.matrix[ox][oy].setTextureRect(hw.black);
             parent.gui_layer.updateTurn();
             nteam = (nteam+1)%nPlayers;
