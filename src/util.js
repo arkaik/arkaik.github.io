@@ -225,7 +225,8 @@ var animLayer = cc.Layer.extend({
         {
           // Objetivo actual
           var target = event.getCurrentTarget();
-          var parent = target.getParent();
+          var base_node = target.getParent();
+          var parent = base_node.getParent();
           var nteam = turn;
 
           //Posición de origen
