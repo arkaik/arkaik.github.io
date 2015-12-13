@@ -213,8 +213,8 @@ var animLayer = cc.Layer.extend({
     this.cursor.setPosition(16,16);
     this.base_node.addChild(this.cursor);
     
-    var i1x = Math.floor((this.player[0].getPosition().x-start.x)/32);
-    var i1y = Math.floor((this.player[0].getPosition().y-start.y)/32);
+    var i1x = Math.floor((this.player[0].getPosition().x)/32);
+    var i1y = Math.floor((this.player[0].getPosition().y)/32);
     this.matrix[i1x][i1y].setTextureRect(hw.blue);
   
     var list_act = cc.EventListener.create(

@@ -439,7 +439,7 @@ hw.create_menu = function(target)
   {
     if (target.pos_act[i])
     {
-      var ab = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[i]),new cc.Sprite(res.button_png, hw.actions[i]), hw.menu_functions[i](cmenu,target), parent); 
+      var ab = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[i]),new cc.Sprite(res.button_png, hw.actions[i]), hw.menu_functions[i](cmenu,target), base_node); 
       cmenu.addItem(ab);
     }
   }
