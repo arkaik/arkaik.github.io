@@ -174,8 +174,9 @@ var animLayer = cc.Layer.extend({
     var winsize = cc.director.getWinSize();
     var centerPoint = cc.p(winsize.width / 2, winsize.height / 2);
     var start = cc.p(centerPoint.x-(12/2*32), centerPoint.y-(12/2*32));
+    //Creamos un nodo base para que las distancias y los moviemientos se calculen con este punto como origen de coordenadas.
     this.base_node = new cc.Node();
-    base_node.setPosition(start);
+    this.base_node.setPosition(start);
     this.addChild(this.base_node);
 
     // Tablero
@@ -189,7 +190,7 @@ var animLayer = cc.Layer.extend({
         this.matrix[i][j] = new Cell(texture, i, j);
         this.matrix[i][j].setTextureRect(hw.black);
         this.matrix[i][j].setPosition(32*i+16, 32*j+16);
-        base_node.addChild(this.matrix[i][j]);
+        this.base_node.addChild(this.matrix[i][j]);
       }
       
     }
@@ -201,7 +202,7 @@ var animLayer = cc.Layer.extend({
       var rpy = Math.floor(Math.random()*mat_size);
       this.player[p] = new Plus(texture, hw.symbol[p]);
       this.player[p].setPosition(32*rpx+16,32*rpy+16);
-      base_node.addChild(this.player[p]);
+      this.base_node.addChild(this.player[p]);
       this.player[p].team = p;
 
       this.matrix[rpx][rpy].inside[p] = this.player[p];
@@ -210,7 +211,7 @@ var animLayer = cc.Layer.extend({
     this.cursor = new cc.Sprite(texture);
     this.cursor.setTextureRect(hw.dotted);
     this.cursor.setPosition(16,16);
-    base_node.addChild(this.cursor);
+    this.base_node.addChild(this.cursor);
     
     var i1x = Math.floor((this.player[0].getPosition().x-start.x)/32);
     var i1y = Math.floor((this.player[0].getPosition().y-start.y)/32);
