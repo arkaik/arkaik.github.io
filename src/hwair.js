@@ -427,7 +427,8 @@ hw.menu_functions = [hw.f1, hw.f2, hw.f3, hw.f4];
 
 hw.create_menu = function(target)
 {
-  var parent = target.getParent();
+  var base_node = target.getParent();
+  var parent = base_node.getParent();
   var orig = target.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
