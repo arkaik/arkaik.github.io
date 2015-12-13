@@ -380,7 +380,7 @@ hw.f1 = function(menu,target)
   return function()
   {
     this.removeChild(menu);
-    target.objective(this.matrix);
+    target.objective(this.getParent().matrix);
     target.state = "moving";
     target.pos_act[0] = false;
     target.num_pos_act -= 1;
@@ -392,7 +392,7 @@ hw.f2 = function(menu, target)
   return function()
   {
     this.removeChild(menu);
-    target.objective(this.matrix);
+    target.objective(this.getParent().matrix);
     target.state = "selected";
     target.pos_act[1] = false;
     target.num_pos_act -= 1;
@@ -418,7 +418,7 @@ hw.f4 = function(menu, target)
     var orig = target.getPosition();
     var ix = Math.floor(orig.x/32);
     var iy = Math.floor(orig.y/32);
-    this.matrix[ix][iy].setTextureRect(hw.blue);
+    this.getParent().matrix[ix][iy].setTextureRect(hw.blue);
     target.state = "next";
   }
 };
@@ -445,5 +445,5 @@ hw.create_menu = function(target)
   }
 
   cmenu.setPosition(ox*32,oy*32);
-  parent.addChild(cmenu,10,100);
+  base_node.addChild(cmenu,10,100);
 };
