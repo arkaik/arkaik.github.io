@@ -174,6 +174,7 @@ var animLayer = cc.Layer.extend({
     var winsize = cc.director.getWinSize();
     var centerPoint = cc.p(winsize.width / 2, winsize.height / 2);
     var start = cc.p(centerPoint.x-(12/2*32), centerPoint.y-(12/2*32));
+    
     //Creamos un nodo base para que las distancias y los moviemientos se calculen con este punto como origen de coordenadas.
     this.base_node = new cc.Node();
     this.base_node.setPosition(start);
@@ -219,112 +220,110 @@ var animLayer = cc.Layer.extend({
   
     var list_act = cc.EventListener.create(
     {
-        event: cc.EventListener.CUSTOM,
-        eventName: "action",
-        callback: function(event)
+      event: cc.EventListener.CUSTOM,
+      eventName: "action",
+      callback: function(event)
+      {
+        // Objetivo actual
+        var target = event.getCurrentTarget();
+        var base_node = target.getParent();
+        var parent = base_node.getParent();
+        var nteam = turn;
+
+        //Posición de origen
+        var orig = target.getPosition();
+        var ox = Math.floor(orig.x/32);
+        var oy = Math.floor(orig.y/32);
+
+        //Posición destino
+        var pt = base_node.convertToNodeSpace(event.getUserData().location);
+        var px = Math.floor(pt.x/32);
+        var py = Math.floor(pt.y/32);
+
+        var ok = cc.rectContainsPoint(target.getBoundingBoxToWorld(), pt);
+        var plz = nteam == target.team;
+        // var alive = target.health > 0;
+        
+        if (ok && plz && target.state == "alone")
         {
-          // Objetivo actual
-          var target = event.getCurrentTarget();
-          var base_node = target.getParent();
-          var parent = base_node.getParent();
-          var nteam = turn;
-
-          //Posición de origen
-          var orig = target.getPosition();
-          var ox = Math.floor(orig.x/32);
-          var oy = Math.floor(orig.y/32);
-
-          //Posición destino
-          var pt = base_node.convertToNodeSpace(event.getUserData().location);
-          var px = Math.floor(pt.x/32);
-          var py = Math.floor(pt.y/32);
-
-          var ok = cc.rectContainsPoint(target.getBoundingBoxToWorld(), pt);
-          var plz = nteam == target.team;
-      // var alive = target.health > 0;
-          
-          if (ok && plz && target.state == "alone")
+          event.stopPropagation();
+          //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
+          hw.create_menu(target);
+        }
+        else if (target.state == "selected")
+        { 
+          if (target.compr(parent.matrix, px, py))
           {
-            event.stopPropagation();
-            //TO DO: Subclass of (Menu) and (MenuItem): CircularMenu, CircularMenuItem.
-            hw.create_menu(target);
-          }
-          else if (target.state == "selected")
-          { 
-            if (target.compr(parent.matrix, px, py))
-            {
-              parent.matrix[ox][oy].inside[target.team] = undefined;
-              
-              //Toda acción tiene su consecuencia... (hue hue)
-              target.consequence(parent.matrix, px, py);
+            parent.matrix[ox][oy].inside[target.team] = undefined;
+            
+            //Toda acción tiene su consecuencia... (hue hue)
+            target.consequence(parent.matrix, px, py);
 
-              var affected = null;
-              for (i = 0; i < parent.matrix[px][py].inside.length; i++)
+            var affected = null;
+            for (i = 0; i < parent.matrix[px][py].inside.length; i++)
+            {
+              affected = parent.matrix[px][py].inside[i];
+              
+              if (affected != undefined && affected.team != target.team)
               {
-                affected = parent.matrix[px][py].inside[i];
-                
-                if (affected != undefined && affected.team != target.team)
+                affected.health -= 1;
+                parent.gui_layer.updateLH(affected.team, affected.health);
+                if (affected.health <= 0)
                 {
-                  affected.health -= 1;
-                  parent.gui_layer.updateLH(affected.team, affected.health);
-                  if (affected.health <= 0)
+                  parent.matrix[px][py].inside[i] = undefined;
+                  parent.removeChild(parent.player[i]);
+                  --cPlayers;
+                  if (cPlayers == 1)
                   {
-                    parent.matrix[px][py].inside[i] = undefined;
-                    parent.removeChild(parent.player[i]);
-                    --cPlayers;
-                    if (cPlayers == 1)
-                    {
-                      cc.log("You win, gg ez");
-                      parent.gui_layer.labelHealth[turn].setString("You win, gg ez");
-                    }
+                    cc.log("You win, gg ez");
+                    parent.gui_layer.labelHealth[turn].setString("You win, gg ez");
                   }
                 }
               }
-
-              //target.state = "moving";
             }
 
+            //target.state = "moving";
+          }
+
+          target.deselect(parent.matrix);
+
+          hw.create_menu(target);
+          
+        }
+        else if (target.state == "moving")
+        {
+          if (target.compr(parent.matrix, px, py))
+          {
+            var cx = px*32+16;
+            var cy = py*32+16;
+            //Devolver a su estado original las celdas rojas
             target.deselect(parent.matrix);
+            target.runAction(cc.moveTo(1,cx, cy));
+            parent.matrix[px][py].inside[target.team] = target;
 
             hw.create_menu(target);
-            
           }
-          else if (target.state == "moving")
+        }
+        else if (target.state == "next")
+        {
+          parent.matrix[ox][oy].setTextureRect(hw.black);
+          parent.gui_layer.updateTurn();
+          nteam = (nteam+1)%nPlayers;
+          //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
+          // Indicar siguiente jugador si vivo
+              
+          while (parent.player[nteam].health <= 0 && nPlayers > 1)
           {
-            if (target.compr(parent.matrix, px, py))
-            {
-              var cx = px*32+16;
-              var cy = py*32+16;
-              //Devolver a su estado original las celdas rojas
-              target.deselect(parent.matrix);
-              target.runAction(cc.moveTo(1,cx, cy));
-              parent.matrix[px][py].inside[target.team] = target;
-
-              hw.create_menu(target);
-            }
-          }
-          else if (target.state == "next")
-          {
-            parent.matrix[ox][oy].setTextureRect(hw.black);
             parent.gui_layer.updateTurn();
             nteam = (nteam+1)%nPlayers;
             //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-            // Indicar siguiente jugador si vivo
-                
-            while (parent.player[nteam].health <= 0 && nPlayers > 1)
-            {
-              parent.gui_layer.updateTurn();
-              nteam = (nteam+1)%nPlayers;
-              //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-            }  
-                
-            var ix = Math.floor(parent.player[nteam].getPosition().x/32);
-            var iy = Math.floor(parent.player[nteam].getPosition().y/32);
-            parent.matrix[ix][iy].setTextureRect(hw.blue);
+          }  
+              
+          var ix = Math.floor(parent.player[nteam].getPosition().x/32);
+          var iy = Math.floor(parent.player[nteam].getPosition().y/32);
+          parent.matrix[ix][iy].setTextureRect(hw.blue);
 
-            target.state = "alone";
-          }
-          
+          target.state = "alone";
         }
       }
     );
