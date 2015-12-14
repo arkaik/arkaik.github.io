@@ -192,6 +192,8 @@ hw.cns_junction = function(m, px, py)
 hw.obj_diagonal = function (m)
 {  
   var parent = m.getParent();
+  cc.log("obj_diagonal: ");
+  cc.log(parent);
   var orig = parent.base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
