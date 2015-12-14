@@ -326,7 +326,8 @@ var animLayer = cc.Layer.extend({
           target.state = "alone";
         }
       }
-    );
+    }
+  );
     
     var list_touch = cc.EventListener.create(
     {
