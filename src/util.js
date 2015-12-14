@@ -404,9 +404,10 @@ var animLayer = cc.Layer.extend({
     });
    
     cc.eventManager.addListener(list_key, this.cursor);
-    cc.eventManager.addListener(list_touch, this);
+    
     for (em = 0; em < this.player.length; em++)
     {
+      cc.eventManager.addListener(list_touch, this.player[em]);
       cc.eventManager.addListener(list_act.clone(), this.player[em]);
     }
   }
