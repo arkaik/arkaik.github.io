@@ -191,10 +191,9 @@ hw.cns_junction = function(m, px, py)
 
 hw.obj_diagonal = function (m)
 {  
-  var parent = m.getParent();
-  cc.log("obj_diagonal: ");
-  cc.log(parent);
-  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
+  var base_node = this.getParent();
+  var parent = base_node.getParent();
+  var orig = base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
@@ -217,8 +216,9 @@ hw.obj_diagonal = function (m)
 
 hw.cmp_diagonal = function(m, px, py)
 {
-  var parent = m.getParent();
-  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
+  var base_node = this.getParent();
+  var parent = base_node.getParent();
+  var orig = base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
  
@@ -232,8 +232,9 @@ hw.cmp_diagonal = function(m, px, py)
 
 hw.des_diagonal = function(m)
 {
-  var parent = m.getParent();
-  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
+  var base_node = this.getParent();
+  var parent = base_node.getParent();
+  var orig = base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
@@ -259,8 +260,9 @@ hw.cns_diagonal = function(m, px, py)
   var cx = px * 32+16;
   var cy = py * 32+16;
 
-  var parent = m.getParent();
-  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
+  var base_node = this.getParent();
+  var parent = base_node.getParent();
+  var orig = base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32)*32+16;
   var oy = Math.floor(orig.y/32)*32+16;
   
@@ -269,7 +271,7 @@ hw.cns_diagonal = function(m, px, py)
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
-  this.getParent().addChild(bullet);
+  parent.addChild(bullet);
   var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
   bullet.runAction(seq);
   
