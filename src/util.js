@@ -192,8 +192,7 @@ var animLayer = cc.Layer.extend({
         this.matrix[i][j].setTextureRect(hw.black);
         this.matrix[i][j].setPosition(32*i+16, 32*j+16);
         this.base_node.addChild(this.matrix[i][j]);
-      }
-      
+      } 
     }
 
     this.player = new Array(nPlayers);
@@ -240,7 +239,7 @@ var animLayer = cc.Layer.extend({
         var px = Math.floor(pt.x/32);
         var py = Math.floor(pt.y/32);
 
-        var ok = cc.rectContainsPoint(target.getBoundingBoxToWorld(), pt);
+        var ok = cc.rectContainsPoint(target.getBoundingBox(), pt);
         var plz = nteam == target.team;
         // var alive = target.health > 0;
         
@@ -326,8 +325,7 @@ var animLayer = cc.Layer.extend({
           target.state = "alone";
         }
       }
-    }
-  );
+    });
     
     var list_touch = cc.EventListener.create(
     {
@@ -365,10 +363,8 @@ var animLayer = cc.Layer.extend({
           if (keyCode == 37) //Izquierda
           {
             var newpos = cc.p(cpos.x-32,cpos.y);
-            cc.log("newpos (←): "+newpos.x+","+newpos.y);
             if(cc.rectContainsPoint(parent.getBoundingBoxToWorld(), newpos))
             {
-              cc.log("move ←" + parent.getBoundingBoxToWorld());
               cursor.setPosition(cpos.x-32, cpos.y);
             }
           }
