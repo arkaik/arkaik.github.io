@@ -191,7 +191,8 @@ hw.cns_junction = function(m, px, py)
 
 hw.obj_diagonal = function (m)
 {  
-  var orig = this.getPosition();
+  var parent = m.getParent();
+  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
@@ -214,7 +215,8 @@ hw.obj_diagonal = function (m)
 
 hw.cmp_diagonal = function(m, px, py)
 {
-  var orig = this.getPosition();
+  var parent = m.getParent();
+  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
  
@@ -228,7 +230,8 @@ hw.cmp_diagonal = function(m, px, py)
 
 hw.des_diagonal = function(m)
 {
-  var orig = this.getPosition();
+  var parent = m.getParent();
+  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
@@ -253,9 +256,11 @@ hw.cns_diagonal = function(m, px, py)
   //Posició a l'espai del món
   var cx = px * 32+16;
   var cy = py * 32+16;
-  
-  var ox = Math.floor(this.getPosition().x/32)*32+16;
-  var oy = Math.floor(this.getPosition().y/32)*32+16;
+
+  var parent = m.getParent();
+  var orig = parent.base_node.convertToNodeSpace(this.getPosition());
+  var ox = Math.floor(orig.x/32)*32+16;
+  var oy = Math.floor(orig.y/32)*32+16;
   
   //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
   var bullet = new cc.Sprite(texture);

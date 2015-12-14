@@ -126,7 +126,7 @@ var guiLayer = cc.Layer.extend({
     
     this.labelTurn = new cc.LabelTTF("Team: 0", "Helvetica", 20);
     this.labelTurn.setColor(cc.color(01,1,1));
-    this.labelTurn.setPosition(size.width * 0.75, size.height * 0.75);
+    this.labelTurn.setPosition(size.width * 0.85, size.height * 0.75);
     this.addChild(this.labelTurn);
     
     this.labelHealth = new Array(nPlayers);
@@ -134,7 +134,7 @@ var guiLayer = cc.Layer.extend({
     {
       this.labelHealth[z] = new cc.LabelTTF("¦"+z+"¦ HP: "+health4all, "Helvetica", 20);
       this.labelHealth[z].setColor(cc.color(1,1,1));
-      this.labelHealth[z].setPosition(size.width * 0.75, size.height*(0.70 - z*0.05));
+      this.labelHealth[z].setPosition(size.width * 0.85, size.height*(0.70 - z*0.05));
       this.addChild(this.labelHealth[z]);
     }
 
@@ -235,7 +235,7 @@ var animLayer = cc.Layer.extend({
           var oy = Math.floor(orig.y/32);
 
           //Posición destino
-          var pt = event.getUserData().location;
+          var pt = base_node.convertToNodeSpace(event.getUserData().location);
           var px = Math.floor(pt.x/32);
           var py = Math.floor(pt.y/32);
 
@@ -305,7 +305,6 @@ var animLayer = cc.Layer.extend({
           }
           else if (target.state == "next")
           {
-            cc.log(parent);
             parent.matrix[ox][oy].setTextureRect(hw.black);
             parent.gui_layer.updateTurn();
             nteam = (nteam+1)%nPlayers;
@@ -359,7 +358,8 @@ var animLayer = cc.Layer.extend({
         onKeyReleased: function (keyCode, event)
         {
           var cursor = event.getCurrentTarget();
-          var parent = cursor.getParent();
+          var base_node = cursor.getParent();
+          var parent = base_node.getParent();
           var cpos = cursor.getPosition();
           //cc.log(keyCode);
           if (keyCode == 37) //Izquierda
