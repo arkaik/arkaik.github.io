@@ -191,6 +191,7 @@ var animLayer = cc.Layer.extend({
         this.matrix[i][j] = new Cell(texture, i, j);
         this.matrix[i][j].setTextureRect(hw.black);
         this.matrix[i][j].setPosition(32*i+16, 32*j+16);
+        this.matrix[i][j].setName("Cell["+i+"]["+j+"]");
         this.base_node.addChild(this.matrix[i][j]);
       } 
     }
@@ -202,6 +203,7 @@ var animLayer = cc.Layer.extend({
       var rpy = Math.floor(Math.random()*mat_size);
       this.player[p] = new Plus(texture, hw.symbol[p]);
       this.player[p].setPosition(32*rpx+16,32*rpy+16);
+      this.player[p].setName("Player["+p+"]");
       this.base_node.addChild(this.player[p]);
       this.player[p].team = p;
 
@@ -225,6 +227,7 @@ var animLayer = cc.Layer.extend({
       {
         // Objetivo actual
         var target = event.getCurrentTarget();
+        cc.log(target.getName());
         var base_node = target.getParent();
         var parent = base_node.getParent();
         var nteam = turn;
