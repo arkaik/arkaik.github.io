@@ -196,7 +196,7 @@ hw.obj_diagonal = function (m)
   var orig = base_node.convertToNodeSpace(this.getPosition());
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
-  cc.log("obj_diagonal: "+ox","+oy);
+  cc.log("obj_diagonal: "+ox+","+oy);
   var nx, ny;
   
   for (k = -2; k <= 2; k++)
