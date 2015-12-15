@@ -42,6 +42,7 @@ hw.buttons = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32), cc.r
 hw.actions = [cc.rect(0,64,32,32), cc.rect(32,64,32,32), cc.rect(64,64,32,32), cc.rect(96,64,32,32)];
 
 hw.data = 0;
+hw.data_sym = new Array(4);
 
 //Tipos de habilidades
 hw.obj_contact = function (m)
