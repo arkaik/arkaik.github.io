@@ -100,7 +100,7 @@ var DropdownMenu = cc.Menu.extend({
   addItem: function(child, zOrder, tag)
   {
     this._nobj += 1;
-    child.setPosition(0,this._nobj*32);
+    child.setPosition(0,(this._nobj+1)*-32);
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   }
 })
@@ -471,7 +471,7 @@ var menuLayer = cc.Layer.extend({
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
       select_sym[i] = false;
-      var d = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[i]),new cc.Sprite(res.button_png, hw.buttons[i]), function(){hw.data_sym[0] = p; select_sym[p] = true;},this);
+      var d = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.symbols[i]),new cc.Sprite(res.button_png, hw.symbols[i]), function(){hw.data_sym[0] = p; select_sym[p] = true;},this);
       dmenu.addItem(d);
     };
     dmenu.setPosition(cc.p(winsize.width*0.75, winsize.height*0.75));
