@@ -28,7 +28,7 @@ var Plus = cc.Sprite.extend({
     this.deselect = hw.des[hw.data];
     this.consequence = hw.cns[hw.data];
 
-    this.pos_act = new Array(4, true);
+    this.pos_act = [true,true,true,true];
     //var spr_defense = new cc.Sprite(texture);
     //sr_defense.setTextureRect(hw.silver);
     //this.addChild(spr_defense, 1, "mask");

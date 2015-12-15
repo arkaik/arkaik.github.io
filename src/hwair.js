@@ -430,7 +430,7 @@ hw.f4 = function(menu, target)
     var iy = Math.floor(orig.y/32);
     //parent.matrix[ix][iy].setTextureRect(hw.blue);
     target.num_pos_act = 4;
-    target.pos_act = new Array(4, true);
+    target.pos_act = [true,true,true,true];
 
     parent.matrix[ix][iy].setTextureRect(hw.black);
     var nteam = parent.gui_layer.turn;
