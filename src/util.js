@@ -123,14 +123,14 @@ var DropdownMenu = cc.Menu.extend({
     {
       m.setPosition(32, x*-32);
       cc.Menu.prototype.addChild.call(this, m);
-    }
+    };
   },
   closeOptions: function()
   {
     for (let m of _item)
     {
       cc.Menu.prototype.removeChild.call(this, m);
-    }
+    };
   }
 })
 
