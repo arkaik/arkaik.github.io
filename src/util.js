@@ -407,7 +407,7 @@ var animLayer = cc.Layer.extend({
     
     for (em = 0; em < this.player.length; em++)
     {
-      cc.eventManager.addListener(list_touch, this.player[em]);
+      cc.eventManager.addListener(list_touch.clone(), this.player[em]);
       cc.eventManager.addListener(list_act.clone(), this.player[em]);
     }
   }
