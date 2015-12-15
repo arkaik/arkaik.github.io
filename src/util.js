@@ -471,7 +471,7 @@ var menuLayer = cc.Layer.extend({
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
       select_sym[i] = false;
-      var d = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.symbols[i]),new cc.Sprite(res.button_png, hw.symbols[i]), function(){hw.data_sym[0] = p; select_sym[p] = true;},this);
+      var d = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.symbol[i]),new cc.Sprite(res.button_png, hw.symbol[i]), function(){hw.data_sym[0] = p; select_sym[p] = true;},this);
       dmenu.addItem(d);
     };
     dmenu.setPosition(cc.p(winsize.width*0.75, winsize.height*0.75));
