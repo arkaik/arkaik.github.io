@@ -463,7 +463,7 @@ hw.create_menu = function(target)
   var oy = Math.floor(orig.y/32);
 
   var cmenu = new CircularMenu(4, 48);
-  
+  cc.log(target.pos_act);
   for (i = 0; i < hw.menu_functions.length; ++i)
   {
     if (target.pos_act[i])

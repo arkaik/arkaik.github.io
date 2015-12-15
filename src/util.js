@@ -89,6 +89,20 @@ var CircularMenu = cc.Menu.extend({
   },
 })
 
+var DropdownMenu = cc.Menu.extend({
+  _nobj: 0,
+  ctor: function()
+  {
+    this._super();
+  },
+  addItem: function(child, zOrder, tag)
+  {
+    _nobj += 1;
+    //child.setPosition;
+    cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
+  }
+})
+
 var backLayer = cc.Layer.extend(
 {
   
