@@ -111,6 +111,7 @@ var backLayer = cc.Layer.extend(
 });
 
 var guiLayer = cc.Layer.extend({
+  turn: 0,
   labelTurn: null,
   labelHealth: null,
   ctor: function()
@@ -143,7 +144,7 @@ var guiLayer = cc.Layer.extend({
   
   updateTurn: function()
   {
-    turn = (turn+1)%nPlayers;
+    this.turn = (this.turn+1)%nPlayers;
     this.labelTurn.setString("Team: "+turn);
   },
   
@@ -228,10 +229,10 @@ var animLayer = cc.Layer.extend({
       {
         // Objetivo actual
         var target = event.getCurrentTarget();
-        cc.log(target.getName());
+        //cc.log(target.getName());
         var base_node = target.getParent();
         var parent = base_node.getParent();
-        var nteam = turn;
+        var nteam = parent.gui_layer.turn;
 
         //Posición de origen
         var orig = target.getPosition();
@@ -308,7 +309,7 @@ var animLayer = cc.Layer.extend({
           }
         }
 
-        
+
       }
     });
     
