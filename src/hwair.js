@@ -388,7 +388,7 @@ hw.f1 = function(menu,target)
 {
   return function()
   {
-    this.removeChild(menu);
+    target.removeChild(menu);
     target.objective(this.getParent().matrix);
     target.state = "moving";
     target.pos_act[0] = false;
@@ -400,7 +400,7 @@ hw.f2 = function(menu, target)
 {
   return function()
   {
-    this.removeChild(menu);
+    target.removeChild(menu);
     target.objective(this.getParent().matrix);
     target.state = "selected";
     target.pos_act[1] = false;
@@ -412,7 +412,7 @@ hw.f3 = function(menu, target)
 {
   return function()
   {
-    this.removeChild(menu);
+    target.removeChild(menu);
     target.state = "alone";
     target.pos_act[2] = false;
     target.num_pos_act -= 1;
@@ -423,7 +423,7 @@ hw.f4 = function(menu, target)
 {
   return function()
   {
-    this.removeChild(menu);
+    target.removeChild(menu);
     var orig = target.getPosition();
     var ix = Math.floor(orig.x/32);
     var iy = Math.floor(orig.y/32);
@@ -453,6 +453,6 @@ hw.create_menu = function(target)
     }
   }
 
-  cmenu.setPosition(ox*32,oy*32);
-  base_node.addChild(cmenu,10,100);
+  //cmenu.setPosition(ox*32,oy*32);
+  target.addChild(cmenu,10,100);
 };
