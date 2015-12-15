@@ -119,7 +119,7 @@ var DropdownMenu = cc.Menu.extend({
   openOptions: function()
   {
     var x = 0;
-    for (MenuItemSprite m : _item)
+    for (let m of _item)
     {
       m.setPosition(32, x*-32);
       cc.Menu.prototype.addChild.call(this, m);
@@ -127,7 +127,7 @@ var DropdownMenu = cc.Menu.extend({
   },
   closeOptions: function()
   {
-    for (MenuItemSprite m : _item)
+    for (let m of _item)
     {
       cc.Menu.prototype.removeChild.call(this, m);
     }
