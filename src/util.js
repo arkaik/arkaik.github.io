@@ -93,15 +93,44 @@ var CircularMenu = cc.Menu.extend({
 
 var DropdownMenu = cc.Menu.extend({
   _nobj: 0,
-  ctor: function()
+  _item: [],
+  ctor: function(spr_child)
   {
     this._super();
+
+    var click = new MenuItemSprite(spr_child, spr_child, this.openOptions, this);
+    cc.Menu.prototype.addChild.call(this,click,1,0);
   },
   addItem: function(child, zOrder, tag)
   {
-    child.setPosition(0,this._nobj*-32);
-    this._nobj += 1;
-    cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
+    _item.push(child);
+    _nobj += 1;
+
+    //child.setPosition(32,this._nobj*-32);
+    //this._nobj += 1;
+    //cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
+  },
+  changeClickItem: function(spr_child, zOrder)
+  {
+    cc.Menu.prototype.removeChildByTag.call(this,0);
+    var click = new MenuItemSprite(spr_child, spr_child, this.openOptions, this);
+    cc.Menu.prototype.addChild.call(this,child,1,0);
+  },
+  openOptions: function()
+  {
+    var x = 0;
+    for (MenuItemSprite m : _item)
+    {
+      m.setPosition(32, x*-32);
+      cc.Menu.prototype.addChild.call(this, m);
+    }
+  },
+  closeOptions: function()
+  {
+    for (MenuItemSprite m : _item)
+    {
+      cc.Menu.prototype.removeChild.call(this, m);
+    }
   }
 })
 
@@ -122,7 +151,7 @@ var backLayer = cc.Layer.extend(
     var sprite = cc.Sprite.create(res.helloBG_png);
     sprite.setPosition(size.width / 2, size.height / 2);
     sprite.setScale(0.8);
-    this.addChild(sprite);    
+    this.addChild(sprite);
   }
 });
 
@@ -467,13 +496,26 @@ var menuLayer = cc.Layer.extend({
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
     
-    var dmenu = new DropdownMenu();
+    var dmenu = new DropdownMenu(new cc.Sprite(texture, hw.symbol[i]));
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
       select_sym[i] = false;
-      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[i]),new cc.Sprite(texture, hw.symbol[i]), function(){hw.data_sym[0] = p; select_sym[p] = true;},this);
+    };
+
+    function mis(index)
+    {
+      return function()
+      {
+        hw.data_sym[0] = index;
+        select_sym[index] = true;
+      }
+    }
+
+    for (var j = 0; j < 4; j++) {
+      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[i]),new cc.Sprite(texture, hw.symbol[i]), mis(i),this);
       dmenu.addItem(d);
     };
+    
     dmenu.setPosition(cc.p(winsize.width*0.75, winsize.height*0.75));
     this.addChild(dmenu);
 
