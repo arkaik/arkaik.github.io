@@ -192,10 +192,8 @@ hw.cns_junction = function(m, px, py)
 hw.obj_diagonal = function (m)
 {  
   var base_node = this.getParent();
-  cc.log(base_node.getName());
   var parent = base_node.getParent();
-  cc.log(parent.getName());
-  var orig = base_node.convertToNodeSpace(this.getPosition());
+  var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   cc.log("obj_diagonal: "+ox+","+oy);
@@ -220,7 +218,7 @@ hw.cmp_diagonal = function(m, px, py)
 {
   var base_node = this.getParent();
   var parent = base_node.getParent();
-  var orig = base_node.convertToNodeSpace(this.getPosition());
+  var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
  
@@ -236,7 +234,7 @@ hw.des_diagonal = function(m)
 {
   var base_node = this.getParent();
   var parent = base_node.getParent();
-  var orig = base_node.convertToNodeSpace(this.getPosition());
+  var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
@@ -264,7 +262,7 @@ hw.cns_diagonal = function(m, px, py)
 
   var base_node = this.getParent();
   var parent = base_node.getParent();
-  var orig = base_node.convertToNodeSpace(this.getPosition());
+  var orig = this.getPosition();
   var ox = Math.floor(orig.x/32)*32+16;
   var oy = Math.floor(orig.y/32)*32+16;
   
