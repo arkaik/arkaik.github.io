@@ -432,9 +432,10 @@ hw.f4 = function(menu, target)
     target.num_pos_act = 4;
     target.pos_act = [true,true,true,true];
 
-    //parent.matrix[ox][oy].setTextureRect(hw.black);
-    parent.gui_layer.updateTurn();
+    parent.matrix[ix][iy].setTextureRect(hw.black);
     var nteam = parent.gui_layer.turn;
+    parent.gui_layer.updateTurn();
+    
     nteam = (nteam+1)%nPlayers;
               
     while (parent.player[nteam].health <= 0 && nPlayers > 1)
