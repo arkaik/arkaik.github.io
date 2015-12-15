@@ -17,16 +17,18 @@ var Plus = cc.Sprite.extend({
   compr: null,
   deselect: null,
   consequence: null,
-  pos_act: [true,true,true,true],
+  pos_act: null,
   num_pos_act: 4,
   ctor: function(string, rect)
   {
     this._super(string, rect);
+
     this.objective = hw.obj[hw.data];
     this.compr = hw.cmp[hw.data];
     this.deselect = hw.des[hw.data];
     this.consequence = hw.cns[hw.data];
 
+    this.pos_act = new Array(4, true);
     //var spr_defense = new cc.Sprite(texture);
     //sr_defense.setTextureRect(hw.silver);
     //this.addChild(spr_defense, 1, "mask");
