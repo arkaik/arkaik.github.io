@@ -307,27 +307,8 @@ var animLayer = cc.Layer.extend({
             hw.create_menu(target);
           }
         }
-        else if (target.state == "next")
-        {
-          parent.matrix[ox][oy].setTextureRect(hw.black);
-          parent.gui_layer.updateTurn();
-          nteam = (nteam+1)%nPlayers;
-          //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-          // Indicar siguiente jugador si vivo
-              
-          while (parent.player[nteam].health <= 0 && nPlayers > 1)
-          {
-            parent.gui_layer.updateTurn();
-            nteam = (nteam+1)%nPlayers;
-            //cc.log("Next player is "+nteam+" with "+parent.player[nteam].health+" HP");
-          }  
-              
-          var ix = Math.floor(parent.player[nteam].getPosition().x/32);
-          var iy = Math.floor(parent.player[nteam].getPosition().y/32);
-          parent.matrix[ix][iy].setTextureRect(hw.blue);
 
-          target.state = "alone";
-        }
+        
       }
     });
     

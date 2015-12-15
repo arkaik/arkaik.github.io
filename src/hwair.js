@@ -271,7 +271,7 @@ hw.cns_diagonal = function(m, px, py)
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
-  parent.addChild(bullet);
+  base_node.addChild(bullet);
   var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
   bullet.runAction(seq);
   
@@ -423,12 +423,29 @@ hw.f4 = function(menu, target)
 {
   return function()
   {
+    var parent = this.getParent();
     this.removeChild(menu);
     var orig = target.getPosition();
     var ix = Math.floor(orig.x/32);
     var iy = Math.floor(orig.y/32);
-    this.getParent().matrix[ix][iy].setTextureRect(hw.blue);
+    //parent.matrix[ix][iy].setTextureRect(hw.blue);
     target.state = "next";
+
+    //parent.matrix[ox][oy].setTextureRect(hw.black);
+    parent.gui_layer.updateTurn();
+    nteam = (nteam+1)%nPlayers;
+              
+    while (parent.player[nteam].health <= 0 && nPlayers > 1)
+    {
+      parent.gui_layer.updateTurn();
+      nteam = (nteam+1)%nPlayers;
+    }
+
+    var nx = Math.floor(parent.player[nteam].getPosition().x/32);
+    var ny = Math.floor(parent.player[nteam].getPosition().y/32);
+    parent.matrix[nx][ny].setTextureRect(hw.blue);
+
+    target.state = "alone";
   }
 };
 
