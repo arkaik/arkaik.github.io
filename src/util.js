@@ -17,8 +17,8 @@ var Plus = cc.Sprite.extend({
   compr: hw.cmp[hw.data],
   deselect: hw.obj[hw.data],
   consequence: hw.obj[hw.data],
-  pos_act = [true,true,true,true];
-  num_pos_act = 4;
+  pos_act: [true,true,true,true],
+  num_pos_act: 4,
   ctor: function(string, rect)
   {
     this._super(string, rect);
