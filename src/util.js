@@ -118,18 +118,18 @@ var DropdownMenu = cc.Menu.extend({
   },
   openOptions: function()
   {
-    for (var x = 0; x < this._item.length; ++x )
+    /*for (var x = 0; x < this._item.length; ++x )
     {
       this._item[x].setPosition(32, x*-32);
       cc.Menu.prototype.addChild.call(this, this._item[x]);
-    };
+    };*/
   },
   closeOptions: function()
   {
-    for (var x = 0; x < this._item; ++x)
+    /*for (var x = 0; x < this._item; ++x)
     {
       cc.Menu.prototype.removeChild.call(this, this._item[x]);
-    };
+    };*/
   }
 })
 
