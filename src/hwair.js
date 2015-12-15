@@ -429,7 +429,8 @@ hw.f4 = function(menu, target)
     var ix = Math.floor(orig.x/32);
     var iy = Math.floor(orig.y/32);
     //parent.matrix[ix][iy].setTextureRect(hw.blue);
-    target.state = "next";
+    target.num_pos_act = 4;
+    target.pos_act = [true,true,true,true];
 
     //parent.matrix[ox][oy].setTextureRect(hw.black);
     parent.gui_layer.updateTurn();
