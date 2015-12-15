@@ -453,6 +453,6 @@ hw.create_menu = function(target)
     }
   }
 
-  //cmenu.setPosition(ox*32,oy*32);
-  target.addChild(cmenu,10,100);
+  cmenu.setPosition(ox*32,oy*32);
+  base_node.addChild(cmenu,10,100);
 };
