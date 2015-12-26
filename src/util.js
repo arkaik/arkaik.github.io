@@ -104,7 +104,6 @@ var DropdownMenu = cc.Menu.extend({
     this._nobj += 1;
 
     child.setPosition(32,this._nobj*-32);
-    this._nobj += 1;
     //cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   },
   setClickItem: function(child, zOrder, tag)
