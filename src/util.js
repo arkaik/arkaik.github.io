@@ -106,9 +106,9 @@ var DropdownMenu = cc.Menu.extend({
     _item.push(child);
     _nobj += 1;
 
-    //child.setPosition(32,this._nobj*-32);
-    //this._nobj += 1;
-    //cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
+    child.setPosition(32,this._nobj*-32);
+    this._nobj += 1;
+    cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   },
   changeClickItem: function(spr_child, zOrder)
   {
@@ -118,18 +118,18 @@ var DropdownMenu = cc.Menu.extend({
   },
   openOptions: function()
   {
-    /*for (var x = 0; x < this._item.length; ++x )
+    for (var x = 0; x < this._item.length; ++x )
     {
       this._item[x].setPosition(32, x*-32);
       cc.Menu.prototype.addChild.call(this, this._item[x]);
-    };*/
+    };
   },
   closeOptions: function()
   {
-    /*for (var x = 0; x < this._item; ++x)
+    for (var x = 0; x < this._item; ++x)
     {
       cc.Menu.prototype.removeChild.call(this, this._item[x]);
-    };*/
+    };
   }
 })
 
@@ -495,7 +495,7 @@ var menuLayer = cc.Layer.extend({
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
     
-    /*
+    
     var dmenu = new DropdownMenu(new cc.Sprite(texture, hw.symbol[i]));
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
@@ -519,7 +519,7 @@ var menuLayer = cc.Layer.extend({
     
     dmenu.setPosition(cc.p(winsize.width*0.75, winsize.height*0.75));
     this.addChild(dmenu);
-    */
+    
     
     cc.MenuItemFont.setFontSize(60);
     var button = new cc.MenuItemSprite(new cc.Sprite(res.greenbox_png),new cc.Sprite(res.greenbox_png), this.onPlay, this);
