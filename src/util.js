@@ -108,8 +108,9 @@ var DropdownMenu = cc.Menu.extend({
   },
   setClickItem: function(child, zOrder, tag)
   {
-    child.setPosition(0,0);
-    cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
+    var mchild = cc.MenuItemSprite(child,child, this.openOptions, this);
+    mchild.setPosition(0,0);
+    cc.Menu.prototype.addChild.call(this,mchild,zOrder,tag);
   },
   openOptions: function()
   {
@@ -492,7 +493,7 @@ var menuLayer = cc.Layer.extend({
     
     
     var dmenu = new DropdownMenu();
-    var d1 = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[0]),new cc.Sprite(res.image_png, hw.symbol[0]), DropdownMenu.openOptions, this);
+    var d1 = new cc.Sprite(res.image_png, hw.symbol[0]);
     dmenu.setClickItem(d1);
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
