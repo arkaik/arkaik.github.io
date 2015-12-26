@@ -99,7 +99,7 @@ var DropdownMenu = cc.Menu.extend({
     this._super();
 
     var click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
-    cc.Menu.prototype.addChild.call(this,click,1,0);
+    cc.Menu.prototype.addChild.call(this,click,null,0);
   },
   addItem: function(child, zOrder, tag)
   {
@@ -114,7 +114,7 @@ var DropdownMenu = cc.Menu.extend({
   {
     cc.Menu.prototype.removeChildByTag.call(this,0);
     var click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
-    cc.Menu.prototype.addChild.call(this,child,1,0);
+    cc.Menu.prototype.addChild.call(this,child,null,0);
   },
   openOptions: function()
   {
