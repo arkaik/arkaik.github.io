@@ -93,13 +93,14 @@ var CircularMenu = cc.Menu.extend({
 
 var DropdownMenu = cc.Menu.extend({
   _nobj: 0,
+  _click: null,
   _item: [],
   ctor: function(spr_child)
   {
     this._super();
 
-    var click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
-    cc.Menu.prototype.addChild.call(this,click,null,0);
+    this._click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
+    cc.Menu.prototype.addChild.call(this,this._click);
   },
   addItem: function(child, zOrder, tag)
   {
@@ -110,11 +111,11 @@ var DropdownMenu = cc.Menu.extend({
     this._nobj += 1;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   },
-  changeClickItem: function(spr_child, zOrder)
+  changeClickItem: function(spr_child)
   {
-    cc.Menu.prototype.removeChildByTag.call(this,0);
-    var click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
-    cc.Menu.prototype.addChild.call(this,child,null,0);
+    cc.Menu.prototype.removeChild.call(this,this._click);
+    this._click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
+    cc.Menu.prototype.addChild.call(this,this._click);
   },
   openOptions: function()
   {
