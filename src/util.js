@@ -93,9 +93,8 @@ var CircularMenu = cc.Menu.extend({
 
 var DropdownMenu = cc.Menu.extend({
   _nobj: 0,
-  _click: null,
   _item: [],
-  ctor: function(spr_child)
+  ctor: function()
   {
     this._super();
   },
@@ -108,10 +107,10 @@ var DropdownMenu = cc.Menu.extend({
     this._nobj += 1;
     cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   },
-  setClickItem: function(spr_child, zOrder, tag)
+  setClickItem: function(child, zOrder, tag)
   {
-    this._click = new cc.MenuItemSprite(spr_child, spr_child, this.openOptions, this);
-    cc.Menu.prototype.addChild.call(this,this._click,zOrder,tag);
+    child.setPosition(0,0);
+    cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
   },
   openOptions: function()
   {
@@ -494,7 +493,8 @@ var menuLayer = cc.Layer.extend({
     
     
     var dmenu = new DropdownMenu();
-    dmenu.setClickItem(new cc.Sprite(texture, hw.symbol[i]));
+    var d1 = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[0]),new cc.Sprite(texture, hw.symbol[0]), DropdownMenu.openOptions, this);
+    dmenu.setClickItem(d1);
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
       select_sym[i] = false;
