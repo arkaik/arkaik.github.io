@@ -493,7 +493,7 @@ var menuLayer = cc.Layer.extend({
     
     
     var dmenu = new DropdownMenu();
-    var d1 = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[0]),new cc.Sprite(texture, hw.symbol[0]), DropdownMenu.openOptions, this);
+    var d1 = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[0]),new cc.Sprite(res.image_png, hw.symbol[0]), DropdownMenu.openOptions, this);
     dmenu.setClickItem(d1);
     var select_sym = new Array(10);
     for (var i = 0; i < select_sym.length; i++) {
@@ -511,7 +511,7 @@ var menuLayer = cc.Layer.extend({
     }
 
     for (var j = 0; j < 4; j++) {
-      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[i]),new cc.Sprite(texture, hw.symbol[i]), mis(i), this);
+      var d = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]),new cc.Sprite(res.image_png, hw.symbol[i]), mis(i), this);
       dmenu.addItem(d);
     };
     
