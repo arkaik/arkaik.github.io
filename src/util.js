@@ -100,8 +100,8 @@ var DropdownMenu = cc.Menu.extend({
   },
   addItem: function(child, zOrder, tag)
   {
-    _item.push(child);
-    _nobj += 1;
+    this._item.push(child);
+    this._nobj += 1;
 
     child.setPosition(32,this._nobj*-32);
     this._nobj += 1;
