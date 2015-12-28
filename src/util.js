@@ -511,7 +511,7 @@ var menuLayer = cc.Layer.extend({
     }
 
     for (var j = 0; j < 4; j++) {
-      var d = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]),new cc.Sprite(res.image_png, hw.symbol[i]), mis(i), this);
+      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[j]),new cc.Sprite(res.image_png, hw.symbol[j]), mis(i), this);
       dmenu.addItem(d);
     };
     
