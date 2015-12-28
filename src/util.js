@@ -108,7 +108,7 @@ var DropdownMenu = cc.Menu.extend({
   },
   setClickItem: function(child, zOrder, tag)
   {
-    var mchild = new cc.MenuItemSprite(child,child, child,this.openOptions, this);
+    var mchild = new cc.MenuItemSprite(child,new Sprite(child),this.openOptions, this);
     mchild.setPosition(0,0);
     cc.Menu.prototype.addChild.call(this,mchild,zOrder,tag);
   },
