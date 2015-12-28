@@ -122,7 +122,7 @@ var DropdownMenu = cc.Menu.extend({
   },
   closeOptions: function()
   {
-    for (var x = 0; x < this._item; ++x)
+    for (var x = 0; x < this._item.length; ++x)
     {
       cc.Menu.prototype.removeChild.call(this, this._item[x]);
     };
