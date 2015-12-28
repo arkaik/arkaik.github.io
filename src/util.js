@@ -500,7 +500,7 @@ var menuLayer = cc.Layer.extend({
       select_sym[i] = false;
     };
 
-    function mis(index)
+    function mis(index, dmenu)
     {
       return function()
       {
@@ -511,7 +511,7 @@ var menuLayer = cc.Layer.extend({
     }
 
     for (var j = 0; j < 4; j++) {
-      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[j]),new cc.Sprite(res.image_png, hw.symbol[j]), mis(i), this);
+      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[j]),new cc.Sprite(res.image_png, hw.symbol[j]), mis(i, dmenu), this);
       dmenu.addItem(d);
     };
     
