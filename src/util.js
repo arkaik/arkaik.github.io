@@ -445,12 +445,14 @@ var menuLayer = cc.Layer.extend({
     this.opt.setDelegate(this);
     this.addChild(this.opt);
     
-    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]),new cc.Sprite(res.button_png, hw.buttons[0]), function(){hw.data = 0;}, this);
-    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]),new cc.Sprite(res.button_png, hw.buttons[1]), function(){hw.data = 1;}, this);
+    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]), new cc.Sprite(res.button_png, hw.buttons[0]), function(){hw.data = 0;}, this);
+    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]), new cc.Sprite(res.button_png, hw.buttons[1]), function(){hw.data = 1;}, this);
     b2.setPosition(32,0);
-    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[2]),new cc.Sprite(res.button_png, hw.buttons[2]), function(){hw.data = 2;}, this);
+    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[2]), new cc.Sprite(res.button_png, hw.buttons[2]), function(){hw.data = 2;}, this);
     b3.setPosition(64,0);
-    var menu_b = new cc.Menu(b1,b2,b3);
+    var b4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[3]), new cc.Sprite(res.button_png, hw.buttons[3]), function(){hw.data = 2;}, this);
+    b4.setPosition(96,0);
+    var menu_b = new cc.Menu(b1,b2,b3,b4);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
 
@@ -458,7 +460,7 @@ var menuLayer = cc.Layer.extend({
     menu_c.setPosition(cc.p(winsize.width/3, winsize.height*0.65))
     for (i = 0; i < hw.symbol.length; i++)
     {
-      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), function(){setEnabled(false);}, this);
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), function(){}, this);
       menui.setPosition(32*i,0);
       menu_c.addChild(menui);
     }
