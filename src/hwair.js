@@ -280,12 +280,32 @@ hw.cns_diagonal = function(m, px, py)
 
 hw.obj_wave = function (m)
 {
-   
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
+
+  if (this.state == "moving")
+  {
   
-  m[ox][oy].setTextureRect(hw.darkred);
+    for (d = -1; d <= 1; d++) {
+      for (e = -1; e <= 1; e++)
+      {
+        nx = ox + d;
+        ny = oy + e;
+        if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
+          m[ox][oy].setTextureRect(hw.darkred);
+      }
+    }
+    
+  }
+  else if (this.state == "selected")
+  {
+    var orig = this.getPosition();
+    var ox = Math.floor(orig.x/32);
+    var oy = Math.floor(orig.y/32);
+  
+    m[ox][oy].setTextureRect(hw.darkred);
+  }
 }
 
 hw.cmp_wave = function (m, px, py)
@@ -294,10 +314,20 @@ hw.cmp_wave = function (m, px, py)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
-  var xx = ox == px;
-  var yy = oy == py;
+  if (this.state == "moving")
+  {
+    var xx = Math.abs(ox - px) <= 1;
+    var yy = Math.abs(oy - py) <= 1;
   
-  return xx && yy;
+    return xx || yy;  
+  }
+  else if (this.state == "selected")
+  {
+    var xx = ox == px;
+    var yy = oy == py;
+
+    retrun xx && yy;
+  } 
 }
 
 hw.des_wave = function (m)
@@ -306,7 +336,24 @@ hw.des_wave = function (m)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
-  m[ox][oy].setTextureRect(hw.black);
+  if (this.state == "moving")
+  {
+    for (d = -1; d <= 1; d++) {
+      for (e = -1; e <= 1; e++)
+      {
+        nx = ox + d;
+        ny = oy + e;
+        if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
+          m[ox][oy].setTextureRect(hw.black);
+      }
+    }
+    
+  }
+  else if (this.state == "selected")
+  {
+    m[ox][oy].setTextureRect(hw.black);   
+  }
+  
 }
 
 hw.cns_wave = function (m, px, py)
@@ -317,8 +364,8 @@ hw.cns_wave = function (m, px, py)
   var ox = Math.floor(orig.x/32)*32+16;
   var oy = Math.floor(orig.y/32)*32+16;
 
-  var cx = px * 32+16;
-  var cy = py * 32+16;
+  var cx = ox * 32+16;
+  var cy = oy * 32+16;
 
   var locx = [0, 1, 1, 1, 0, -1, -1, -1];
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
@@ -352,8 +399,9 @@ hw.f1 = function(menu,target)
   return function()
   {
     this.removeChild(menu);
-    target.objective(this.getParent().matrix);
     target.state = "moving";
+    target.objective(this.getParent().matrix);
+
     target.pos_act[0] = false;
     target.num_pos_act -= 1;
   }
@@ -364,8 +412,8 @@ hw.f2 = function(menu, target)
   return function()
   {
     this.removeChild(menu);
-    target.objective(this.getParent().matrix);
     target.state = "selected";
+    target.objective(this.getParent().matrix);
     target.pos_act[1] = false;
     target.num_pos_act -= 1;
   }
