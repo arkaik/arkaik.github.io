@@ -311,7 +311,7 @@ hw.des_wave = function (m)
 
 hw.cns_wave = function ()
 {
-  cc.Sequence[] seqs = cc.Sequence[8];
+  var seqs = new Array(8);
   for (i = 0; i < 8; ++i)
   { 
     var bullet = new cc.Sprite(texture, hw.gbullet);
@@ -323,7 +323,7 @@ hw.cns_wave = function ()
   
   var spa = cc.spawn(seqs);
   
-  bullet.runAction(spa);
+  this.runAction(spa);
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal, hw.obj_wave];
