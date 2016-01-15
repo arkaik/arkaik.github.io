@@ -311,12 +311,23 @@ hw.des_wave = function (m)
 
 hw.cns_wave = function ()
 {
+  var base_node = this.getParent();
+  var parent = base_node.getParent();
+  var orig = this.getPosition();
+  var ox = Math.floor(orig.x/32)*32+16;
+  var oy = Math.floor(orig.y/32)*32+16;
+
+  var locx = [0, 1, 1, 1, 0, -1, -1, -1];
+  var locy = [1, 1, 0, -1, -1, -1, 0, 1];
   var seqs = new Array(8);
   for (i = 0; i < 8; ++i)
   { 
     var bullet = new cc.Sprite(texture, hw.gbullet);
+    bullet.setPosition(ox,oy);
     this.addChild(bullet);
-    var seq = cc.sequence(cc.callFunc(), cc.removeSelf);
+    var cx = ox + locx[i];
+    var cy = oy + locy[i];
+    var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
     var targ = cc.targetedAction(bullet, seq);
     seqs[i] = targ;
   }
