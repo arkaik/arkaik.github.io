@@ -309,13 +309,16 @@ hw.des_wave = function (m)
   m[ox][oy].setTextureRect(hw.black);
 }
 
-hw.cns_wave = function ()
+hw.cns_wave = function (m, px, py)
 {
   var base_node = this.getParent();
   var parent = base_node.getParent();
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32)*32+16;
   var oy = Math.floor(orig.y/32)*32+16;
+
+  var cx = px * 32+16;
+  var cy = py * 32+16;
 
   var locx = [0, 1, 1, 1, 0, -1, -1, -1];
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
