@@ -278,112 +278,58 @@ hw.cns_diagonal = function(m, px, py)
   
 }
 
-hw.obj_distance = function (m)
+hw.obj_wave = function (m)
 {
-  i = Math.abs(i);
+   
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
-  var nx, ny;
   
-  for (c = -2; c <= 2; c++)
-  {
-    nx = ox + c;
-    ny = oy + i;
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.yellow);
-  }
-  
-  for (d = -2; d <= 2; d++)
-  {
-    nx = ox - 2;
-    ny = oy + d;
-    
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.yellow);
-    
-    nx = ox + 2;
-    ny = oy + d;
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.yellow); 
-  }
-  
-  for (e = -2; e <= 2; e++)
-  {
-    nx = ox + e;
-    ny = oy - 2;
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.yellow);
-  }
+  m[ox][oy].setTextureRect(hw.darkred);
 }
 
-hw.cmp_distance = function (m, px, py)
+hw.cmp_wave = function (m, px, py)
 {
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
   
-  var xx = Math.abs(ox - px) == 2;
-  var yy = Math.abs(oy - py) == 2;
+  var xx = ox == px;
+  var yy = oy == py;
   
-  return xx || yy;
+  return xx && yy;
 }
 
-hw.des_distance = function (m)
+hw.des_wave = function (m)
 {
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
-  var nx, ny;
-  
-  for (c = -2; c <= 2; c++)
-  {
-    nx = ox + c;
-    ny = oy + 2;
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.black);
-  }
-  
-  for (d = -2; d <= 2; d++)
-  {
-    nx = ox - 2;
-    ny = oy + d;
-    
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.black);
-    
-    nx = ox + 2;
-    ny = oy + d;
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.black); 
-  }
-  
-  for (e = -2; e <= 2; e++)
-  {
-    nx = ox + e;
-    ny = oy - 2;
-    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-      m[nx][ny].setTextureRect(hw.black);
-  }
   
   m[ox][oy].setTextureRect(hw.black);
 }
 
-hw.cns_distance = function ()
+hw.cns_wave = function ()
 {
-  var bullet = new cc.Sprite(texture, hw.gbullet);
-  //bullet.setTextureRect(hw.gbullet);
-  bullet.setName("bullet");
-  this.addChild(bullet);
-  var mov = cc.moveBy(5, 10, 10);
-  var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
-  bullet.runAction(seq);
+  cc.Sequence[] seqs = cc.Sequence[8];
+  for (i = 0; i < 8; ++i)
+  { 
+    var bullet = new cc.Sprite(texture, hw.gbullet);
+    this.addChild(bullet);
+    var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
+    seq.setTarget(bullet);
+    seqs[i] = seq;
+  }
+  
+  var spa = cc.spawn(seqs);
+  
+  bullet.runAction(spa);
 }
 
-hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal];
-hw.cmp = [hw.cmp_contact, hw.cmp_junction, hw.cmp_diagonal];
-hw.des = [hw.des_contact, hw.des_junction, hw.des_diagonal];
-hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal];
+hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal, hw.obj_wave];
+hw.cmp = [hw.cmp_contact, hw.cmp_junction, hw.cmp_diagonal, hw.cmp_wave];
+hw.des = [hw.des_contact, hw.des_junction, hw.des_diagonal, hw.des_wave];
+hw.cns = [hw.cns_contact, hw.cns_junction, hw.cns_diagonal, hw.cns_wave];
 
 hw.f1 = function(menu,target)
 {

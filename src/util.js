@@ -450,7 +450,7 @@ var menuLayer = cc.Layer.extend({
     b2.setPosition(32,0);
     var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[2]), new cc.Sprite(res.button_png, hw.buttons[2]), function(){hw.data = 2;}, this);
     b3.setPosition(64,0);
-    var b4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[3]), new cc.Sprite(res.button_png, hw.buttons[3]), function(){hw.data = 2;}, this);
+    var b4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[3]), new cc.Sprite(res.button_png, hw.buttons[3]), function(){hw.data = 3;}, this);
     b4.setPosition(96,0);
     var menu_b = new cc.Menu(b1,b2,b3,b4);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
