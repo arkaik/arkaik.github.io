@@ -320,7 +320,7 @@ hw.cns_wave = function ()
     seq.setTarget(bullet);
     seqs[i] = seq;
   }
-  
+  cc.log("wave");
   var spa = cc.spawn(seqs);
   
   this.runAction(spa);
