@@ -91,43 +91,6 @@ var CircularMenu = cc.Menu.extend({
   },
 })
 
-var DropdownMenu = cc.Menu.extend({
-  _nobj: 0,
-  _item: [],
-  ctor: function()
-  {
-    this._super();
-  },
-  addItem: function(child, zOrder, tag)
-  {
-    this._item.push(child);
-    this._nobj += 1;
-
-    child.setPosition(32,this._nobj*-32);
-    //cc.Menu.prototype.addChild.call(this,child,zOrder,tag);
-  },
-  setClickItem: function(child, zOrder, tag)
-  {
-    var mchild = new cc.MenuItemSprite(child,new cc.Sprite(child),this.openOptions, this);
-    mchild.setPosition(0,0);
-    cc.Menu.prototype.addChild.call(this,mchild,zOrder,tag);
-  },
-  openOptions: function()
-  {
-    for (var x = 0; x < this._item.length; ++x )
-    {
-      this._item[x].setPosition(32, x*-32);
-      cc.Menu.prototype.addChild.call(this, this._item[x]);
-    };
-  },
-  closeOptions: function()
-  {
-    for (var x = 0; x < this._item.length; ++x)
-    {
-      cc.Menu.prototype.removeChild.call(this, this._item[x]);
-    };
-  }
-})
 
 var backLayer = cc.Layer.extend(
 {
@@ -490,34 +453,16 @@ var menuLayer = cc.Layer.extend({
     var menu_b = new cc.Menu(b1,b2,b3);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
-    
-    /*
-    var dmenu = new DropdownMenu();
-    var d1 = new cc.Sprite(res.image_png, hw.symbol[0]);
-    dmenu.setClickItem(d1);
-    var select_sym = new Array(10);
-    for (var i = 0; i < select_sym.length; i++) {
-      select_sym[i] = false;
-    };
 
-    function mis(index, dmenu)
+    var menu_c = new cc.Menu();
+    menu_c.setPosition(cc.p(winsize.width/3, winsize.height*0.65))
+    for (i = 0; i < hw.symbol.length; i++)
     {
-      return function()
-      {
-        hw.data_sym[0] = index;
-        select_sym[index] = true;
-        dmenu.closeOptions();
-      }
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.symbol[i]), function(){}, this);
+      menui.setPosition(32*i,0);
+      menu_c.addChild(menui);
     }
-
-    for (var j = 0; j < 4; j++) {
-      var d = new cc.MenuItemSprite(new cc.Sprite(texture, hw.symbol[j]),new cc.Sprite(res.image_png, hw.symbol[j]), mis(i, dmenu), this);
-      dmenu.addItem(d);
-    };
-    
-    dmenu.setPosition(cc.p(winsize.width*0.75, winsize.height*0.75));
-    this.addChild(dmenu);
-    */
+    this.addChild(menu_c);
     
     cc.MenuItemFont.setFontSize(60);
     var button = new cc.MenuItemSprite(new cc.Sprite(res.greenbox_png),new cc.Sprite(res.greenbox_png), this.onPlay, this);
