@@ -491,7 +491,7 @@ var menuLayer = cc.Layer.extend({
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
     
-    
+    /*
     var dmenu = new DropdownMenu();
     var d1 = new cc.Sprite(res.image_png, hw.symbol[0]);
     dmenu.setClickItem(d1);
@@ -517,7 +517,7 @@ var menuLayer = cc.Layer.extend({
     
     dmenu.setPosition(cc.p(winsize.width*0.75, winsize.height*0.75));
     this.addChild(dmenu);
-    
+    */
     
     cc.MenuItemFont.setFontSize(60);
     var button = new cc.MenuItemSprite(new cc.Sprite(res.greenbox_png),new cc.Sprite(res.greenbox_png), this.onPlay, this);
