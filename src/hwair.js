@@ -316,14 +316,16 @@ hw.cns_wave = function ()
   { 
     var bullet = new cc.Sprite(texture, hw.gbullet);
     this.addChild(bullet);
-    var seq = cc.sequence(cc.moveBy(5, 10, 10), cc.removeSelf);
-    seq.setTarget(bullet);
-    seqs[i] = seq;
+    var seq = cc.sequence(cc.callFunc(), cc.removeSelf);
+    var targ = cc.targetedAction(bullet, seq);
+    seqs[i] = targ;
   }
+
   cc.log("wave");
   var spa = cc.spawn(seqs);
-  
+  cc.log("wave2");
   this.runAction(spa);
+  cc.log("wave3");
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal, hw.obj_wave];
