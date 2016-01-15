@@ -322,9 +322,10 @@ hw.cns_wave = function ()
   var seqs = new Array(8);
   for (i = 0; i < 8; ++i)
   { 
-    var bullet = new cc.Sprite(texture, hw.gbullet);
+    var bullet = new cc.Sprite(texture);
     bullet.setPosition(ox,oy);
-    this.addChild(bullet);
+    bullet.setTextureRect(hw.gbullet);
+    base_node.addChild(bullet);
     var cx = ox + locx[i];
     var cy = oy + locy[i];
     var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
@@ -332,7 +333,6 @@ hw.cns_wave = function ()
     seqs[i] = targ;
   }
 
-  cc.log("wave");
   var spa = cc.spawn(seqs);
   cc.log("wave2");
   this.runAction(spa);
