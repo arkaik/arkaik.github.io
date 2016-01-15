@@ -329,8 +329,8 @@ hw.cns_wave = function (m, px, py)
     bullet.setPosition(ox,oy);
     bullet.setTextureRect(hw.gbullet);
     base_node.addChild(bullet);
-    var cx = ox + locx[i];
-    var cy = oy + locy[i];
+    var cx = ox + locx[i]*32;
+    var cy = oy + locy[i]*32;
     var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
     var targ = cc.targetedAction(bullet, seq);
     seqs[i] = targ;
