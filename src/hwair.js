@@ -326,7 +326,7 @@ hw.cmp_wave = function (m, px, py)
     var xx = ox == px;
     var yy = oy == py;
 
-    retrun xx && yy;
+    return xx && yy;
   } 
 }
 
