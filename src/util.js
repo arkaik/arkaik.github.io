@@ -206,7 +206,8 @@ var animLayer = cc.Layer.extend({
     {
       var rpx = Math.floor(Math.random()*mat_size);
       var rpy = Math.floor(Math.random()*mat_size);
-      this.player[p] = new Plus(texture, hw.symbol[p]);
+      var pchar = hw.data_sym[p];
+      this.player[p] = new Plus(texture, hw.symbol[pchar]);
       this.player[p].setPosition(32*rpx+16,32*rpy+16);
       this.player[p].setName("Player["+p+"]");
       this.base_node.addChild(this.player[p]);
@@ -312,7 +313,6 @@ var animLayer = cc.Layer.extend({
           }
         }
 
-
       }
     });
     
@@ -403,7 +403,7 @@ var playScene = cc.Scene.extend({
   onEnter:function ()
   {
     this._super();
-    
+
     var back = new cc.LayerColor(cc.color(192,192,192,255));
     var anim = new animLayer();
     var gui = new guiLayer();
@@ -445,22 +445,31 @@ var menuLayer = cc.Layer.extend({
     this.opt.setDelegate(this);
     this.addChild(this.opt);
     
-    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]), new cc.Sprite(res.button_png, hw.buttons[0]), function(){hw.data = 0;}, this);
-    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]), new cc.Sprite(res.button_png, hw.buttons[1]), function(){hw.data = 1;}, this);
+    var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]), new cc.Sprite(res.button_png, hw.buttons[0]), function(){this.opt = 0;}, this);
+    var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]), new cc.Sprite(res.button_png, hw.buttons[1]), function(){this.opt = 1;}, this);
     b2.setPosition(32,0);
-    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[2]), new cc.Sprite(res.button_png, hw.buttons[2]), function(){hw.data = 2;}, this);
+    var b3 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[2]), new cc.Sprite(res.button_png, hw.buttons[2]), function(){this.opt = 2;}, this);
     b3.setPosition(64,0);
-    var b4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[3]), new cc.Sprite(res.button_png, hw.buttons[3]), function(){hw.data = 3;}, this);
+    var b4 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[3]), new cc.Sprite(res.button_png, hw.buttons[3]), function(){this.opt = 3;}, this);
     b4.setPosition(96,0);
     var menu_b = new cc.Menu(b1,b2,b3,b4);
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
 
+    function ch(menuitem, i)
+    {
+      return function()
+      {
+        hw.data_array[this.opt] = i;
+        menuitem.setEnabled(false);
+      }
+    };
+
     var menu_c = new cc.Menu();
     menu_c.setPosition(cc.p(winsize.width/3, winsize.height*0.65))
     for (i = 0; i < hw.symbol.length; i++)
     {
-      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), function(){}, this);
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), ch(menui, i), this);
       menui.setPosition(32*i,0);
       menu_c.addChild(menui);
     }

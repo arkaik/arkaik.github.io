@@ -42,7 +42,7 @@ hw.buttons = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32), cc.r
 hw.actions = [cc.rect(0,64,32,32), cc.rect(32,64,32,32), cc.rect(64,64,32,32), cc.rect(96,64,32,32)];
 
 hw.data = 0;
-hw.data_sym = new Array(4);
+hw.data_sym = [0,1,2,3];
 
 //Tipos de habilidades
 hw.obj_contact = function (m)
@@ -291,10 +291,10 @@ hw.obj_wave = function (m)
     for (d = -1; d <= 1; d++) {
       for (e = -1; e <= 1; e++)
       {
-        nx = ox + d;
-        ny = oy + e;
+        var nx = ox + d;
+        var ny = oy + e;
         if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-          m[ox][oy].setTextureRect(hw.darkred);
+          m[nx][ny].setTextureRect(hw.darkred);
       }
     }
     
@@ -342,10 +342,10 @@ hw.des_wave = function (m)
     for (d = -1; d <= 1; d++) {
       for (e = -1; e <= 1; e++)
       {
-        nx = ox + d;
-        ny = oy + e;
+        var nx = ox + d;
+        var ny = oy + e;
         if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-          m[ox][oy].setTextureRect(hw.black);
+          m[nx][ny].setTextureRect(hw.black);
       }
     }
     
