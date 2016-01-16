@@ -456,20 +456,22 @@ var menuLayer = cc.Layer.extend({
     menu_b.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
     this.addChild(menu_b);
 
-    function ch(menuitem, i)
+    function ch(mic, i)
     {
       return function()
       {
         hw.data_sym[this.opt] = i;
-        menuitem.setEnabled(false);
+        mic[i].setEnabled(false);
       }
     };
 
     var menu_c = new cc.Menu();
     menu_c.setPosition(cc.p(winsize.width/3, winsize.height*0.65))
+    var mic = new Array(hw.symbol.length);
     for (i = 0; i < hw.symbol.length; i++)
     {
-      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), ch(menui, i), this);
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), ch(mic, i), this);
+      mic[i] = menui;
       menui.setPosition(32*i,0);
       menu_c.addChild(menui);
     }
