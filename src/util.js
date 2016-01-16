@@ -483,7 +483,6 @@ var menuLayer = cc.Layer.extend({
   },
   onPlay: function()
   {
-    cc.log(this.opt.getString());
     cc.director.runScene(new playScene());
   }
 });
