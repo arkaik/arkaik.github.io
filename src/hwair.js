@@ -284,9 +284,10 @@ hw.obj_wave = function (m)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
 
+  cc.log(this.state);
+
   if (this.state == "moving")
   {
-  
     for (d = -1; d <= 1; d++) {
       for (e = -1; e <= 1; e++)
       {
@@ -384,9 +385,7 @@ hw.cns_wave = function (m, px, py)
   }
 
   var spa = cc.spawn(seqs);
-  cc.log("wave2");
   this.runAction(spa);
-  cc.log("wave3");
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal, hw.obj_wave];
@@ -486,4 +485,5 @@ hw.create_menu = function(target)
 
   cmenu.setPosition(ox*32,oy*32);
   base_node.addChild(cmenu,10,100);
+  //TODO: Pause the node event listener
 };
