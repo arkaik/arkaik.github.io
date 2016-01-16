@@ -469,8 +469,7 @@ var menuLayer = cc.Layer.extend({
     menu_c.setPosition(cc.p(winsize.width/3, winsize.height*0.65))
     for (i = 0; i < hw.symbol.length; i++)
     {
-      var menui;
-      menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), ch(menui, i), this);
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), ch(menui, i), this);
       menui.setPosition(32*i,0);
       menu_c.addChild(menui);
     }
