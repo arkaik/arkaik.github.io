@@ -460,7 +460,7 @@ var menuLayer = cc.Layer.extend({
     {
       return function()
       {
-        hw.data_array[this.opt] = i;
+        hw.data_sym[this.opt] = i;
         menuitem.setEnabled(false);
       }
     };
