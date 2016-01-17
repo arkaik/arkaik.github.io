@@ -35,6 +35,7 @@ hw.hourglass = cc.p(160,32);
 // Dos puntos y un rectángulo
 hw.pointRect = function (p1, p2) {
   var fpoint = cc.pAdd(p1, p2);
+  cc.log(fpoint);
   return cc.rect(fpoint.x,fpoint.y,32,32);
 }
 
