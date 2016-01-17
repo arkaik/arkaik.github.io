@@ -405,7 +405,7 @@ hw.f1 = function(menu,target)
 {
   return function()
   {
-    this.removeChild(menu);
+    this.removeChildByTag(10);
     target.state = "moving";
     target.objective(this.getParent().matrix);
 
@@ -418,7 +418,7 @@ hw.f2 = function(menu, target)
 {
   return function()
   {
-    this.removeChild(menu);
+    this.removeChild(10);
     target.state = "selected";
     target.objective(this.getParent().matrix);
     target.pos_act[1] = false;
@@ -430,7 +430,7 @@ hw.f3 = function(menu, target)
 {
   return function()
   {
-    this.removeChild(menu);
+    this.removeChildByTag(10);
     target.state = "alone";
     target.pos_act[2] = false;
     target.num_pos_act -= 1;
@@ -442,7 +442,7 @@ hw.f4 = function(menu, target)
   return function()
   {
     var parent = this.getParent();
-    this.removeChild(menu);
+    this.removeChildByTag(10);
     var orig = target.getPosition();
     var ix = Math.floor(orig.x/32);
     var iy = Math.floor(orig.y/32);
@@ -480,7 +480,6 @@ hw.create_menu = function(target)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
 
-  
   
   var misarray = new Array();
   for (i = 0; i < hw.menu_functions.length; ++i)
