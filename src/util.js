@@ -308,9 +308,11 @@ var animLayer = cc.Layer.extend({
             var cy = py*32+16;
             //Devolver a su estado original las celdas rojas
             target.deselect(parent.matrix);
-            cc.log(target.getPosition());
+            var point = target.getPosition();
+            cc.log(point.x+", "+point.y);
             target.runAction(cc.moveTo(1,cx, cy));
-            cc.log(target.getPosition());
+            var point2 = target.getPosition();
+            cc.log(point2.x+", "+point2.y);
             parent.matrix[px][py].inside[target.team] = target;
 
             hw.create_menu(target);
