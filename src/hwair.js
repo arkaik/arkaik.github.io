@@ -378,13 +378,13 @@ hw.cns_wave = function (m, px, py)
 
   var locx = [0, 1, 1, 1, 0, -1, -1, -1];
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
-  var seqs = new Array();
+  var seqs = new Array(8);
   
   for (d = -1; d <= 1; d++) {
-      for (e = -1; e <= 1; e++)
-      {
-        var nx = ox + d;
-        var ny = oy + e;
+    for (e = -1; e <= 1; e++)
+    {
+        var nx = Math.floor(orig.x/32) + d;
+        var ny = Math.floor(orig.y/32) + e;
         if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
         {
           var bullet = new cc.Sprite(texture);
@@ -397,8 +397,8 @@ hw.cns_wave = function (m, px, py)
           var targ = cc.targetedAction(bullet, seq);
           seqs.push(targ);
         }
-      }
     }
+  }
 
   var spa = cc.sequence(cc.spawn(seqs), cc.callFunc(hw.create_menu,null,this));
   this.runAction(spa);
