@@ -35,7 +35,6 @@ hw.hourglass = cc.p(160,32);
 // Dos puntos y un rectángulo
 hw.pointRect = function (p1, p2) {
   var fpoint = cc.pAdd(p1, p2);
-  cc.log(fpoint);
   return cc.rect(fpoint.x,fpoint.y,32,32);
 }
 
@@ -192,7 +191,6 @@ hw.cns_junction = function(m, px, py)
   var ox = Math.floor(this.getPosition().x/32)*32+16;
   var oy = Math.floor(this.getPosition().y/32)*32+16;
   
-  //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
@@ -210,7 +208,6 @@ hw.obj_diagonal = function (m)
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
-  cc.log("obj_diagonal: "+ox+","+oy);
   var nx, ny;
   
   for (k = -2; k <= 2; k++)
@@ -280,7 +277,7 @@ hw.cns_diagonal = function(m, px, py)
   var ox = Math.floor(orig.x/32)*32+16;
   var oy = Math.floor(orig.y/32)*32+16;
   
-  //cc.log("x: "+cx+"-"+ox+"="+(cx-ox)+", y:"+cy+"-"+oy+"="+(cy-oy));
+
   var bullet = new cc.Sprite(texture);
   bullet.setTextureRect(hw.gbullet);
   bullet.setName("bullet");
@@ -296,8 +293,6 @@ hw.obj_wave = function (m)
   var orig = this.getPosition();
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
-
-  cc.log(this.state);
 
   if (this.state == "moving")
   {
@@ -486,7 +481,7 @@ hw.create_menu = function(target)
   var oy = Math.floor(orig.y/32);
 
   var cmenu = new CircularMenu(4, 48);
-  cc.log(target.pos_act);
+  
   for (i = 0; i < hw.menu_functions.length; ++i)
   {
     if (target.pos_act[i])

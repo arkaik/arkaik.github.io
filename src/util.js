@@ -236,7 +236,6 @@ var animLayer = cc.Layer.extend({
       {
         // Objetivo actual
         var target = event.getCurrentTarget();
-        //cc.log(target.getName());
         var base_node = target.getParent();
         var parent = base_node.getParent();
         var nteam = parent.gui_layer.turn;
@@ -309,7 +308,9 @@ var animLayer = cc.Layer.extend({
             var cy = py*32+16;
             //Devolver a su estado original las celdas rojas
             target.deselect(parent.matrix);
+            cc.log(target.getPosition);
             target.runAction(cc.moveTo(1,cx, cy));
+            cc.log(target.getPosition);
             parent.matrix[px][py].inside[target.team] = target;
 
             hw.create_menu(target);
@@ -324,12 +325,10 @@ var animLayer = cc.Layer.extend({
       event: cc.EventListener.TOUCH_ONE_BY_ONE,
       swallowTouches: true,
       onTouchBegan: function(touch, event){
-        //cc.log("Touched");
         return true;
       },
       onTouchEnded: function(touch, event)
       {
-        //cc.log("Touching end");
         var ev = new cc.EventCustom("action");
         var loc = touch.getLocation();
         ev.setUserData(
@@ -351,7 +350,7 @@ var animLayer = cc.Layer.extend({
           var base_node = cursor.getParent();
           var parent = base_node.getParent();
           var cpos = cursor.getPosition();
-          //cc.log(keyCode);
+ 
           if (keyCode == 37) //Izquierda
           {
             var newpos = cc.p(cpos.x-32,cpos.y);
