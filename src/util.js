@@ -84,7 +84,7 @@ var CircularMenu = cc.Menu.extend({
 
   addItems: function()
   {
-    if (typeof arguments[0] === "array")
+    if (arguments[0].constructor === Array)
     {
       for (i = 0; i < arguments[0].length; i++)
       {
