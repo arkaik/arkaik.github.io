@@ -418,7 +418,7 @@ hw.f2 = function(menu, target)
 {
   return function()
   {
-    this.removeChild(100);
+    this.removeChildByTag(100);
     target.state = "selected";
     target.objective(this.getParent().matrix);
     target.pos_act[1] = false;
