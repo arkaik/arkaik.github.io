@@ -373,24 +373,32 @@ hw.cns_wave = function (m, px, py)
   var ox = Math.floor(orig.x/32)*32+16;
   var oy = Math.floor(orig.y/32)*32+16;
 
-  var cx = ox * 32+16;
-  var cy = oy * 32+16;
+  //var cx = ox * 32+16;
+  //var cy = oy * 32+16;
 
   var locx = [0, 1, 1, 1, 0, -1, -1, -1];
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
-  var seqs = new Array(8);
-  for (i = 0; i < 8; ++i)
-  { 
-    var bullet = new cc.Sprite(texture);
-    bullet.setPosition(ox,oy);
-    bullet.setTextureRect(hw.gbullet);
-    base_node.addChild(bullet);
-    var cx = ox + locx[i]*32;
-    var cy = oy + locy[i]*32;
-    var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
-    var targ = cc.targetedAction(bullet, seq);
-    seqs[i] = targ;
-  }
+  var seqs = new Array();
+  
+  for (d = -1; d <= 1; d++) {
+      for (e = -1; e <= 1; e++)
+      {
+        var nx = ox + d;
+        var ny = oy + e;
+        if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
+        {
+          var bullet = new cc.Sprite(texture);
+          bullet.setPosition(ox,oy);
+          bullet.setTextureRect(hw.gbullet);
+          base_node.addChild(bullet);
+          var cx = ox + d*32;
+          var cy = oy + e*32;
+          var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
+          var targ = cc.targetedAction(bullet, seq);
+          seqs.push(targ);
+        }
+      }
+    }
 
   var spa = cc.sequence(cc.spawn(seqs), cc.callFunc(hw.create_menu,null,this));
   this.runAction(spa);
