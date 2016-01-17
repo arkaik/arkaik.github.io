@@ -53,7 +53,7 @@ hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.g
 hw.buttons = [cc.rect(0,0,32,32), cc.rect(32,0,32,32), cc.rect(64,0,32,32), cc.rect(96,0,32,32)];
 hw.actions = [cc.rect(0,64,32,32), cc.rect(32,64,32,32), cc.rect(64,64,32,32), cc.rect(96,64,32,32)];
 
-hw.data = 0;
+hw.data = 3;
 hw.data_sym = [0,1,2,3];
 
 //Tipos de habilidades
@@ -121,7 +121,7 @@ hw.cns_contact = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
   this.getParent().addChild(bullet);
-  var seq = cc.sequence(cc.moveBy(0.5, cx-ox, cy-oy), cc.delayTime(0.5), cc.removeSelf());
+  var seq = cc.sequence(cc.moveBy(0.5, cx-ox, cy-oy), cc.delayTime(0.5), cc.removeSelf(), cc.callFunc(hw.create_menu,null,target));
   bullet.runAction(seq); 
 }
 
@@ -196,7 +196,7 @@ hw.cns_junction = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
   this.getParent().addChild(bullet);
-  var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
+  var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf(), cc.callFunc(hw.create_menu,null,target));
   bullet.runAction(seq);
   
 }
@@ -283,7 +283,7 @@ hw.cns_diagonal = function(m, px, py)
   bullet.setName("bullet");
   bullet.setPosition(ox,oy);
   base_node.addChild(bullet);
-  var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
+  var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf(), cc.callFunc(hw.create_menu,null,target));
   bullet.runAction(seq);
   
 }
@@ -392,7 +392,7 @@ hw.cns_wave = function (m, px, py)
     seqs[i] = targ;
   }
 
-  var spa = cc.spawn(seqs);
+  var spa = cc.sequence(cc.spawn(seqs), cc.callFunc(hw.create_menu,null,target));
   this.runAction(spa);
 }
 

@@ -297,7 +297,7 @@ var animLayer = cc.Layer.extend({
 
           target.deselect(parent.matrix);
 
-          hw.create_menu(target);
+          //hw.create_menu(target);
           
         }
         else if (target.state == "moving")
