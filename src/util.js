@@ -309,13 +309,14 @@ var animLayer = cc.Layer.extend({
             //Devolver a su estado original las celdas rojas
             target.deselect(parent.matrix);
             
-            target.runAction(cc.moveTo(1,cx, cy));
+            var seqmov = cc.sequence(cc.moveTo(0.5, cx, cy), cc.callFunc(hw.create_menu,null,target);
+            target.runAction(seqmov);
             
             parent.matrix[px][py].inside[target.team] = target;
 
-            target.setPosition(cx,cy);
+            //target.setPosition(cx,cy);
 
-            hw.create_menu(target);
+            //hw.create_menu(target);
           }
         }
 
