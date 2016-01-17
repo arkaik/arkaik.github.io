@@ -194,7 +194,8 @@ var animLayer = cc.Layer.extend({
       {
         
         this.matrix[i][j] = new Cell(texture, i, j);
-        this.matrix[i][j].setTextureRect(hw.black);
+        var rmat = hw.pointRect(hw.white,hw.cell);
+        this.matrix[i][j].setTextureRect(rmat);
         this.matrix[i][j].setPosition(32*i+16, 32*j+16);
         this.matrix[i][j].setName("Cell["+i+"]["+j+"]");
         this.base_node.addChild(this.matrix[i][j]);
@@ -207,7 +208,8 @@ var animLayer = cc.Layer.extend({
       var rpx = Math.floor(Math.random()*mat_size);
       var rpy = Math.floor(Math.random()*mat_size);
       var pchar = hw.data_sym[p];
-      this.player[p] = new Plus(texture, hw.symbol[pchar]);
+      var rcell = hw.pointRect(hw.symbol[pchar], hw.black);
+      this.player[p] = new Plus(texture, rcell);
       this.player[p].setPosition(32*rpx+16,32*rpy+16);
       this.player[p].setName("Player["+p+"]");
       this.base_node.addChild(this.player[p]);
@@ -223,7 +225,8 @@ var animLayer = cc.Layer.extend({
     
     var i1x = Math.floor((this.player[0].getPosition().x)/32);
     var i1y = Math.floor((this.player[0].getPosition().y)/32);
-    this.matrix[i1x][i1y].setTextureRect(hw.blue);
+    var cborder = hw.pointRect(hw.blue,hw.cell);
+    this.matrix[i1x][i1y].setTextureRect(cborder);
   
     var list_act = cc.EventListener.create(
     {
@@ -470,7 +473,9 @@ var menuLayer = cc.Layer.extend({
     var mic = new Array(hw.symbol.length);
     for (i = 0; i < hw.symbol.length; i++)
     {
-      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, hw.symbol[i]), new cc.Sprite(res.image_png, hw.silver), new cc.Sprite(res.image_png, hw.gold), ch(mic, i), this);
+      var symspr = hw.pointRect(hw.symbol[i], hw.black);
+      var symdis = hw.pointRect(hw.symbol[i], hw.dis);
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), ch(mic, i), this);
       mic[i] = menui;
       menui.setPosition(32*i,0);
       menu_c.addChild(menui);

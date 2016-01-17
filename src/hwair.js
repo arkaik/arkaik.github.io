@@ -4,37 +4,49 @@
 // Utilidades para Board Wars
 ////
 var hw = {};
+
 //Colores de celda predefinidos
-hw.black = cc.rect(0,0,32,32);
-hw.red = cc.rect(32,0,32,32);
-hw.green = cc.rect(64,0,32,32);
-hw.blue = cc.rect(96,0,32,32);
-hw.darkred = cc.rect(128,0,32,32);
-hw.darkblue = cc.rect(160,0,32,32);
-hw.yellow = cc.rect(0,32,32,32);
-hw.magenta = cc.rect(32,32,32,32);
-hw.cyan = cc.rect(64,32,32,32);
-hw.grey = cc.rect(96,32,32,32);
-hw.darkgreen = cc.rect(128,32,32,32);
-hw.dotted = cc.rect(160,32,32,32);
+hw.white = cc.p(0,0);
+hw.black = cc.p(0,96);
+hw.dis = cc.p(0,192);
+hw.red = cc.p(192,0);
+hw.green = cc.p(192,96);
+hw.blue = cc.p(192,192);
+hw.magenta = cc.p(384,0);
+hw.yellow = cc.p(384,96);
+hw.cyan = cc.p(384,192);
+hw.darkred = cc.p(576,0);
+hw.darkgreen = cc.p(576,96);
+hw.darkblue = cc.p(576,192);
+
 // Símbolos predefinidos
-hw.plus = cc.rect(0,64,32,32);
-hw.rombe = cc.rect(32,64,32,32);
-hw.cross = cc.rect(64,64,32,32);
-hw.chacana = cc.rect(96,64,32,32);
-hw.valcamo = cc.rect(128,64,32,32);
-hw.block = cc.rect(0,96,32,32);
-hw.glider = cc.rect(32,96,32,32);
-hw.maccom = cc.rect(64,96,32,32);
-hw.leafcross = cc.rect(96,96,32,32);
-hw.hourglass = cc.rect(128,96,32,32);
+hw.cell = cc.p(0,0);
+hw.plus = cc.p(32,0);
+hw.rombe = cc.p(64,0);
+hw.cross = cc.p(96,0);
+hw.chacana = cc.p(128,0);
+hw.valcamo = cc.p(160,0);
+hw.block = cc.p(32,32);
+hw.glider = cc.p(64,32);
+hw.maccom = cc.p(96,32);
+hw.leafcross = cc.p(128,32);
+hw.hourglass = cc.p(160,32);
+
+// Dos puntos y un rectángulo
+hw.pointRect = function (p1, p2) {
+  var fpoint = cc.pAdd(p1, p2);
+  return cc.rect(fpoint.x,fpoint.y,32,32);
+}
+
 // Especiales 
 hw.gold = cc.rect(160,64,32,32);
 hw.silver = cc.rect(160,96,32,32);
-hw.gbullet = cc.rect(352,0,32,32);
-hw.sbullet = cc.rect(352,32,32,32);
+hw.gbullet = cc.rect(0,288,32,32);
+hw.sbullet = cc.rect(0,320,32,32);
+hw.grey = cc.rect(0,32,32,32);
+hw.dotted = cc.rect(0,64,32,32);
 
-hw.colour = [hw.red, hw.green, hw.blue, hw.yellow, hw.magenta, hw.cyan];
+hw.colour = [hw.red, hw.green, hw.blue, hw.magenta, hw.yellow, hw.cyan, hw.darkred, hw.darkgreen, hw.darkblue];
 hw.symbol = [hw.plus, hw.rombe, hw.cross, hw.chacana, hw.valcamo, hw.block, hw.glider, hw.maccom, hw.leafcross, hw.hourglass];
 
 //Botones
@@ -60,7 +72,7 @@ hw.obj_contact = function (m)
       nx = ox + d;
       ny = oy + e;
       if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-        m[nx][ny].setTextureRect(hw.red);
+        m[nx][ny].setTextureRect(hw.pointRect(hw.red,hw.cell));
     }
   }
 };
@@ -92,7 +104,7 @@ hw.des_contact = function (m)
       nx = ox + d;
       ny = oy + e;
       if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-        m[nx][ny].setTextureRect(hw.black);
+        m[nx][ny].setTextureRect(hw.pointRect(hw.white,hw.cell));
     }
   }
 }
@@ -126,11 +138,11 @@ hw.obj_junction = function (m)
     
     ny = oy + k;
     if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
-      m[ox][ny].setTextureRect(hw.green);
+      m[ox][ny].setTextureRect(hw.pointRect(hw.green,hw.cell));
     
     nx = ox + k;  
     if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
-      m[nx][oy].setTextureRect(hw.green);
+      m[nx][oy].setTextureRect(hw.pointRect(hw.green,hw.cell));
   }
 }
 
@@ -162,11 +174,11 @@ hw.des_junction = function(m)
     
     ny = oy + k;
     if (0 <= ox && ox < mat_size && 0 <= ny && ny < mat_size)
-      m[ox][ny].setTextureRect(hw.black);
+      m[ox][ny].setTextureRect(hw.pointRect(hw.black,hw.cell));
     
     nx = ox + k;  
     if (0 <= nx && nx < mat_size && 0 <= oy && oy < mat_size)
-      m[nx][oy].setTextureRect(hw.black);
+      m[nx][oy].setTextureRect(hw.pointRect(hw.black,hw.cell));
   }
 }
 
@@ -208,10 +220,10 @@ hw.obj_diagonal = function (m)
     ny = oy + k;
     
     if (0 <= nx1 && nx1 < mat_size && 0 <= ny && ny < mat_size)
-      m[nx1][ny].setTextureRect(hw.blue);
+      m[nx1][ny].setTextureRect(hw.pointRect(hw.blue,hw.cell));
     
     if (0 <= nx2 && nx2 < mat_size && 0 <= ny && ny < mat_size)
-      m[nx2][ny].setTextureRect(hw.blue);
+      m[nx2][ny].setTextureRect(hw.pointRect(hw.blue,hw.cell));
   }
 }
 
@@ -248,10 +260,10 @@ hw.des_diagonal = function(m)
     ny = oy + k;
     
     if (0 <= nx1 && nx1 < mat_size && 0 <= ny && ny < mat_size)
-      m[nx1][ny].setTextureRect(hw.black);
+      m[nx1][ny].setTextureRect(hw.pointRect(hw.white,hw.cell));
     
     if (0 <= nx2 && nx2 < mat_size && 0 <= ny && ny < mat_size)
-      m[nx2][ny].setTextureRect(hw.black);
+      m[nx2][ny].setTextureRect(hw.pointRect(hw.white,hw.cell));
   }
 }
 
@@ -294,7 +306,7 @@ hw.obj_wave = function (m)
         var nx = ox + d;
         var ny = oy + e;
         if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-          m[nx][ny].setTextureRect(hw.darkred);
+          m[nx][ny].setTextureRect(hw.pointRect(hw.magenta,hw.cell));
       }
     }
     
@@ -305,7 +317,7 @@ hw.obj_wave = function (m)
     var ox = Math.floor(orig.x/32);
     var oy = Math.floor(orig.y/32);
   
-    m[ox][oy].setTextureRect(hw.darkred);
+    m[ox][oy].setTextureRect(hw.pointRect(hw.magenta,hw.cell));
   }
 }
 
@@ -345,14 +357,14 @@ hw.des_wave = function (m)
         var nx = ox + d;
         var ny = oy + e;
         if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-          m[nx][ny].setTextureRect(hw.black);
+          m[nx][ny].setTextureRect(hw.pointRect(hw.white,hw.cell));
       }
     }
     
   }
   else if (this.state == "selected")
   {
-    m[ox][oy].setTextureRect(hw.black);   
+    m[ox][oy].setTextureRect(hw.pointRect(hw.white,hw.cell));   
   }
   
 }
@@ -442,7 +454,7 @@ hw.f4 = function(menu, target)
     target.num_pos_act = 4;
     target.pos_act = [true,true,true,true];
 
-    parent.matrix[ix][iy].setTextureRect(hw.black);
+    parent.matrix[ix][iy].setTextureRect(hw.pointRect(hw.white,hw.cell));
     var nteam = parent.gui_layer.turn;
     parent.gui_layer.updateTurn();
     
@@ -456,7 +468,7 @@ hw.f4 = function(menu, target)
 
     var nx = Math.floor(parent.player[nteam].getPosition().x/32);
     var ny = Math.floor(parent.player[nteam].getPosition().y/32);
-    parent.matrix[nx][ny].setTextureRect(hw.blue);
+    parent.matrix[nx][ny].setTextureRect(hw.pointRect(hw.blue,hw.cell));
 
     target.state = "alone";
   }
