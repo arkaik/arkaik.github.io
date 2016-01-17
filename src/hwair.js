@@ -480,16 +480,20 @@ hw.create_menu = function(target)
   var ox = Math.floor(orig.x/32);
   var oy = Math.floor(orig.y/32);
 
-  var cmenu = new CircularMenu(4, 48);
   
+  
+  var misarray = new Array();
   for (i = 0; i < hw.menu_functions.length; ++i)
   {
     if (target.pos_act[i])
     {
       var ab = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.actions[i]),new cc.Sprite(res.button_png, hw.actions[i]), hw.menu_functions[i](cmenu,target), base_node); 
-      cmenu.addItem(ab);
+      misarray.push(ab);
     }
   }
+
+  var cmenu = new CircularMenu(misarray.length, 48);
+  cmenu.addItems(misarray);
 
   cmenu.setPosition(ox*32,oy*32);
   base_node.addChild(cmenu,10,100);
