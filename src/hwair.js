@@ -378,7 +378,7 @@ hw.cns_wave = function (m, px, py)
 
   var locx = [0, 1, 1, 1, 0, -1, -1, -1];
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
-  var seqs = new Array(8);
+  var seqs = new Array();
   
   for (d = -1; d <= 1; d++) {
     for (e = -1; e <= 1; e++)
