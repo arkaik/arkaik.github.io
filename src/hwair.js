@@ -401,7 +401,7 @@ hw.cns_wave = function (m, px, py)
 
   var spa = cc.sequence(cc.spawn(seqs), cc.callFunc(hw.create_menu,null,this));
   this.runAction(spa);
-  return att
+  return att;
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal, hw.obj_wave];
