@@ -159,7 +159,7 @@ var guiLayer = cc.Layer.extend({
   updateTurn: function()
   {
     this.turn = (this.turn+1)%nPlayers;
-    this.labelTurn.setString("Team: "+turn);
+    this.labelTurn.setString("Team: "+this.turn);
   },
   
   updateLH: function(i, h)
