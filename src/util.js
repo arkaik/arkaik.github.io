@@ -278,30 +278,39 @@ var animLayer = cc.Layer.extend({
             parent.matrix[ox][oy].inside[target.team] = undefined;
             
             //Toda acción tiene su consecuencia... (hue hue)
-            target.consequence(parent.matrix, px, py);
+            //*.consequence devuelve las celdas (points) que se atacan.
+            var attCell = target.consequence(parent.matrix, px, py);
+            var finish = false;
 
-            var affected = null;
-            for (i = 0; i < parent.matrix[px][py].inside.length; i++)
+            for (k = 0; k < attCell.length || !finish; k++)
             {
-              affected = parent.matrix[px][py].inside[i];
-              
-              if (affected != undefined && affected.team != target.team)
+              var ptx = attCell[k].x;
+              var pty = attCell[k].y;
+              var affected = null;
+              for (i = 0; i < parent.matrix[ptx][pty].inside.length || !finish ; i++)
               {
-                affected.health -= 1;
-                parent.gui_layer.updateLH(affected.team, affected.health);
-                if (affected.health <= 0)
+                affected = parent.matrix[ptx][pty].inside[i];
+                
+                if (affected != undefined && affected.team != target.team)
                 {
-                  parent.matrix[px][py].inside[i] = undefined;
-                  parent.removeChild(parent.player[i]);
-                  --cPlayers;
-                  if (cPlayers == 1)
+                  affected.health -= 1;
+                  parent.gui_layer.updateLH(affected.team, affected.health);
+                  if (affected.health <= 0)
                   {
-                    cc.log("You win, gg ez");
-                    parent.gui_layer.labelHealth[turn].setString("You win, gg ez");
+                    parent.matrix[px][py].inside[i] = undefined;
+                    parent.removeChild(parent.player[i]);
+                    --cPlayers;
+                    if (cPlayers == 1)
+                    {
+                      cc.log("You win, gg ez");
+                      parent.gui_layer.labelHealth[turn].setString("You win, gg ez");
+                      finish = true;
+                    }
                   }
                 }
               }
             }
+            
 
             //target.state = "moving";
           }

@@ -379,6 +379,7 @@ hw.cns_wave = function (m, px, py)
   var locx = [0, 1, 1, 1, 0, -1, -1, -1];
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
   var seqs = new Array();
+  var att = new Array();
   
   for (d = 0; d < locx.length; d++) {
     var nx = Math.floor(orig.x/32) + locx[d];
@@ -394,11 +395,13 @@ hw.cns_wave = function (m, px, py)
       var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
       var targ = cc.targetedAction(bullet, seq);
       seqs.push(targ);
+      att.push(cc.p(nx,ny));
     }
   }
 
   var spa = cc.sequence(cc.spawn(seqs), cc.callFunc(hw.create_menu,null,this));
   this.runAction(spa);
+  return att
 }
 
 hw.obj = [hw.obj_contact, hw.obj_junction, hw.obj_diagonal, hw.obj_wave];
