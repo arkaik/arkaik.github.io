@@ -380,8 +380,8 @@ hw.cns_wave = function (m, px, py)
   var locy = [1, 1, 0, -1, -1, -1, 0, 1];
   var seqs = new Array();
   
-  for (d = -1; d <= 1; d++) {
-    for (e = -1; e <= 1; e++)
+  for (d = 0; d < locx.length; d++) {
+    for (e = 0; e < locy.length; e++)
     {
         var nx = Math.floor(orig.x/32) + d;
         var ny = Math.floor(orig.y/32) + e;
