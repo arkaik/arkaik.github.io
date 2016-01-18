@@ -381,22 +381,19 @@ hw.cns_wave = function (m, px, py)
   var seqs = new Array();
   
   for (d = 0; d < locx.length; d++) {
-    for (e = 0; e < locy.length; e++)
+    var nx = Math.floor(orig.x/32) + locx[d];
+    var ny = Math.floor(orig.y/32) + locy[d];
+    if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
     {
-        var nx = Math.floor(orig.x/32) + locx[d];
-        var ny = Math.floor(orig.y/32) + locy[e];
-        if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
-        {
-          var bullet = new cc.Sprite(texture);
-          bullet.setPosition(ox,oy);
-          bullet.setTextureRect(hw.gbullet);
-          base_node.addChild(bullet);
-          var cx = ox + locx[d]*32;
-          var cy = oy + locy[e]*32;
-          var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
-          var targ = cc.targetedAction(bullet, seq);
-          seqs.push(targ);
-        }
+      var bullet = new cc.Sprite(texture);
+      bullet.setPosition(ox,oy);
+      bullet.setTextureRect(hw.gbullet);
+      base_node.addChild(bullet);
+      var cx = ox + locx[d]*32;
+      var cy = oy + locy[d]*32;
+      var seq = cc.sequence(cc.moveTo(0.5, cx, cy), cc.delayTime(0.5), cc.removeSelf());
+      var targ = cc.targetedAction(bullet, seq);
+      seqs.push(targ);
     }
   }
 
