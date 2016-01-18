@@ -282,7 +282,7 @@ var animLayer = cc.Layer.extend({
             var attCell = target.consequence(parent.matrix, px, py);
             var finish = false;
 
-            for (k = 0; k < attCell.length || !finish; k++)
+            for (k = 0; k < attCell.length && !finish; k++)
             {
               var ptx = attCell[k].x;
               var pty = attCell[k].y;
