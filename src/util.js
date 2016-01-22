@@ -107,13 +107,13 @@ var SelectionMenu = cc.Menu.extend({
   _charSpr: null,
   ctor: function(){
     
-    for (k = 0; k < hw.buttons.length; k++)
+    /*for (k = 0; k < hw.buttons.length; k++)
     {
       var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), function(){}, this);
       bm.setPosition(32*k,0);
       
       this.addChild(bm);
-    }
+    }*/
 
     for (i = 0; i < hw.symbol.length; i++)
     {
