@@ -106,7 +106,7 @@ var SelectionMenu = cc.Menu.extend({
   _numSpr: null,
   _charSpr: null,
   ctor: function(){
-    
+    this._super();
     /*for (k = 0; k < hw.buttons.length; k++)
     {
       var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), function(){}, this);
@@ -122,10 +122,10 @@ var SelectionMenu = cc.Menu.extend({
       var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), function(){}, this);
       //mic[i] = menui;
       menui.setPosition(32*i,64);
-      this.addChild(menui);
+      cc.Menu.prototype.addChild.call(this,menui);
     }
 
-    this._super();
+    
 
   },
   callbackFunc: function(mic, i){
