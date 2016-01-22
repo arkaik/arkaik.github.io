@@ -111,6 +111,7 @@ var SelectionMenu = cc.Menu.extend({
     {
       var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), function(){}, this);
       bm.setPosition(32*k,0);
+      
       cc.Menu.prototype.addChild.call(this,bm);
     }
 
