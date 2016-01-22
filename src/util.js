@@ -100,7 +100,41 @@ var CircularMenu = cc.Menu.extend({
     }
   }
 
-})
+});
+
+var SelectionMenu = cc.Menu.extend({
+  _numSpr: null,
+  _charSpr: null,
+  ctor: function(){
+    
+    for (k = 0; k < hw.buttons.length; k++)
+    {
+      var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), function(){}, this);
+      bm.setPosition(32*k,0);
+      cc.Menu.prototype.addChild.call(this,bm,null,null);
+    }
+
+    for (i = 0; i < hw.symbol.length; i++)
+    {
+      var symspr = hw.pointRect(hw.symbol[i], hw.black);
+      var symdis = hw.pointRect(hw.symbol[i], hw.dis);
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), function(){}, this);
+      //mic[i] = menui;
+      menui.setPosition(32*i,64);
+      cc.Menu.prototype.addChild.call(this,menui,null,null);
+    }
+
+    this._super();
+
+  },
+  callbackFunc: function(mic, i){
+    return function()
+    {
+      hw.data_sym[this.opt] = i;
+      mic[i].setEnabled(false);
+    }
+  }
+});
 
 
 var backLayer = cc.Layer.extend(
@@ -470,6 +504,11 @@ var menuLayer = cc.Layer.extend({
     this.opt.setDelegate(this);
     this.addChild(this.opt);
     
+
+    var selmenu = new SelectionMenu();
+    selmenu.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
+    this.addChild(menu_b);
+    /*
     var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]), new cc.Sprite(res.button_png, hw.buttons[0]), function(){this.opt = 0;}, this);
     var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]), new cc.Sprite(res.button_png, hw.buttons[1]), function(){this.opt = 1;}, this);
     b2.setPosition(32,0);
@@ -502,7 +541,7 @@ var menuLayer = cc.Layer.extend({
       menui.setPosition(32*i,0);
       menu_c.addChild(menui);
     }
-    this.addChild(menu_c);
+    this.addChild(menu_c);*/
     
     cc.MenuItemFont.setFontSize(60);
     var button = new cc.MenuItemSprite(new cc.Sprite(res.greenbox_png),new cc.Sprite(res.greenbox_png), this.onPlay, this);
