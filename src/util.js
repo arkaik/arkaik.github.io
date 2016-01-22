@@ -107,13 +107,14 @@ var SelectionMenu = cc.Menu.extend({
   _charSpr: null,
   ctor: function(){
     this._super();
-    /*for (k = 0; k < hw.buttons.length; k++)
+    
+    for (k = 0; k < hw.buttons.length; k++)
     {
       var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), function(){}, this);
       bm.setPosition(32*k,0);
       
       this.addChild(bm);
-    }*/
+    }
 
     for (i = 0; i < hw.symbol.length; i++)
     {
@@ -122,7 +123,7 @@ var SelectionMenu = cc.Menu.extend({
       var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), function(){}, this);
       //mic[i] = menui;
       menui.setPosition(32*i,64);
-      cc.Menu.prototype.addChild.call(this,menui);
+      this.addChild(menui);
     }
 
     
@@ -508,7 +509,7 @@ var menuLayer = cc.Layer.extend({
 
     var selmenu = new SelectionMenu();
     selmenu.setPosition(cc.p(winsize.width/3, winsize.height*0.75));
-    this.addChild(menu_b);
+    this.addChild(selmenu);
     /*
     var b1 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[0]), new cc.Sprite(res.button_png, hw.buttons[0]), function(){this.opt = 0;}, this);
     var b2 = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[1]), new cc.Sprite(res.button_png, hw.buttons[1]), function(){this.opt = 1;}, this);
