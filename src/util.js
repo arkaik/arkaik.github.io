@@ -333,6 +333,7 @@ var animLayer = cc.Layer.extend({
               var ptx = attCell[k].x;
               var pty = attCell[k].y;
               var affected = null;
+              cc.log("Position: ("+ptx+", "pty")");
               for (i = 0; i < parent.matrix[ptx][pty].inside.length && !finish ; i++)
               {
                 affected = parent.matrix[ptx][pty].inside[i];
