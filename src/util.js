@@ -138,7 +138,7 @@ var SelectionMenu = cc.Menu.extend({
     return function()
     {
       hw.data_sym[item._opt] = id;
-      _playerChar[item._opt] = id;
+      item._playerChar[item._opt] = id;
       item._charSpr[id].setEnabled(false);
     }
   },
