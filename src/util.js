@@ -359,11 +359,10 @@ var animLayer = cc.Layer.extend({
               }
             }
             
-
-            //target.state = "moving";
           }
 
           target.deselect(parent.matrix);
+          //target.state = "alone";
 
           //hw.create_menu(target);
           
@@ -386,6 +385,7 @@ var animLayer = cc.Layer.extend({
 
             //hw.create_menu(target);
           }
+          target.state = "alone";
         }
 
       }
