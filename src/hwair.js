@@ -386,6 +386,7 @@ hw.cns_wave = function (m, px, py)
     var ny = Math.floor(orig.y/32) + locy[d];
     if (0 <= nx && nx < mat_size && 0 <= ny && ny < mat_size)
     {
+      cc.log("Added position ("+nx+", "+ny+")");
       var bullet = new cc.Sprite(texture);
       bullet.setPosition(ox,oy);
       bullet.setTextureRect(hw.gbullet);

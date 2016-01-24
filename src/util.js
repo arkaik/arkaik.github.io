@@ -330,6 +330,7 @@ var animLayer = cc.Layer.extend({
 
             for (k = 0; k < attCell.length && !finish; k++)
             {
+              cc.log(attCell);
               var ptx = attCell[k].x;
               var pty = attCell[k].y;
               var affected = null;
