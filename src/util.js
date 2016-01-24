@@ -110,23 +110,23 @@ var SelectionMenu = cc.Menu.extend({
   ctor: function(){
     this._super();
     
-    _playerChar = new Array(4);
+    this._playerChar = new Array(4);
     for (k = 0; k < hw.buttons.length; k++)
     {
-      _playerChar[k] = k;
+      this._playerChar[k] = k;
       var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), this.numberFunc(this, k), this);
       bm.setPosition(32*k,64);
       
       this.addChild(bm);
     }
 
-    _charSpr = new Array(hw.symbol.length);
+    this._charSpr = new Array(hw.symbol.length);
     for (i = 0; i < hw.symbol.length; i++)
     {
       var symspr = hw.pointRect(hw.symbol[i], hw.black);
       var symdis = hw.pointRect(hw.symbol[i], hw.dis);
       var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), this.itemFunc(this,i), this);
-      _charSpr[i] = menui;
+      this._charSpr[i] = menui;
       menui.setPosition(32*i,0);
       this.addChild(menui);
     }
