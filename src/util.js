@@ -103,25 +103,30 @@ var CircularMenu = cc.Menu.extend({
 });
 
 var SelectionMenu = cc.Menu.extend({
+  _opt: 0,
   _numSpr: null,
   _charSpr: null,
+  _playerChar: null,
   ctor: function(){
     this._super();
     
+    _playerChar = new Array(4);
     for (k = 0; k < hw.buttons.length; k++)
     {
-      var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), function(){}, this);
+      _playerChar[k] = k;
+      var bm = new cc.MenuItemSprite(new cc.Sprite(res.button_png, hw.buttons[k]), new cc.Sprite(res.button_png, hw.buttons[k]), this.numberFunc(this, k), this);
       bm.setPosition(32*k,64);
       
       this.addChild(bm);
     }
 
+    _charSpr = new Array(hw.symbol.length);
     for (i = 0; i < hw.symbol.length; i++)
     {
       var symspr = hw.pointRect(hw.symbol[i], hw.black);
       var symdis = hw.pointRect(hw.symbol[i], hw.dis);
-      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), function(){}, this);
-      //mic[i] = menui;
+      var menui = new cc.MenuItemSprite(new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symspr), new cc.Sprite(res.image_png, symdis), this.itemFunc(this,i), this);
+      _charSpr[i] = menui;
       menui.setPosition(32*i,0);
       this.addChild(menui);
     }
@@ -129,12 +134,17 @@ var SelectionMenu = cc.Menu.extend({
     
 
   },
-  callbackFunc: function(mic, i){
+  itemFunc: function(item, id){
     return function()
     {
-      hw.data_sym[this.opt] = i;
-      mic[i].setEnabled(false);
+      hw.data_sym[item._opt] = id;
+      _playerChar[item._opt] = id;
+      item._charSpr[id].setEnabled(false);
     }
+  },
+  numberFunc: function(item, id)
+  {
+    item._opt = id;
   }
 });
 
