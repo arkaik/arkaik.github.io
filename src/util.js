@@ -298,7 +298,7 @@ var animLayer = cc.Layer.extend({
         var nteam = parent.gui_layer.turn;
 
         //Posición de origen
-        var orig = base_node.convertToNodeSpace(target.getPosition());
+        var orig = target.getPosition();
         var ox = Math.floor(orig.x/32);
         var oy = Math.floor(orig.y/32);
 
