@@ -380,7 +380,7 @@ var animLayer = cc.Layer.extend({
             var seqmov = cc.sequence(cc.moveTo(0.5, cx, cy), cc.callFunc(hw.create_menu,null,target));
             target.runAction(seqmov);
             
-            parent.matrix[][]
+            parent.matrix[ox][oy].inside[target.team] = undefined;
             parent.matrix[px][py].inside[target.team] = target;
 
             //target.setPosition(cx,cy);
