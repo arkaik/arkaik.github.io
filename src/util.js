@@ -370,9 +370,10 @@ var animLayer = cc.Layer.extend({
         }
         else if (target.state == "moving")
         {
-          target.state = "alone";
+          
           if (target.compr(parent.matrix, px, py))
           {
+            target.state = "alone";
             var cx = px*32+16;
             var cy = py*32+16;
             //Devolver a su estado original las celdas rojas
