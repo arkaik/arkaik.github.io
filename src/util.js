@@ -370,6 +370,7 @@ var animLayer = cc.Layer.extend({
         }
         else if (target.state == "moving")
         {
+          target.state = "alone";
           if (target.compr(parent.matrix, px, py))
           {
             var cx = px*32+16;
@@ -380,6 +381,8 @@ var animLayer = cc.Layer.extend({
             var seqmov = cc.sequence(cc.moveTo(0.5, cx, cy), cc.callFunc(hw.create_menu,null,target));
             target.runAction(seqmov);
             
+            cc.log(ox+", "+oy+" | "+px+", "+py);
+
             parent.matrix[ox][oy].inside[target.team] = undefined;
             parent.matrix[px][py].inside[target.team] = target;
 
@@ -387,7 +390,7 @@ var animLayer = cc.Layer.extend({
 
             //hw.create_menu(target);
           }
-          target.state = "alone";
+          
         }
 
       }
