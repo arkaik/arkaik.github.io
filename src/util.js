@@ -298,7 +298,7 @@ var animLayer = cc.Layer.extend({
         var nteam = parent.gui_layer.turn;
 
         //Posición de origen
-        var orig = target.getPosition();
+        var orig = base_node.convertToNodeSpace(target.getPosition());
         var ox = Math.floor(orig.x/32);
         var oy = Math.floor(orig.y/32);
 
@@ -338,6 +338,7 @@ var animLayer = cc.Layer.extend({
               {
                 affected = parent.matrix[ptx][pty].inside[i];
                 cc.log("i = "+i);
+                cc.log(affected);
                 if (affected != undefined && affected.team != target.team)
                 {
                   cc.log("Bingo "+affected.team);
@@ -379,6 +380,7 @@ var animLayer = cc.Layer.extend({
             var seqmov = cc.sequence(cc.moveTo(0.5, cx, cy), cc.callFunc(hw.create_menu,null,target));
             target.runAction(seqmov);
             
+            parent.matrix[][]
             parent.matrix[px][py].inside[target.team] = target;
 
             //target.setPosition(cx,cy);
