@@ -321,7 +321,7 @@ var animLayer = cc.Layer.extend({
         { 
           if (target.compr(parent.matrix, px, py))
           {
-            parent.matrix[ox][oy].inside[target.team] = undefined;
+            //parent.matrix[ox][oy].inside[target.team] = undefined;
             
             //Toda acción tiene su consecuencia... (hue hue)
             //*.consequence devuelve las celdas (points) que se atacan.
@@ -373,7 +373,7 @@ var animLayer = cc.Layer.extend({
           
           if (target.compr(parent.matrix, px, py))
           {
-            
+
             var cx = px*32+16;
             var cy = py*32+16;
             //Devolver a su estado original las celdas rojas
