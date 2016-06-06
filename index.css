@@ -1,3 +1,4 @@
 .project {
-    border-bottom: 1px;
+    border-bottom: 2px slategrey solid;
+    text-align: center;
 }
