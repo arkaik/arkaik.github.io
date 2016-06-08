@@ -1,4 +1,20 @@
 .project {
-    border-bottom: 2px slategrey solid;
-    text-align: center;
+    display: flex;
+    border-bottom: 5px slategrey solid;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s;
+}
+
+#pr_gf:hover {
+    background-color: #369083;
+}
+
+#pr_bw:hover {
+    background-color: #752575;
+}
+
+.projectName {
+    display: inline-flex;
 }
