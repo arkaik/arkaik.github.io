@@ -1,6 +1,6 @@
 var main = function ()
 {
-    $("#pr_gf").click(() => {window.location.href = "arkaik.github.io/genFIB"})
+    $("#pr_gf").click(() => {window.location.href = "genFIB"})
 }
 
 $(document).ready(main);
