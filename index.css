@@ -7,7 +7,7 @@
     transition: background-color 0.5s;
 }
 
-#pr_gf:hover {
+#pr_gc:hover {
     background-color: #369083;
 }
 
@@ -17,4 +17,9 @@
 
 .projectName {
     display: inline-flex;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
